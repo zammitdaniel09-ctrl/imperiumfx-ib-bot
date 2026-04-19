@@ -4311,7 +4311,7 @@ def join_free_button() -> InlineKeyboardMarkup:
     ])
 
 
-def _extract_custom_message(args: List[str]) -> str:
+def _extract_custom_message(args: list[str]) -> str:
     return " ".join(args).strip()
 
 
