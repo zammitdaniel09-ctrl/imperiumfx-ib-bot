@@ -26,7 +26,7 @@ from telegram.ext import (
 # CONFIG
 # ===================================================================
 BOT_TOKEN = "8085633137:AAEM6MOSPirix26Bs4Ye9wqryX063L-FO60"
-ADMIN_CHAT_ID = -1003919089074
+ADMIN_CHAT_ID = -1005102939745
 MAIN_GROUP_CHAT_ID = -1003752395437
 BOT_USERNAME = "imperiumfx_onboarding_bot"
 
@@ -75,23 +75,23 @@ SOCIALS = [
 # ===================================================================
 # LANGUAGES
 # ===================================================================
-LANGS = ["en", "zh", "ar", "es", "pt"]
+LANGS = ["en", "es", "hi", "ar", "ru"]
 DEFAULT_LANG = "en"
 
 LANG_LABELS = {
     "en": "English",
-    "zh": "中文 (Chinese)",
-    "ar": "العربية (Arabic)",
     "es": "Espanol (Spanish)",
-    "pt": "Portugues (Portuguese)",
+    "hi": "हिन्दी (Hindi)",
+    "ar": "العربية (Arabic)",
+    "ru": "Русский (Russian)",
 }
 
 LANG_FLAG = {
     "en": "EN",
-    "zh": "CN",
-    "ar": "AR",
     "es": "ES",
-    "pt": "PT",
+    "hi": "HI",
+    "ar": "AR",
+    "ru": "RU",
 }
 
 # Simple in-memory rate limit (per-user)
@@ -648,524 +648,155 @@ TEXTS["en"] = {
     "btn_block_user": "🚫 Block User",
 }
 
-TEXTS["zh"] = {
-    "lang_picker_title": "✨ <b>欢迎来到 ImperiumFX</b> ✨\n\n您的高端交易入口 — 精选 VIP 信号、IB 合作伙伴计划,以及一支真正在交易的团队。\n\n🌐 <b>请选择您的语言以继续。</b>\n<i>您可以随时通过 /language 更改。</i>",
-    "lang_set_ok": "✅ <b>语言已设置。</b> 正在加载主菜单…",
-
-    "welcome_title": "💎 <b>欢迎来到 ImperiumFX</b> 💎",
-    "welcome_body": "💎 <b>欢迎来到 ImperiumFX</b> 💎\n\n为 PU Prime 交易者打造的高端 VIP 信号与 IB 合作伙伴之家。\n\n<b>您今天想要做什么?</b>\n\n💎 <b>VIP 通道</b> — 私有信号、设置与实时交易呼叫\n🤝 <b>IB 代理</b> — 成为合作伙伴并赚取佣金\n👥 <b>团队介绍</b> — 了解 ImperiumFX 的团队\n🌐 <b>关注我们</b> — Instagram 与 TikTok\n❓ <b>常见问题</b> — 常见疑问的快速解答\n\n<i>请点击下方选项继续。</i>",
-    "resume_prompt": (
-        "<b>您在机器人中已有进度。</b>\n\n"
-        "是否要<b>重新开始</b>,还是保留当前进度?"
-    ),
-    "restart_yes_msg": "💎 <b>欢迎来到 ImperiumFX</b> 💎\n\n请在下方选择您的路径。",
-    "restart_no_msg": "进度已保留。请点击下方按钮继续。",
-    "back_short_welcome": "💎 <b>欢迎来到 ImperiumFX</b> 💎\n\n请在下方选择您的路径。\n\n💎 <b>VIP 通道</b> — 加入我们的 VIP 信号通道\n🤝 <b>IB 代理</b> — 成为代理并完成 IB 注册流程\n\n<i>请选择最符合您需求的选项。</i>",
-
-    "help_text": (
-        "<b>ImperiumFX 机器人 - 帮助</b>\n\n"
-        "- /start - 打开主菜单\n"
-        "- /status - 查看您的进度\n"
-        "- /language - 更改语言\n"
-        "- /help - 显示此信息\n\n"
-        "如果遇到问题,请点击任意菜单中的 <b>联系客服</b>。"
-    ),
-    "status_title": "<b>您的状态</b>",
-    "status_no_record": "尚未找到记录。请按 /start 开始。",
-    "status_path": "路径",
-    "status_flow": "流程",
-    "status_vip_submitted": "VIP 已提交",
-    "status_aff_submitted": "代理已提交",
-    "status_funded": "资金账户 VIP",
-    "yes": "是",
-    "no": "否",
-    "status_field_status": "状态",
+TEXTS["hi"] = {
+    "lang_picker_title": "✨ <b>ImperiumFX में आपका स्वागत है</b> ✨\n\nप्रीमियम ट्रेडिंग का आपका द्वार — चुने हुए VIP सिग्नल, IB पार्टनरशिप, और एक असली ट्रेडिंग टीम।\n\n🌐 <b>जारी रखने के लिए कृपया अपनी भाषा चुनें।</b>\n<i>आप बाद में /language से कभी भी बदल सकते हैं।</i>",
+    "lang_set_ok": "✅ <b>भाषा सेट हो गई।</b> मुख्य मेनू लोड हो रहा है…",
+    "welcome_title": "💎 <b>ImperiumFX में आपका स्वागत है</b> 💎",
+    "welcome_body": "💎 <b>ImperiumFX में आपका स्वागत है</b> 💎\n\nPU Prime ट्रेडर्स के लिए प्रीमियम VIP सिग्नल और IB पार्टनरशिप का घर।\n\n<b>आज आप यहाँ क्यों आए हैं?</b>\n\n💎 <b>VIP Access</b> — प्राइवेट सिग्नल, सेटअप और लाइव कॉल्स\n🤝 <b>IB Affiliate</b> — पार्टनर बनें और कमीशन कमाएं\n👥 <b>टीम से मिलें</b> — देखिए ImperiumFX को कौन चलाता है\n🌐 <b>हमें फॉलो करें</b> — Instagram और TikTok\n❓ <b>FAQ</b> — सामान्य सवालों के तुरंत जवाब\n\n<i>जारी रखने के लिए नीचे कोई विकल्प दबाएं।</i>",
+    "resume_prompt": "<b>आपकी प्रगति पहले से बॉट में मौजूद है।</b>\n\nक्या आप <b>फिर से शुरू</b> करना चाहते हैं, या अपनी मौजूदा प्रगति रखना चाहते हैं?",
+    "restart_yes_msg": "💎 <b>ImperiumFX में आपका स्वागत है</b> 💎\n\nनीचे अपना रास्ता चुनें।",
+    "restart_no_msg": "प्रगति सुरक्षित है। जारी रखने के लिए नीचे कोई बटन दबाएं।",
+    "back_short_welcome": "💎 <b>ImperiumFX में आपका स्वागत है</b> 💎\n\nनीचे अपना रास्ता चुनें।\n\n💎 <b>VIP Access</b> — हमारे VIP सिग्नल में शामिल हों\n🤝 <b>IB Affiliate</b> — एफिलिएट बनें और IB प्रक्रिया का पालन करें\n\n<i>कृपया वह विकल्प चुनें जो आपके लिए सही है।</i>",
+    "help_text": "<b>ImperiumFX Bot - सहायता</b>\n\n- /start - मुख्य मेनू खोलें\n- /status - अपनी प्रगति देखें\n- /language - भाषा बदलें\n- /help - यह संदेश दिखाएं\n\nअगर आप अटक जाएं, तो किसी भी मेनू से <b>Contact Support</b> दबाएं।",
+    "status_title": "<b>आपकी स्थिति</b>",
+    "status_no_record": "अभी तक कोई रिकॉर्ड नहीं मिला। शुरू करने के लिए /start दबाएं।",
+    "status_path": "रास्ता",
+    "status_flow": "प्रक्रिया",
+    "status_vip_submitted": "VIP जमा किया",
+    "status_aff_submitted": "Affiliate जमा किया",
+    "status_funded": "Funded VIP",
+    "yes": "हाँ",
+    "no": "नहीं",
+    "status_field_status": "स्थिति",
     "dash": "-",
-
-    "access_disabled": "访问已禁用。请联系客服。",
-    "slow_down": "请慢一点",
-    "fallback_unknown": (
-        "未能识别您的输入 - 这是菜单。\n"
-        "按 /start 开始,/status 查看进度,/help 获取帮助。"
-    ),
-    "fallback_media": "未能识别您的输入 - 这是菜单。按 /start 开始。",
-
-    "team_title": "<b>团队介绍</b>",
-    "team_footer": "<i>点击下方按钮直接联系他们。</i>",
-    "socials_body": (
-        "<b>关注 ImperiumFX</b>\n\n"
-        "关注我们获取最新内容、信号预览和福利活动。"
-    ),
-    "faq_intro": "<b>常见问题</b>\n\n请在下方选择一个问题。",
-
-    "vip_access_body": (
-        "<b>VIP 通道</b>\n\n"
-        "请在下方选择您的 VIP 路径。\n\n"
-        "<b>免费 VIP</b>\n"
-        "- 适用于在我们 IB 下注册的用户\n"
-        "- 需要在我们名下注册/转移并入金\n\n"
-        "<b>付费 VIP</b>\n"
-        "- 适用于想要直接访问的用户\n"
-        "- 资金账户按月付费\n\n"
-        "<i>请选择符合您情况的选项。</i>"
-    ),
-    "vip_free_body": (
-        "<b>免费 VIP</b>\n\n"
-        "要获得资格,您必须<b>选择其中一项</b>:\n\n"
-        "1. <b>在我们名下注册 PU Prime</b>\n"
-        "2. <b>将您现有的 PU Prime 账户转移到我们名下</b>\n\n"
-        "<b>重要规则:</b>\n"
-        "- 您必须在我们的 IB 下\n"
-        "- 您必须<b>入金</b>\n"
-        "- 否则<b>将无法获得免费 VIP 访问权限</b>\n\n"
-        "<i>请在下方选择符合您情况的选项。</i>"
-    ),
-    "vip_paid_body": (
-        "<b>付费 VIP</b>\n\n"
-        "请选择您使用的账户类型。\n\n"
-        "<b>真实账户</b>\n"
-        "- 结构与免费 VIP 相同\n"
-        "- 您必须在我们的 IB 下并入金\n\n"
-        "<b>资金账户</b>\n"
-        "- 首月 <b>50 欧元</b>\n"
-        "- 此后每月 <b>80 欧元</b>\n\n"
-        "<i>请在下方选择您的账户类型。</i>"
-    ),
-    "vip_paid_live_body": (
-        "<b>付费 VIP - 真实账户</b>\n\n"
-        "对于真实账户,您的访问通过我们的 IB 结构处理。\n\n"
-        "这意味着您必须:\n"
-        "1. 在我们名下注册或转移\n"
-        "2. 入金\n"
-        "3. 提交您的 UID\n\n"
-        "<i>请在下方选择您的路径。</i>"
-    ),
-    "vip_paid_funded_body": (
-        "<b>付费 VIP - 资金账户</b>\n\n"
-        "<b>价格:</b>\n"
-        "- 首月 <b>50 欧元</b>\n"
-        "- 此后每月 <b>80 欧元</b>\n\n"
-        "<b>支付方式:</b>\n"
-        "- BTC\n"
-        "- ETH\n"
-        "- SOL\n\n"
-        "<b>下一步:</b>\n"
-        "1. 查看钱包地址\n"
-        "2. 发送付款\n"
-        "3. 提交付款证明\n\n"
-        "<i>请使用下方按钮。</i>"
-    ),
-    "vip_new_body": (
-        "<b>VIP 通道 - PU Prime 新用户</b>\n\n"
-        "请按顺序完成以下步骤:\n\n"
-        "1. <b>使用我们的链接注册</b>\n"
-        "2. 确保代码为 <b>{IB_CODE}</b>\n"
-        "3. 完成注册\n"
-        "4. <b>入金</b>\n"
-        "5. 提交您的 <b>MT5 UID / 账户号码</b>\n\n"
-        "<b>重要:</b>\n"
-        "- VIP 仅适用于在我们名下的用户\n"
-        "- 仅仅注册<b>是不够的</b>\n"
-        "- 您必须<b>入金</b>后才会审核\n\n"
-        "<i>请仔细按照下方步骤操作。</i>"
-    ),
-    "vip_existing_body": (
-        "<b>VIP 通道 - PU Prime 现有用户</b>\n\n"
-        "请按顺序完成以下步骤:\n\n"
-        "1. 发送 <b>IB 转移邮件</b>\n"
-        "2. 等待转移确认\n"
-        "3. <b>入金</b>\n"
-        "4. 提交您的 <b>MT5 UID / 账户号码</b>\n\n"
-        "<b>重要:</b>\n"
-        "- 您的账户必须转移到我们的 IB 下\n"
-        "- 您必须<b>入金</b>\n"
-        "- 否则<b>将无法获得 VIP 访问权限</b>\n\n"
-        "<i>请仔细按照下方步骤操作。</i>"
-    ),
-    "vip_registered_msg": (
-        "<b>注册已标记为完成。</b>\n\n"
-        "<b>下一项要求:</b>在提交 UID 进行 VIP 审核之前,您现在必须<b>入金</b>。\n\n"
-        "<i>请勿跳过此步骤。</i>"
-    ),
-    "vip_must_register_first": (
-        "<b>您必须先完成注册。</b>\n\n"
-        "请按顺序执行步骤。\n\n"
-        "<i>第 3 步之前必须完成第 1 步。</i>"
-    ),
-    "vip_deposit_done_msg": (
-        "<b>入金已标记为完成。</b>\n\n"
-        "您现在可以提交 <b>MT5 UID / 账户号码</b> 进行 VIP 审核。"
-    ),
-    "vip_existing_deposit_done_msg": (
-        "<b>入金已标记为完成。</b>\n\n"
-        "您现在可以提交 <b>MT5 UID / 账户号码</b> 进行 VIP 审核。"
-    ),
-    "vip_transfer_email_body": (
-        "<b>VIP 转移邮件模板</b>\n\n"
-        "<b>收件人:</b>\n<code>{T1}</code>\n<code>{T2}</code>\n\n"
-        "<b>主题:</b>\n<code>Move account under IB {IB_ACCOUNT_NUMBER}</code>\n\n"
-        "<b>正文:</b>\n"
-        "<code>Hello,\n\n"
-        "Please move my PU Prime account under IB {IB_ACCOUNT_NUMBER}.\n\n"
-        "Full Name: [Your Name and Surname]\n"
-        "Account Email: [Your PU Prime account email]\n\n"
-        "Please confirm once this has been completed.\n\n"
-        "Thank you.</code>\n\n"
-        "<b>重要:</b>转移确认后,您还必须<b>入金</b>才能获得 VIP 资格。"
-    ),
-    "vip_transfer_sent_msg": (
-        "<b>转移邮件已标记为已发送。</b>\n\n"
-        "等待 PU Prime 确认 IB 转移。\n\n"
-        "<b>之后:</b>\n"
-        "- 入金\n"
-        "- 然后提交您的 UID\n\n"
-        "<i>这是 VIP 审核所必需的。</i>"
-    ),
-    "vip_must_send_transfer_first": (
-        "<b>您必须先发送转移邮件。</b>\n\n"
-        "请按顺序执行 VIP 转移步骤。"
-    ),
-
-    "ib_affiliate_body": (
-        "<b>IB 代理设置</b>\n\n"
-        "此路径适用于希望了解 IB 模式并完成代理注册流程的用户。\n\n"
-        "<i>选择您需要入门指南还是直接继续。</i>"
-    ),
-    "what_is_ib_msg": (
-        "请先查看下方的<b>教程 PDF</b>。\n\n"
-        "<b>下一步:</b>阅读完成后,请按 <b>继续</b>。"
-    ),
-    "pdf_missing": "教程 PDF 未找到。\n\n请将 <b>{PDF}</b> 放在 <b>ib_bot.py</b> 同一文件夹中。",
-    "pdf_caption": "IB 教程指南",
-    "affiliate_main_body": "<b>IB 代理菜单</b>\n\n请选择符合您情况的路径。",
-    "flow_new_body": (
-        "<b>IB 代理 - PU Prime 新用户</b>\n\n"
-        "请按顺序完成以下步骤:\n\n"
-        "1. <b>开始注册</b>\n"
-        "2. 确保代码为 <b>{IB_CODE}</b>\n"
-        "3. 完成注册和验证\n"
-        "4. 按 <b>我已完成注册</b>\n"
-        "5. 提交您的 <b>MT5 UID / 账户号码</b>\n\n"
-        "<b>重要:</b>请勿跳过步骤。\n\n"
-        "<i>请按下方的第 1 步开始。</i>"
-    ),
-    "flow_existing_body": (
-        "<b>IB 代理 - PU Prime 现有用户</b>\n\n"
-        "请按顺序完成以下步骤:\n\n"
-        "1. 打开<b>转移邮件模板</b>\n"
-        "2. 将邮件发送给 PU Prime\n"
-        "3. 按 <b>我已发送邮件</b>\n"
-        "4. 等待 PU Prime 确认转移\n"
-        "5. 提交您的 <b>MT5 UID / 账户号码</b>\n\n"
-        "<i>请按顺序完成每个步骤。</i>"
-    ),
-    "affiliate_registered_msg": (
-        "<b>注册已标记为完成。</b>\n\n"
-        "您现在可以在此处发送您的 <b>MT5 UID / 账户号码</b>。\n\n"
-        "<i>发送前请确保 UID 格式正确。</i>"
-    ),
-    "affiliate_transfer_email_body": (
-        "<b>IB 转移邮件模板</b>\n\n"
-        "<b>收件人:</b>\n<code>{T1}</code>\n<code>{T2}</code>\n\n"
-        "<b>主题:</b>\n<code>Move account under IB {IB_ACCOUNT_NUMBER}</code>\n\n"
-        "<b>正文:</b>\n"
-        "<code>Hello,\n\n"
-        "Please move my PU Prime account under IB {IB_ACCOUNT_NUMBER}.\n\n"
-        "Full Name: [Your Name and Surname]\n"
-        "Account Email: [Your PU Prime account email]\n\n"
-        "Please confirm once this has been completed.\n\n"
-        "Thank you.</code>\n\n"
-        "<i>发送此邮件,然后返回这里按第 2 步。</i>"
-    ),
-    "affiliate_transfer_sent_msg": (
-        "<b>邮件已标记为已发送。</b>\n\n"
-        "等待 PU Prime 确认 IB 转移。\n\n"
-        "确认后,在此处提交您的 <b>MT5 UID / 账户号码</b>。"
-    ),
-    "affiliate_must_register": (
-        "<b>您必须先完成注册。</b>\n\n"
-        "请按顺序执行代理步骤。"
-    ),
-    "affiliate_must_send_transfer": (
-        "<b>您必须先发送转移邮件。</b>\n\n"
-        "请按顺序执行代理步骤。"
-    ),
-    "benefits_body": (
-        "<b>IB 福利</b>\n\n"
-        "- 结构化入门流程\n"
-        "- 直接管理员支持\n"
-        "- 清晰的设置流程\n"
-        "- 验证后可进入下一阶段\n\n"
-        "<i>请返回并继续正确的路径。</i>"
-    ),
-
-    "show_btc_body": (
-        "<b>BTC 地址</b>\n\n"
-        "<code>{ADDR}</code>\n\n"
-        "<i>点击地址复制。发送付款后,按 我已付款 并提交证明。</i>"
-    ),
-    "show_eth_body": (
-        "<b>ETH 地址</b>\n\n"
-        "<code>{ADDR}</code>\n\n"
-        "<i>点击地址复制。发送付款后,按 我已付款 并提交证明。</i>"
-    ),
-    "show_sol_body": (
-        "<b>SOL 地址</b>\n\n"
-        "<code>{ADDR}</code>\n\n"
-        "<i>点击地址复制。发送付款后,按 我已付款 并提交证明。</i>"
-    ),
-    "funded_payment_sent_msg": (
-        "<b>付款已标记为已发送。</b>\n\n"
-        "现在请提交您的付款证明。\n\n"
-        "<b>重要:</b>如果您发送截图或文档,标题必须是:\n\n"
-        "<code>PAYMENT: FUNDED</code>"
-    ),
-    "funded_already_submitted": (
-        "<b>您的付款证明已收到。</b>\n\n"
-        "请等待审核或在需要时联系客服。"
-    ),
-    "funded_must_send_first": (
-        "<b>您必须先将付款标记为已发送。</b>\n\n"
-        "请按顺序执行资金 VIP 步骤。"
-    ),
-    "funded_proof_prompt": (
-        "现在请发送您的<b>付款证明</b>。\n\n"
-        "<b>必需的标题格式:</b>\n"
-        "<code>PAYMENT: FUNDED</code>\n\n"
-        "<i>仅限截图或文档。</i>"
-    ),
-    "funded_waiting_review_msg": (
-        "<b>您的资金 VIP 付款证明已在审核中。</b>\n\n"
-        "您现在无需再提交任何内容。\n\n"
-        "<i>如需帮助,请按 联系客服。</i>"
-    ),
-    "funded_proof_received": (
-        "<b>付款证明已收到。</b>\n\n"
-        "您的资金 VIP 付款正在审核中。\n\n"
-        "<i>请等待确认或进一步指示。</i>"
-    ),
-
-    "submit_uid_prompt": (
-        "请以此精确格式立即发送您的 <b>MT5 UID / 账户号码</b>:\n\n"
-        "<code>UID: 12345678</code>\n\n"
-        "<b>重要:</b>\n"
-        "- 首先写 <code>UID:</code>\n"
-        "- 然后是您的号码\n"
-        "- 仅数字\n"
-        "- 不要有多余文本\n\n"
-        "如果您发送截图或文档,<b>标题</b>必须使用相同格式。"
-    ),
-    "uid_format_guide": (
-        "<b>UID 格式无效。</b>\n\n"
-        "请以此精确格式发送您的 UID:\n\n"
-        "<code>UID: 12345678</code>\n\n"
-        "<b>规则:</b>\n"
-        "- 必须以 <code>UID:</code> 开头\n"
-        "- 之后仅限数字\n"
-        "- 不要有多余的词\n"
-        "- UID 前不要有空格\n\n"
-        "<i>示例:</i> <code>UID: 123517235</code>"
-    ),
-    "payment_format_guide": (
-        "<b>付款证明格式无效。</b>\n\n"
-        "如果您发送付款证明,标题必须完全是:\n\n"
-        "<code>PAYMENT: FUNDED</code>"
-    ),
-    "uid_caption_invalid": (
-        "<b>标题格式无效。</b>\n\n"
-        "如果您发送截图或文档,标题必须是:\n\n"
-        "<code>UID: 12345678</code>"
-    ),
-    "uid_already_registered": (
-        "<b>此 UID 已在另一用户名下注册。</b>\n\n"
-        "如果您认为这是错误,请联系客服。"
-    ),
-    "uid_not_ready_new_vip": (
-        "<b>您还没有准备好提交 UID。</b>\n\n"
-        "作为<b>新用户</b>获得 VIP 访问权限,您必须:\n"
-        "1. 在我们名下注册\n"
-        "2. 入金\n"
-        "3. 然后提交您的 UID\n\n"
-        "<i>请先完成必要的步骤。</i>"
-    ),
-    "uid_not_ready_existing_vip": (
-        "<b>您还没有准备好提交 UID。</b>\n\n"
-        "作为<b>现有用户</b>获得 VIP 访问权限,您必须:\n"
-        "1. 发送转移邮件\n"
-        "2. 等待确认\n"
-        "3. 入金\n"
-        "4. 然后提交您的 UID\n\n"
-        "<i>请先完成必要的步骤。</i>"
-    ),
-    "vip_already_submitted": (
-        "<b>您的 VIP 提交已收到。</b>\n\n"
-        "请等待审核或在需要时联系客服。"
-    ),
-    "aff_already_submitted": (
-        "<b>您的代理提交已收到。</b>\n\n"
-        "请等待审核或在需要时联系客服。"
-    ),
-    "submission_received_text": (
-        "<b>提交已收到。</b>\n\n"
-        "您的详细信息已转发进行审核。\n\n"
-        "<i>请等待确认或进一步指示。</i>"
-    ),
-    "submission_received_media": (
-        "<b>提交已收到。</b>\n\n"
-        "您的文件已转发进行审核。\n\n"
-        "<i>请等待确认或进一步指示。</i>"
-    ),
-    "vip_waiting_review_msg": (
-        "<b>您的 VIP 提交已在审核中。</b>\n\n"
-        "您现在无需再提交任何内容。\n\n"
-        "<i>如需帮助,请按 联系客服。</i>"
-    ),
-    "aff_waiting_review_msg": (
-        "<b>您的代理提交已在审核中。</b>\n\n"
-        "您现在无需再提交任何内容。\n\n"
-        "<i>如需帮助,请按 联系客服。</i>"
-    ),
-
-    "support_body": "<b>联系客服</b>\n\n选择最适合您问题的管理员:",
-
-    "approved_dm": (
-        "<b>您的提交已获批准。</b>\n\n"
-        "管理员将很快跟进下一步。"
-    ),
-    "rejected_dm": (
-        "<b>您的提交在此阶段未获批准。</b>\n\n"
-        "请联系客服解决问题。"
-    ),
-
-    "nudge_24h": (
-        "简单问候一下。\n\n"
-        "如果您在 ImperiumFX 设置过程中遇到困难,请按 /start 继续 - "
-        "或点击 联系客服,我们会帮助您。"
-    ),
-    "nudge_72h_deposit": (
-        "您已将入金标记为完成 - 别忘了提交您的 "
-        "<b>MT5 UID</b> 以便我们完成 VIP 访问设置。"
-    ),
-    "renewal_reminder": (
-        "<b>资金 VIP 续费提醒</b>\n\n"
-        "您的续费将在 <b>{DAYS} 天</b> 后到期。\n"
-        "续费金额为 <b>80 欧元</b>。按 /start -> 付费 VIP -> 资金账户 付款。\n\n"
-        "<b>钱包:</b>\n"
-        "BTC: <code>{BTC}</code>\n"
-        "ETH: <code>{ETH}</code>\n"
-        "SOL: <code>{SOL}</code>"
-    ),
-
-    "fallback_msg": "我没听懂 — 请使用下方按钮。",
-    "uid_bad_format": (
-        "<b>格式无法识别。</b>\n"
-        "请按以下格式发送您的 UID 和 PU Prime 邮箱:\n"
-        "<code>UID: 12345678\nEmail: you@example.com</code>"
-    ),
-    "vip_uid_received": (
-        "<b>VIP 提交已收到。</b>\n"
-        "我们的团队将尽快审核,审核通过后会私信您。 ✅"
-    ),
-    "aff_uid_received": (
-        "<b>合作伙伴提交已收到。</b>\n"
-        "我们的团队会确认您的 IB 子联盟身份并私信您。 ✅"
-    ),
-    "funded_submit_bad_format": (
-        "<b>格式无法识别。</b>\n"
-        "请发送:\n"
-        "<code>Amount: 80 EUR\nTX/Ref: &lt;哈希或参考号&gt;\nMethod: BTC|ETH|SOL</code>\n"
-        "或发送付款截图并附上相同说明。"
-    ),
-    "funded_submit_received": (
-        "<b>付费 VIP 付款已收到。</b>\n"
-        "我们正在核实,一旦开通将私信通知您。 🔒"
-    ),
-    "nudge_incomplete": (
-        "<b>还对 VIP 感兴趣吗?</b>\n"
-        "您已开始但尚未完成 — 点击 /start 继续上次的操作。"
-    ),
-
-    "faq_q1": "什么是 VIP 访问权限?",
-    "faq_a1": (
-        "<b>VIP 访问权限</b>为您提供我们的私有信号、设置和交易提示。"
-        "免费 VIP 需要您在我们的 IB 下注册并入金。"
-        "付费 VIP(资金)为资金账户交易者提供直接访问。"
-    ),
-    "faq_q2": "什么是 IB?",
-    "faq_a2": (
-        "<b>IB(介绍经纪商)</b>意味着您的交易账户在我们的合作伙伴代码下注册或转移。"
-        "我们从您的点差中赚取小额佣金 - <b>对您没有额外费用</b> - "
-        "作为回报,您将获得免费 VIP 访问权限。"
-    ),
-    "faq_q3": "审核需要多长时间?",
-    "faq_a3": (
-        "审核<b>通常在 24 小时内</b>完成。如果超过时间,请按 "
-        "<b>联系客服</b>,管理员将跟进。"
-    ),
-    "faq_q4": "为什么我的 UID 未被接受?",
-    "faq_a4": (
-        "常见原因:账户不在我们的 IB 代码下、尚未入金或 UID 格式错误。"
-        "请确保您使用了代码 <code>{IB_CODE}</code>、已入金,"
-        "并以此精确格式提交:<code>UID: 12345678</code>"
-    ),
-    "faq_q5": "资金 VIP 多少钱?",
-    "faq_a5": (
-        "首月 <b>50 欧元</b>,之后每月 <b>80 欧元</b>。"
-        "可使用 BTC、ETH 或 SOL 支付。付款后,发送证明并附上标题 "
-        "<code>PAYMENT: FUNDED</code>。"
-    ),
-    "faq_q6": "有最低入金要求吗?",
-    "faq_a6": (
-        "PU Prime 设定最低入金额。我们建议至少 <b>200 美元</b>,"
-        "以获得有意义的头寸规模,并顺利获得 VIP 资格。"
-    ),
-
-    "btn_vip_access": "💎 加入 VIP 通道",
-    "btn_ib_affiliate": "🤝 成为 IB 代理",
-    "btn_team": "👥 团队介绍",
-    "btn_socials": "🌐 关注我们",
-    "btn_faq": "❓ 常见问题",
-    "btn_support": "💬 联系客服",
-    "btn_back": "◀️ 返回",
-    "btn_back_to_start": "🏠 返回主页",
-    "btn_back_to_vip": "◀️ 返回 VIP 菜单",
-    "btn_back_to_affiliate": "◀️ 返回代理菜单",
-    "btn_yes_restart": "🔄 是,重新开始",
-    "btn_no_keep": "✅ 否,保留进度",
-    "btn_free_vip": "🎁 免费 VIP",
-    "btn_paid_vip": "👑 付费 VIP",
-    "btn_new_to_pu": "🆕 PU Prime 新用户",
-    "btn_existing_pu": "📂 已有 PU Prime 账户",
-    "btn_live_account": "📊 真实账户",
-    "btn_funded_account": "🏦 资金账户",
-    "btn_dont_know_ib": "🤔 我不知道什么是 IB",
-    "btn_already_know": "✅ 我已了解,继续",
-    "btn_continue": "➡️ 继续",
-    "btn_step1_register": "1️⃣ 第 1 步:在 PU Prime 注册",
-    "btn_step1_start_reg": "1️⃣ 第 1 步:开始注册",
-    "btn_step2_completed": "2️⃣ 第 2 步:我已完成注册",
-    "btn_step3_deposited": "3️⃣ 第 3 步:我已入金",
-    "btn_step4_submit_uid": "4️⃣ 第 4 步:提交 UID",
-    "btn_step3_submit_uid": "3️⃣ 第 3 步:提交 UID",
-    "btn_step1_view_email": "1️⃣ 第 1 步:查看转移邮件",
-    "btn_step2_sent_email": "2️⃣ 第 2 步:我已发送邮件",
-    "btn_view_btc": "₿ 查看 BTC 地址",
-    "btn_view_eth": "Ξ 查看 ETH 地址",
-    "btn_view_sol": "◎ 查看 SOL 地址",
-    "btn_sent_payment": "💸 我已付款",
-    "btn_submit_proof": "📤 提交付款证明",
-    "btn_waiting_payment_review": "⏳ 等待付款审核",
-    "btn_waiting_review": "⏳ 等待审核",
-    "btn_benefits": "🎯 IB 福利",
-    "btn_message": "💬 联系",
-    "btn_founder": "👑 创始人 - Kratos",
-    "btn_onboarding": "🚀 入门 / 综合 - Apollo",
-    "btn_signals": "📈 信号 - Plato",
-    "btn_socials_admin": "📱 社交 - HD",
-    "btn_change_language": "🌐 更改语言",
-    "btn_approve": "✅ 批准",
-    "btn_reject": "❌ 拒绝",
-    "btn_block_user": "🚫 封禁用户",
+    "access_disabled": "एक्सेस बंद है। सपोर्ट से संपर्क करें।",
+    "slow_down": "थोड़ा धीमे",
+    "fallback_unknown": "मुझे समझ नहीं आया — यह मेनू है।\nशुरू करने के लिए /start दबाएं।",
+    "fallback_media": "मुझे समझ नहीं आया — यह मेनू है। शुरू करने के लिए /start दबाएं।",
+    "team_title": "<b>टीम से मिलें</b>",
+    "team_footer": "<i>उनसे सीधे बात करने के लिए नीचे कोई बटन दबाएं।</i>",
+    "socials_body": "<b>ImperiumFX को फॉलो करें</b>\n\nहमारे नवीनतम कंटेंट, ट्रेड्स और टीम अपडेट्स के साथ जुड़े रहें।\n\nनीचे दिए बटन से हमारे चैनलों पर जाएं।",
+    "faq_intro": "<b>अक्सर पूछे जाने वाले सवाल</b>\n\nनीचे कोई सवाल चुनें।",
+    "vip_access_body": "<b>VIP Access</b>\n\nनीचे अपना VIP रास्ता चुनें।\n\n<b>Free VIP</b> — हमारे IB के तहत रजिस्टर करें और पात्रता के लिए डिपॉज़िट करें।\n<b>Paid VIP</b> — सीधी एक्सेस (Live या Funded खाता)।",
+    "vip_free_body": "<b>Free VIP</b>\n\nपात्र होने के लिए, आपको <b>इनमें से एक</b> करना होगा:\n\n1. हमारे IB कोड <code>{IB_CODE}</code> के तहत नया PU Prime खाता खोलें।\n2. यदि आप पहले से PU Prime उपयोगकर्ता हैं, तो हमारे IB के तहत ट्रांसफर करें।\n\nपूरी प्रक्रिया के लिए नीचे अपना मार्ग चुनें।",
+    "vip_paid_body": "<b>Paid VIP</b>\n\nजो खाता आप उपयोग करते हैं वह चुनें।\n\n<b>Live Account</b> — आपकी PU Prime डिपॉज़िट के ज़रिए सीधी एक्सेस।\n<b>Funded Account</b> — Funded ट्रेडर्स के लिए क्रिप्टो में भुगतान।",
+    "vip_paid_live_body": "<b>Paid VIP - Live Account</b>\n\nलाइव खातों के लिए आपकी एक्सेस PU Prime डिपॉज़िट के ज़रिए है।\n\n<b>आवश्यक:</b>\n- हमारे IB कोड <code>{IB_CODE}</code> के तहत खाता\n- न्यूनतम डिपॉज़िट पूरा हुआ\n- आपका MT5 UID / खाता नंबर जमा करें\n\nजारी रखने के लिए नीचे <b>Submit UID</b> दबाएं।",
+    "vip_paid_funded_body": "<b>Paid VIP - Funded Account</b>\n\n<b>मूल्य:</b>\n- पहले महीने <b>EUR 50</b>\n- इसके बाद <b>EUR 80</b>/माह\n\n<b>भुगतान के तरीके:</b>\nBTC / ETH / SOL — नीचे पता देखें।\n\nभुगतान के बाद, अपने ट्रांज़ैक्शन का सबूत भेजें।",
+    "vip_new_body": "<b>VIP Access - PU Prime में नए</b>\n\nइन चरणों का क्रम से पालन करें:\n\n1️⃣ हमारे IB कोड <code>{IB_CODE}</code> के तहत रजिस्टर करें\n2️⃣ रजिस्ट्रेशन पूरा होने की पुष्टि करें\n3️⃣ अपने खाते में डिपॉज़िट करें\n4️⃣ अपना MT5 UID जमा करें",
+    "vip_existing_body": "<b>VIP Access - मौजूदा PU Prime उपयोगकर्ता</b>\n\nइन चरणों का क्रम से पालन करें:\n\n1️⃣ हमारे ट्रांसफर ईमेल टेम्पलेट को देखें\n2️⃣ ईमेल PU Prime को भेजें\n3️⃣ अपना MT5 UID जमा करें",
+    "vip_registered_msg": "<b>रजिस्ट्रेशन पूरा के रूप में चिह्नित।</b>\n\n<b>अगली आवश्यकता:</b> Free VIP के लिए एक डिपॉज़िट करें।\nतैयार होने पर <b>Step 3: I Deposited</b> दबाएं।",
+    "vip_must_register_first": "<b>आपको पहले रजिस्ट्रेशन पूरा करना होगा।</b>\n\nकृपया मेनू के अनुसार चरणों का पालन करें।",
+    "vip_deposit_done_msg": "<b>डिपॉज़िट पूरा के रूप में चिह्नित।</b>\n\nअब आप अपना MT5 UID जमा कर सकते हैं।",
+    "vip_existing_deposit_done_msg": "<b>डिपॉज़िट पूरा के रूप में चिह्नित।</b>\n\nअब आप अपना MT5 UID जमा कर सकते हैं।",
+    "vip_transfer_email_body": "<b>VIP ट्रांसफर ईमेल टेम्पलेट</b>\n\n<b>प्रति:</b>\n<code>{T1}</code>\n<code>{T2}</code>\n\n<b>विषय:</b>\n<code>IB transfer request</code>\n\n<b>मुख्य भाग:</b>\n<code>Hello,\nPlease transfer my PU Prime account to IB account {IB_ACCOUNT_NUMBER} (code {IB_CODE}).\nMT5 UID: &lt;your UID&gt;\nThanks.</code>\n\nईमेल भेजने के बाद <b>I Sent the Email</b> दबाएं।",
+    "vip_transfer_sent_msg": "<b>ट्रांसफर ईमेल भेजा गया के रूप में चिह्नित।</b>\n\nपुष्टि के लिए PU Prime की प्रतीक्षा करें, फिर आप अपना UID जमा कर सकते हैं।",
+    "vip_must_send_transfer_first": "<b>पहले ट्रांसफर ईमेल भेजना होगा।</b>\n\nकृपया मेनू के अनुसार चरणों का पालन करें।",
+    "ib_affiliate_body": "<b>IB Affiliate सेटअप</b>\n\nयह उन उपयोगकर्ताओं के लिए है जो PU Prime के तहत हमारे उप-सहयोगी बनना चाहते हैं।\n\nअगर आप IB नहीं समझते, तो पहले ट्यूटोरियल देखें।",
+    "what_is_ib_msg": "नीचे <b>ट्यूटोरियल PDF</b> से शुरू करें।\n\n<b>अगला चरण:</b> तैयार होने पर मुख्य Affiliate मेनू पर लौटें।",
+    "pdf_missing": "ट्यूटोरियल PDF नहीं मिली।\n\nबॉट के साथ <b>{PDF}</b> उसी फोल्डर में रखें।",
+    "pdf_caption": "IB ट्यूटोरियल गाइड",
+    "affiliate_main_body": "<b>IB Affiliate मेनू</b>\n\nअपनी स्थिति से मेल खाने वाला रास्ता चुनें।",
+    "flow_new_body": "<b>IB Affiliate - PU Prime में नए</b>\n\nइन चरणों का क्रम से पालन करें:\n\n1️⃣ हमारे IB कोड <code>{IB_CODE}</code> के तहत रजिस्टर करें\n2️⃣ रजिस्ट्रेशन पूरा होने की पुष्टि करें\n3️⃣ अपना MT5 UID जमा करें",
+    "flow_existing_body": "<b>IB Affiliate - मौजूदा PU Prime उपयोगकर्ता</b>\n\nइन चरणों का क्रम से पालन करें:\n\n1️⃣ हमारे ट्रांसफर ईमेल टेम्पलेट को देखें\n2️⃣ ईमेल PU Prime को भेजें\n3️⃣ अपना MT5 UID जमा करें",
+    "affiliate_registered_msg": "<b>रजिस्ट्रेशन पूरा के रूप में चिह्नित।</b>\n\nअब आप अपना MT5 UID जमा कर सकते हैं।",
+    "affiliate_transfer_email_body": "<b>IB ट्रांसफर ईमेल टेम्पलेट</b>\n\n<b>प्रति:</b>\n<code>{T1}</code>\n<code>{T2}</code>\n\n<b>विषय:</b>\n<code>IB transfer request</code>\n\n<b>मुख्य भाग:</b>\n<code>Hello,\nPlease transfer my PU Prime account to IB account {IB_ACCOUNT_NUMBER} (code {IB_CODE}).\nMT5 UID: &lt;your UID&gt;\nThanks.</code>\n\nईमेल भेजने के बाद <b>I Sent the Email</b> दबाएं।",
+    "affiliate_transfer_sent_msg": "<b>ईमेल भेजा गया के रूप में चिह्नित।</b>\n\nपुष्टि के लिए PU Prime की प्रतीक्षा करें, फिर आप अपना UID जमा कर सकते हैं।",
+    "affiliate_must_register": "<b>आपको पहले रजिस्ट्रेशन पूरा करना होगा।</b>\n\nकृपया मेनू के अनुसार चरणों का पालन करें।",
+    "affiliate_must_send_transfer": "<b>पहले ट्रांसफर ईमेल भेजना होगा।</b>\n\nकृपया मेनू के अनुसार चरणों का पालन करें।",
+    "benefits_body": "<b>IB लाभ</b>\n\n- व्यवस्थित ऑनबोर्डिंग\n- सीधा एडमिन समर्थन\n- मुफ्त VIP सिग्नल एक्सेस\n- उप-सहयोगी आयोग संरचना\n- विशेष टीम चैनल",
+    "show_btc_body": "<b>BTC पता</b>\n\n<code>{ADDR}</code>\n\n<i>कॉपी करने के लिए पते पर टैप करें। भेजने के बाद <b>I Sent Payment</b> दबाएं।</i>",
+    "show_eth_body": "<b>ETH पता</b>\n\n<code>{ADDR}</code>\n\n<i>कॉपी करने के लिए पते पर टैप करें। भेजने के बाद <b>I Sent Payment</b> दबाएं।</i>",
+    "show_sol_body": "<b>SOL पता</b>\n\n<code>{ADDR}</code>\n\n<i>कॉपी करने के लिए पते पर टैप करें। भेजने के बाद <b>I Sent Payment</b> दबाएं।</i>",
+    "funded_payment_sent_msg": "<b>भुगतान भेजा गया के रूप में चिह्नित।</b>\n\nअब अपना भुगतान प्रमाण जमा करें।",
+    "funded_already_submitted": "<b>आपका भुगतान प्रमाण पहले ही प्राप्त हो चुका है।</b>\n\nकृपया हमारी समीक्षा की प्रतीक्षा करें।",
+    "funded_must_send_first": "<b>पहले भुगतान को भेजा गया के रूप में चिह्नित करें।</b>\n\nकृपया चरणों का पालन करें।",
+    "funded_proof_prompt": "अपना <b>भुगतान प्रमाण</b> अभी भेजें।\n\n<b>आवश्यक कैप्शन प्रारूप:</b>\n<code>Amount: 80 EUR\nTX/Ref: &lt;hash या reference&gt;\nMethod: BTC|ETH|SOL</code>\n\nआप स्क्रीनशॉट के साथ कैप्शन भी भेज सकते हैं।",
+    "funded_waiting_review_msg": "<b>आपका Funded VIP भुगतान प्रमाण पहले से समीक्षाधीन है।</b>\n\nकुछ और करने की ज़रूरत नहीं है।",
+    "funded_proof_received": "<b>भुगतान प्रमाण प्राप्त हुआ।</b>\n\nआपका Funded VIP भुगतान अब समीक्षा के अधीन है। स्वीकृत होने पर आपको DM मिलेगी।",
+    "submit_uid_prompt": "अभी इस सटीक प्रारूप में अपना <b>MT5 UID / खाता नंबर</b> भेजें:\n\n<code>UID: 12345678\nEmail: you@example.com</code>",
+    "uid_format_guide": "<b>अमान्य UID प्रारूप।</b>\n\nअपना UID इस सटीक प्रारूप में भेजें:\n<code>UID: 12345678\nEmail: you@example.com</code>",
+    "payment_format_guide": "<b>अमान्य भुगतान प्रमाण प्रारूप।</b>\n\nयदि आप स्क्रीनशॉट के साथ भुगतान भेज रहे हैं, तो कैप्शन में शामिल करें:\n<code>Amount: 80 EUR\nTX/Ref: &lt;hash या reference&gt;\nMethod: BTC|ETH|SOL</code>",
+    "uid_caption_invalid": "<b>अमान्य कैप्शन प्रारूप।</b>\n\nयदि आप स्क्रीनशॉट या फ़ाइल भेज रहे हैं, तो कैप्शन में शामिल करें:\n<code>UID: 12345678\nEmail: you@example.com</code>",
+    "uid_already_registered": "<b>यह UID पहले से किसी अन्य उपयोगकर्ता के लिए पंजीकृत है।</b>\n\nयदि यह एक त्रुटि है, तो सपोर्ट से संपर्क करें।",
+    "uid_not_ready_new_vip": "<b>आप अभी UID जमा करने के लिए तैयार नहीं हैं।</b>\n\nVIP एक्सेस के लिए पहले रजिस्टर और डिपॉज़िट करें।",
+    "uid_not_ready_existing_vip": "<b>आप अभी UID जमा करने के लिए तैयार नहीं हैं।</b>\n\nVIP एक्सेस के लिए पहले ट्रांसफर ईमेल भेजें।",
+    "vip_already_submitted": "<b>आपकी VIP सबमिशन पहले ही प्राप्त हो चुकी है।</b>\n\nकृपया समीक्षा की प्रतीक्षा करें।",
+    "aff_already_submitted": "<b>आपकी एफिलिएट सबमिशन पहले ही प्राप्त हो चुकी है।</b>\n\nकृपया समीक्षा की प्रतीक्षा करें।",
+    "submission_received_text": "<b>सबमिशन प्राप्त हुआ।</b>\n\nआपका विवरण समीक्षा के लिए भेज दिया गया है। स्वीकृत होने पर आपको DM मिलेगी।",
+    "submission_received_media": "<b>सबमिशन प्राप्त हुआ।</b>\n\nआपकी फ़ाइल समीक्षा के लिए भेज दी गई है। स्वीकृत होने पर आपको DM मिलेगी।",
+    "vip_waiting_review_msg": "<b>आपकी VIP सबमिशन पहले से समीक्षाधीन है।</b>\n\nकुछ और करने की ज़रूरत नहीं है।",
+    "aff_waiting_review_msg": "<b>आपकी एफिलिएट सबमिशन पहले से समीक्षाधीन है।</b>\n\nकुछ और करने की ज़रूरत नहीं है।",
+    "support_body": "<b>Contact Support</b>\n\nअपने प्रश्न के लिए सबसे उपयुक्त एडमिन चुनें।",
+    "approved_dm": "<b>आपकी सबमिशन स्वीकृत कर दी गई है।</b>\n\nएक एडमिन जल्द ही अगले चरणों के साथ आपसे संपर्क करेगा। 🎉",
+    "rejected_dm": "<b>इस चरण पर आपकी सबमिशन स्वीकृत नहीं हुई।</b>\n\nविस्तार के लिए कृपया सपोर्ट से संपर्क करें।",
+    "nudge_24h": "बस जांच कर रहे हैं।\n\nअगर आप ImperiumFX सेटअप में अटक गए हैं, तो सपोर्ट से संपर्क करें या /start दबाएं।",
+    "nudge_72h_deposit": "आपने अपना डिपॉज़िट पूरा बताया था — अपना UID जमा करना न भूलें।\nजारी रखने के लिए /start दबाएं।",
+    "renewal_reminder": "<b>Funded VIP नवीकरण अनुस्मारक</b>\n\nआपका नवीकरण <b>{DAYS} दिन</b> में देय है।\nनवीकरण <b>EUR 80</b> है। भुगतान के लिए /start -> Paid VIP -> Funded दबाएं।\n\n<b>वॉलेट:</b>\nBTC: <code>{BTC}</code>\nETH: <code>{ETH}</code>\nSOL: <code>{SOL}</code>",
+    "fallback_msg": "मुझे समझ नहीं आया — कृपया नीचे दिए बटनों का उपयोग करें।",
+    "uid_bad_format": "<b>प्रारूप समझ नहीं आया।</b>\nकृपया अपना UID और PU Prime ईमेल इस तरह भेजें:\n<code>UID: 12345678\nEmail: you@example.com</code>",
+    "vip_uid_received": "<b>VIP सबमिशन प्राप्त हुआ।</b>\nहमारी टीम जल्द ही इसकी समीक्षा करेगी और स्वीकृत होने पर आपको DM करेगी। ✅",
+    "aff_uid_received": "<b>एफिलिएट सबमिशन प्राप्त हुआ।</b>\nहमारी टीम आपकी IB उप-सहयोगी स्थिति की पुष्टि करेगी और आपको DM करेगी। ✅",
+    "funded_submit_bad_format": "<b>प्रारूप समझ नहीं आया।</b>\nकृपया भेजें:\n<code>Amount: 80 EUR\nTX/Ref: &lt;hash या reference&gt;\nMethod: BTC|ETH|SOL</code>\nया उसी कैप्शन के साथ प्रमाण की छवि भेजें।",
+    "funded_submit_received": "<b>Funded VIP भुगतान प्राप्त हुआ।</b>\nहम अभी सत्यापित कर रहे हैं — एक्सेस मिलते ही आपको DM करेंगे। 🔒",
+    "nudge_incomplete": "<b>क्या आप अभी भी VIP में रुचि रखते हैं?</b>\nआपने शुरू किया लेकिन पूरा नहीं किया — जहां रुके थे वहीं से जारी रखने के लिए /start दबाएं।",
+    "faq_q1": "VIP एक्सेस क्या है?",
+    "faq_a1": "<b>VIP एक्सेस</b> आपको हमारे प्राइवेट सिग्नल, सेटअप और ट्रेड कॉल देता है। Free VIP के लिए हमारे IB के तहत आना और डिपॉज़िट करना आवश्यक है। Paid VIP (funded) funded खाता ट्रेडर्स के लिए सीधी एक्सेस है।",
+    "faq_q2": "IB क्या है?",
+    "faq_a2": "<b>IB (Introducing Broker)</b> का मतलब है कि आपका ट्रेडिंग खाता हमारे पार्टनर कोड के तहत रजिस्टर या ट्रांसफर है। हम आपके स्प्रेड से छोटा कमीशन कमाते हैं — <b>आप पर कोई अतिरिक्त शुल्क नहीं</b> — और बदले में आपको मुफ्त VIP एक्सेस मिलता है।",
+    "faq_q3": "समीक्षा में कितना समय लगता है?",
+    "faq_a3": "समीक्षा <b>आमतौर पर 24 घंटे के भीतर</b> होती है। अगर उससे ज़्यादा हो गया है, तो सपोर्ट से संपर्क करें।",
+    "faq_q4": "मेरा UID क्यों स्वीकार नहीं हुआ?",
+    "faq_a4": "सामान्य कारण: खाता हमारे IB कोड <code>{IB_CODE}</code> के तहत नहीं है, कोई डिपॉज़िट नहीं हुआ, या गलत प्रारूप। सुनिश्चित करें कि आप सही UID और ईमेल भेज रहे हैं।",
+    "faq_q5": "Funded VIP की कीमत क्या है?",
+    "faq_a5": "पहले महीने <b>EUR 50</b>, फिर <b>EUR 80</b>/माह। भुगतान BTC, ETH या SOL में स्वीकार किया जाता है।",
+    "faq_q6": "न्यूनतम डिपॉज़िट क्या है?",
+    "faq_a6": "PU Prime न्यूनतम डिपॉज़िट निर्धारित करता है। हम VIP पात्रता के लिए कम से कम <b>USD 100</b> की सलाह देते हैं।",
+    "btn_vip_access": "💎 VIP एक्सेस में शामिल हों",
+    "btn_ib_affiliate": "🤝 IB एफिलिएट बनें",
+    "btn_team": "👥 टीम से मिलें",
+    "btn_socials": "🌐 हमें फॉलो करें",
+    "btn_faq": "❓ FAQ",
+    "btn_support": "💬 सपोर्ट से संपर्क करें",
+    "btn_back": "◀️ वापस",
+    "btn_back_to_start": "🏠 शुरुआत पर वापस",
+    "btn_back_to_vip": "◀️ VIP मेनू पर वापस",
+    "btn_back_to_affiliate": "◀️ एफिलिएट मेनू पर वापस",
+    "btn_yes_restart": "🔄 हाँ, फिर से शुरू करें",
+    "btn_no_keep": "✅ नहीं, प्रगति रखें",
+    "btn_free_vip": "🎁 Free VIP",
+    "btn_paid_vip": "👑 Paid VIP",
+    "btn_new_to_pu": "🆕 PU Prime में नए",
+    "btn_existing_pu": "📂 पहले से PU Prime के साथ",
+    "btn_live_account": "📊 Live खाता",
+    "btn_funded_account": "🏦 Funded खाता",
+    "btn_dont_know_ib": "🤔 मुझे IB नहीं पता",
+    "btn_already_know": "✅ मुझे पता है, जारी रखें",
+    "btn_continue": "➡️ जारी रखें",
+    "btn_step1_register": "1️⃣ चरण 1: PU Prime के साथ रजिस्टर करें",
+    "btn_step1_start_reg": "1️⃣ चरण 1: रजिस्ट्रेशन शुरू करें",
+    "btn_step2_completed": "2️⃣ चरण 2: मैंने रजिस्ट्रेशन पूरा किया",
+    "btn_step3_deposited": "3️⃣ चरण 3: मैंने डिपॉज़िट किया",
+    "btn_step4_submit_uid": "4️⃣ चरण 4: UID जमा करें",
+    "btn_step3_submit_uid": "3️⃣ चरण 3: UID जमा करें",
+    "btn_step1_view_email": "1️⃣ चरण 1: ट्रांसफर ईमेल देखें",
+    "btn_step2_sent_email": "2️⃣ चरण 2: मैंने ईमेल भेज दिया",
+    "btn_view_btc": "₿ BTC पता देखें",
+    "btn_view_eth": "Ξ ETH पता देखें",
+    "btn_view_sol": "◎ SOL पता देखें",
+    "btn_sent_payment": "💸 मैंने भुगतान भेज दिया",
+    "btn_submit_proof": "📤 भुगतान प्रमाण जमा करें",
+    "btn_waiting_payment_review": "⏳ भुगतान समीक्षा की प्रतीक्षा",
+    "btn_waiting_review": "⏳ समीक्षा की प्रतीक्षा",
+    "btn_benefits": "🎯 IB लाभ",
+    "btn_message": "💬 संदेश",
+    "btn_founder": "👑 संस्थापक - Kratos",
+    "btn_onboarding": "🚀 ऑनबोर्डिंग / जनरल - Apollo",
+    "btn_signals": "📈 सिग्नल - Plato",
+    "btn_socials_admin": "📱 सोशल - HD",
+    "btn_change_language": "🌐 भाषा बदलें",
+    "btn_approve": "✅ स्वीकृत करें",
+    "btn_reject": "❌ अस्वीकार करें",
+    "btn_block_user": "🚫 उपयोगकर्ता ब्लॉक करें",
 }
 
 TEXTS["ar"] = {
@@ -2207,524 +1838,155 @@ TEXTS["es"] = {
     "btn_block_user": "🚫 Bloquear Usuario",
 }
 
-TEXTS["pt"] = {
-    "lang_picker_title": "✨ <b>Bem-vindo ao ImperiumFX</b> ✨\n\nSua porta de entrada para o trading premium — sinais VIP selecionados, parcerias IB e um time que realmente opera.\n\n🌐 <b>Por favor escolha seu idioma para continuar.</b>\n<i>Você pode alterar a qualquer momento com /language.</i>",
-    "lang_set_ok": "✅ <b>Idioma definido.</b> Carregando o menu principal…",
-
-    "welcome_title": "💎 <b>Bem-vindo ao ImperiumFX</b> 💎",
-    "welcome_body": "💎 <b>Bem-vindo ao ImperiumFX</b> 💎\n\nA casa dos sinais VIP premium e parcerias IB para traders da PU Prime.\n\n<b>O que te traz aqui hoje?</b>\n\n💎 <b>Acesso VIP</b> — sinais privados, setups e chamadas ao vivo\n🤝 <b>Afiliado IB</b> — torne-se parceiro e ganhe comissões\n👥 <b>Conheça a Equipe</b> — saiba quem está por trás do ImperiumFX\n🌐 <b>Siga-nos</b> — Instagram e TikTok\n❓ <b>FAQ</b> — respostas rápidas para perguntas comuns\n\n<i>Toque em uma opção abaixo para continuar.</i>",
-    "resume_prompt": (
-        "<b>Você já tem progresso no bot.</b>\n\n"
-        "Quer <b>recomeçar</b> do início, ou manter seu progresso atual?"
-    ),
-    "restart_yes_msg": "💎 <b>Bem-vindo ao ImperiumFX</b> 💎\n\nEscolha seu caminho abaixo.",
-    "restart_no_msg": "Progresso mantido. Toque em um botão para continuar.",
-    "back_short_welcome": "💎 <b>Bem-vindo ao ImperiumFX</b> 💎\n\nEscolha seu caminho abaixo.\n\n💎 <b>Acesso VIP</b> — entre no nosso canal de sinais VIP\n🤝 <b>Afiliado IB</b> — torne-se afiliado e siga o processo IB\n\n<i>Escolha a opção que melhor se adapta a você.</i>",
-
-    "help_text": (
-        "<b>Bot ImperiumFX - Ajuda</b>\n\n"
-        "- /start - abrir o menu principal\n"
-        "- /status - ver seu progresso\n"
-        "- /language - mudar idioma\n"
-        "- /help - mostrar esta mensagem\n\n"
-        "Se travar, toque em <b>Falar com Suporte</b> em qualquer menu."
-    ),
-    "status_title": "<b>Seu status</b>",
-    "status_no_record": "Nenhum registro encontrado. Toque /start para começar.",
-    "status_path": "Caminho",
-    "status_flow": "Fluxo",
-    "status_vip_submitted": "VIP enviado",
-    "status_aff_submitted": "Afiliado enviado",
-    "status_funded": "VIP Funded",
-    "yes": "sim",
-    "no": "não",
-    "status_field_status": "status",
+TEXTS["ru"] = {
+    "lang_picker_title": "✨ <b>Добро пожаловать в ImperiumFX</b> ✨\n\nВаш вход в премиум-трейдинг — отборные VIP-сигналы, IB-партнёрство и команда, которая реально торгует.\n\n🌐 <b>Пожалуйста, выберите язык, чтобы продолжить.</b>\n<i>Вы можете изменить его в любое время через /language.</i>",
+    "lang_set_ok": "✅ <b>Язык установлен.</b> Загружаем главное меню…",
+    "welcome_title": "💎 <b>Добро пожаловать в ImperiumFX</b> 💎",
+    "welcome_body": "💎 <b>Добро пожаловать в ImperiumFX</b> 💎\n\nДом премиум VIP-сигналов и IB-партнёрств для трейдеров PU Prime.\n\n<b>Что привело вас сюда сегодня?</b>\n\n💎 <b>VIP Access</b> — приватные сигналы, сетапы и живые звонки\n🤝 <b>IB Affiliate</b> — станьте партнёром и зарабатывайте комиссии\n👥 <b>Команда</b> — узнайте, кто управляет ImperiumFX\n🌐 <b>Подписывайтесь</b> — Instagram и TikTok\n❓ <b>FAQ</b> — быстрые ответы на частые вопросы\n\n<i>Нажмите на одну из опций ниже, чтобы продолжить.</i>",
+    "resume_prompt": "<b>У вас уже есть прогресс в боте.</b>\n\nХотите <b>начать заново</b> или оставить текущий прогресс?",
+    "restart_yes_msg": "💎 <b>Добро пожаловать в ImperiumFX</b> 💎\n\nВыберите путь ниже.",
+    "restart_no_msg": "Прогресс сохранён. Нажмите кнопку ниже, чтобы продолжить.",
+    "back_short_welcome": "💎 <b>Добро пожаловать в ImperiumFX</b> 💎\n\nВыберите путь ниже.\n\n💎 <b>VIP Access</b> — присоединяйтесь к нашим VIP-сигналам\n🤝 <b>IB Affiliate</b> — станьте партнёром и пройдите IB-процесс\n\n<i>Выберите вариант, который вам подходит.</i>",
+    "help_text": "<b>ImperiumFX Bot - Помощь</b>\n\n- /start - открыть главное меню\n- /status - посмотреть ваш прогресс\n- /language - сменить язык\n- /help - показать это сообщение\n\nЕсли что-то не получается, нажмите <b>Contact Support</b> из любого меню.",
+    "status_title": "<b>Ваш статус</b>",
+    "status_no_record": "Запись ещё не найдена. Нажмите /start, чтобы начать.",
+    "status_path": "Путь",
+    "status_flow": "Процесс",
+    "status_vip_submitted": "VIP отправлен",
+    "status_aff_submitted": "Affiliate отправлен",
+    "status_funded": "Funded VIP",
+    "yes": "да",
+    "no": "нет",
+    "status_field_status": "статус",
     "dash": "-",
-
-    "access_disabled": "Acesso desativado. Contate o suporte.",
-    "slow_down": "Mais devagar",
-    "fallback_unknown": (
-        "Não entendi - aqui está o menu.\n"
-        "Toque /start para começar, /status para ver progresso, ou /help para ajuda."
-    ),
-    "fallback_media": "Não entendi - aqui está o menu. Toque /start para começar.",
-
-    "team_title": "<b>Conheça a Equipe</b>",
-    "team_footer": "<i>Toque num botão para falar com eles diretamente.</i>",
-    "socials_body": (
-        "<b>Siga o ImperiumFX</b>\n\n"
-        "Fique por dentro do nosso conteúdo, previews de sinais e sorteios."
-    ),
-    "faq_intro": "<b>Perguntas Frequentes</b>\n\nEscolha uma pergunta abaixo.",
-
-    "vip_access_body": (
-        "<b>Acesso VIP</b>\n\n"
-        "Escolha sua rota VIP abaixo.\n\n"
-        "<b>VIP Grátis</b>\n"
-        "- para usuários que vêm sob nosso IB\n"
-        "- requer registro/transferência sob nós e depósito\n\n"
-        "<b>VIP Pago</b>\n"
-        "- para usuários que querem acesso direto\n"
-        "- contas funded pagam mensalmente\n\n"
-        "<i>Selecione a opção que corresponde à sua situação.</i>"
-    ),
-    "vip_free_body": (
-        "<b>VIP Grátis</b>\n\n"
-        "Para se qualificar, você precisa fazer <b>um</b> dos seguintes:\n\n"
-        "1. <b>Registrar-se no PU Prime sob nós</b>\n"
-        "2. <b>Transferir sua conta PU Prime existente para nós</b>\n\n"
-        "<b>Regras importantes:</b>\n"
-        "- Você precisa estar sob nosso IB\n"
-        "- Precisa <b>depositar</b>\n"
-        "- Sem isso, <b>acesso VIP grátis não será concedido</b>\n\n"
-        "<i>Selecione a opção que corresponde à sua situação abaixo.</i>"
-    ),
-    "vip_paid_body": (
-        "<b>VIP Pago</b>\n\n"
-        "Escolha o tipo de conta que você usa.\n\n"
-        "<b>Conta Real</b>\n"
-        "- mesma estrutura do VIP grátis\n"
-        "- precisa estar sob nosso IB e depositar\n\n"
-        "<b>Conta Funded</b>\n"
-        "- <b>EUR 50</b> primeiro mês\n"
-        "- <b>EUR 80</b> a partir do mês seguinte\n\n"
-        "<i>Selecione seu tipo de conta abaixo.</i>"
-    ),
-    "vip_paid_live_body": (
-        "<b>VIP Pago - Conta Real</b>\n\n"
-        "Para contas reais, seu acesso é feito pela nossa estrutura IB.\n\n"
-        "Isso significa que você precisa:\n"
-        "1. registrar sob nós ou transferir sob nós\n"
-        "2. depositar\n"
-        "3. enviar seu UID\n\n"
-        "<i>Selecione sua rota abaixo.</i>"
-    ),
-    "vip_paid_funded_body": (
-        "<b>VIP Pago - Conta Funded</b>\n\n"
-        "<b>Preços:</b>\n"
-        "- <b>EUR 50</b> primeiro mês\n"
-        "- <b>EUR 80</b> a partir do mês seguinte\n\n"
-        "<b>Métodos de pagamento:</b>\n"
-        "- BTC\n"
-        "- ETH\n"
-        "- SOL\n\n"
-        "<b>Próximo passo:</b>\n"
-        "1. ver o endereço da wallet\n"
-        "2. enviar o pagamento\n"
-        "3. enviar comprovante\n\n"
-        "<i>Use os botões abaixo.</i>"
-    ),
-    "vip_new_body": (
-        "<b>Acesso VIP - Novo no PU Prime</b>\n\n"
-        "Siga estes passos em ordem:\n\n"
-        "1. <b>Registre-se usando nosso link</b>\n"
-        "2. Confira que o código é <b>{IB_CODE}</b>\n"
-        "3. Complete o registro\n"
-        "4. <b>Deposite</b>\n"
-        "5. Envie seu <b>MT5 UID / número da conta</b>\n\n"
-        "<b>Importante:</b>\n"
-        "- VIP é só para usuários que vêm sob nós\n"
-        "- Apenas o registro <b>não basta</b>\n"
-        "- Precisa <b>depositar</b> antes da revisão\n\n"
-        "<i>Complete os passos com cuidado.</i>"
-    ),
-    "vip_existing_body": (
-        "<b>Acesso VIP - Usuário Existente PU Prime</b>\n\n"
-        "Siga estes passos em ordem:\n\n"
-        "1. Envie o <b>email de transferência IB</b>\n"
-        "2. Aguarde confirmação da transferência\n"
-        "3. <b>Deposite</b>\n"
-        "4. Envie seu <b>MT5 UID / número da conta</b>\n\n"
-        "<b>Importante:</b>\n"
-        "- Sua conta precisa ser movida sob nosso IB\n"
-        "- Precisa <b>depositar</b>\n"
-        "- Sem isso, <b>acesso VIP não será concedido</b>\n\n"
-        "<i>Complete os passos com cuidado.</i>"
-    ),
-    "vip_registered_msg": (
-        "<b>Registro marcado como concluído.</b>\n\n"
-        "<b>Próximo requisito:</b> você agora precisa <b>depositar</b> antes de enviar seu UID para revisão VIP.\n\n"
-        "<i>Não pule este passo.</i>"
-    ),
-    "vip_must_register_first": (
-        "<b>Você precisa completar o registro primeiro.</b>\n\n"
-        "Siga os passos em ordem.\n\n"
-        "<i>O passo 1 deve ser completado antes do passo 3.</i>"
-    ),
-    "vip_deposit_done_msg": (
-        "<b>Depósito marcado como concluído.</b>\n\n"
-        "Agora você pode enviar seu <b>MT5 UID / número da conta</b> para revisão VIP."
-    ),
-    "vip_existing_deposit_done_msg": (
-        "<b>Depósito marcado como concluído.</b>\n\n"
-        "Agora você pode enviar seu <b>MT5 UID / número da conta</b> para revisão VIP."
-    ),
-    "vip_transfer_email_body": (
-        "<b>Modelo de Email de Transferência VIP</b>\n\n"
-        "<b>Para:</b>\n<code>{T1}</code>\n<code>{T2}</code>\n\n"
-        "<b>Assunto:</b>\n<code>Move account under IB {IB_ACCOUNT_NUMBER}</code>\n\n"
-        "<b>Corpo:</b>\n"
-        "<code>Hello,\n\n"
-        "Please move my PU Prime account under IB {IB_ACCOUNT_NUMBER}.\n\n"
-        "Full Name: [Your Name and Surname]\n"
-        "Account Email: [Your PU Prime account email]\n\n"
-        "Please confirm once this has been completed.\n\n"
-        "Thank you.</code>\n\n"
-        "<b>Importante:</b> após a confirmação, você também precisa <b>depositar</b> para se qualificar ao VIP."
-    ),
-    "vip_transfer_sent_msg": (
-        "<b>Email de transferência marcado como enviado.</b>\n\n"
-        "Aguarde o PU Prime confirmar a transferência IB.\n\n"
-        "<b>Depois disso:</b>\n"
-        "- deposite\n"
-        "- então envie seu UID\n\n"
-        "<i>Isso é necessário para a revisão VIP.</i>"
-    ),
-    "vip_must_send_transfer_first": (
-        "<b>Você precisa enviar o email de transferência primeiro.</b>\n\n"
-        "Siga os passos de transferência VIP em ordem."
-    ),
-
-    "ib_affiliate_body": (
-        "<b>Configuração de Afiliado IB</b>\n\n"
-        "Este caminho é para usuários que querem entender o modelo IB e completar o processo de afiliação.\n\n"
-        "<i>Escolha se precisa do guia para iniciantes ou quer continuar direto.</i>"
-    ),
-    "what_is_ib_msg": (
-        "Comece com o <b>PDF tutorial</b> abaixo.\n\n"
-        "<b>Próximo passo:</b> depois de ler, toque em <b>Continuar</b>."
-    ),
-    "pdf_missing": "PDF tutorial não encontrado.\n\nColoque <b>{PDF}</b> na mesma pasta do <b>ib_bot.py</b>.",
-    "pdf_caption": "Guia Tutorial IB",
-    "affiliate_main_body": "<b>Menu de Afiliado IB</b>\n\nEscolha o caminho que corresponde à sua situação.",
-    "flow_new_body": (
-        "<b>Afiliado IB - Novo no PU Prime</b>\n\n"
-        "Siga estes passos em ordem:\n\n"
-        "1. <b>Iniciar Registro</b>\n"
-        "2. Confira que o código é <b>{IB_CODE}</b>\n"
-        "3. Complete o registro e verificação\n"
-        "4. Toque <b>Completei o Registro</b>\n"
-        "5. Envie seu <b>MT5 UID / número da conta</b>\n\n"
-        "<b>Importante:</b> não pule passos.\n\n"
-        "<i>Toque no passo 1 para começar.</i>"
-    ),
-    "flow_existing_body": (
-        "<b>Afiliado IB - Usuário Existente PU Prime</b>\n\n"
-        "Siga estes passos em ordem:\n\n"
-        "1. Abra o <b>modelo de email de transferência</b>\n"
-        "2. Envie o email ao PU Prime\n"
-        "3. Toque <b>Enviei o Email</b>\n"
-        "4. Aguarde o PU Prime confirmar\n"
-        "5. Envie seu <b>MT5 UID / número da conta</b>\n\n"
-        "<i>Complete cada passo em ordem.</i>"
-    ),
-    "affiliate_registered_msg": (
-        "<b>Registro marcado como concluído.</b>\n\n"
-        "Agora você pode enviar seu <b>MT5 UID / número da conta</b> aqui.\n\n"
-        "<i>Confira que o formato do UID está correto antes de enviar.</i>"
-    ),
-    "affiliate_transfer_email_body": (
-        "<b>Modelo de Email de Transferência IB</b>\n\n"
-        "<b>Para:</b>\n<code>{T1}</code>\n<code>{T2}</code>\n\n"
-        "<b>Assunto:</b>\n<code>Move account under IB {IB_ACCOUNT_NUMBER}</code>\n\n"
-        "<b>Corpo:</b>\n"
-        "<code>Hello,\n\n"
-        "Please move my PU Prime account under IB {IB_ACCOUNT_NUMBER}.\n\n"
-        "Full Name: [Your Name and Surname]\n"
-        "Account Email: [Your PU Prime account email]\n\n"
-        "Please confirm once this has been completed.\n\n"
-        "Thank you.</code>\n\n"
-        "<i>Envie este email, depois volte e toque no passo 2.</i>"
-    ),
-    "affiliate_transfer_sent_msg": (
-        "<b>Email marcado como enviado.</b>\n\n"
-        "Aguarde o PU Prime confirmar a transferência IB.\n\n"
-        "Após a confirmação, envie seu <b>MT5 UID / número da conta</b> aqui."
-    ),
-    "affiliate_must_register": (
-        "<b>Você precisa completar o registro primeiro.</b>\n\n"
-        "Siga os passos de afiliado em ordem."
-    ),
-    "affiliate_must_send_transfer": (
-        "<b>Você precisa enviar o email de transferência primeiro.</b>\n\n"
-        "Siga os passos de afiliado em ordem."
-    ),
-    "benefits_body": (
-        "<b>Benefícios IB</b>\n\n"
-        "- Onboarding estruturado\n"
-        "- Suporte direto do admin\n"
-        "- Processo de configuração claro\n"
-        "- Acesso à próxima etapa após validação\n\n"
-        "<i>Volte e continue o caminho correto.</i>"
-    ),
-
-    "show_btc_body": (
-        "<b>Endereço BTC</b>\n\n"
-        "<code>{ADDR}</code>\n\n"
-        "<i>Toque no endereço para copiar. Após enviar o pagamento, toque Paguei e depois envie o comprovante.</i>"
-    ),
-    "show_eth_body": (
-        "<b>Endereço ETH</b>\n\n"
-        "<code>{ADDR}</code>\n\n"
-        "<i>Toque no endereço para copiar. Após enviar o pagamento, toque Paguei e depois envie o comprovante.</i>"
-    ),
-    "show_sol_body": (
-        "<b>Endereço SOL</b>\n\n"
-        "<code>{ADDR}</code>\n\n"
-        "<i>Toque no endereço para copiar. Após enviar o pagamento, toque Paguei e depois envie o comprovante.</i>"
-    ),
-    "funded_payment_sent_msg": (
-        "<b>Pagamento marcado como enviado.</b>\n\n"
-        "Agora envie seu comprovante de pagamento.\n\n"
-        "<b>Importante:</b> se você enviar print ou documento, a legenda precisa ser:\n\n"
-        "<code>PAYMENT: FUNDED</code>"
-    ),
-    "funded_already_submitted": (
-        "<b>Seu comprovante já foi recebido.</b>\n\n"
-        "Aguarde a revisão ou fale com o suporte se precisar."
-    ),
-    "funded_must_send_first": (
-        "<b>Você precisa marcar o pagamento como enviado primeiro.</b>\n\n"
-        "Siga os passos do VIP Funded em ordem."
-    ),
-    "funded_proof_prompt": (
-        "Envie seu <b>comprovante de pagamento</b> agora.\n\n"
-        "<b>Formato da legenda requerido:</b>\n"
-        "<code>PAYMENT: FUNDED</code>\n\n"
-        "<i>Apenas print ou documento.</i>"
-    ),
-    "funded_waiting_review_msg": (
-        "<b>Seu comprovante VIP Funded já está em revisão.</b>\n\n"
-        "Não há mais nada para enviar agora.\n\n"
-        "<i>Se precisar de ajuda, toque em Falar com Suporte.</i>"
-    ),
-    "funded_proof_received": (
-        "<b>Comprovante recebido.</b>\n\n"
-        "Seu pagamento VIP Funded está em revisão.\n\n"
-        "<i>Aguarde confirmação ou instruções adicionais.</i>"
-    ),
-
-    "submit_uid_prompt": (
-        "Envie seu <b>MT5 UID / número da conta</b> agora neste formato exato:\n\n"
-        "<code>UID: 12345678</code>\n\n"
-        "<b>Importante:</b>\n"
-        "- escreva <code>UID:</code> primeiro\n"
-        "- depois seu número\n"
-        "- só dígitos\n"
-        "- sem texto extra\n\n"
-        "Se enviar print ou documento, a <b>legenda</b> precisa usar o mesmo formato."
-    ),
-    "uid_format_guide": (
-        "<b>Formato de UID inválido.</b>\n\n"
-        "Envie seu UID neste formato exato:\n\n"
-        "<code>UID: 12345678</code>\n\n"
-        "<b>Regras:</b>\n"
-        "- precisa começar com <code>UID:</code>\n"
-        "- só números depois\n"
-        "- sem palavras extras\n"
-        "- sem espaços antes de UID\n\n"
-        "<i>Exemplo:</i> <code>UID: 123517235</code>"
-    ),
-    "payment_format_guide": (
-        "<b>Formato de comprovante inválido.</b>\n\n"
-        "Se enviar comprovante, a legenda precisa ser exatamente:\n\n"
-        "<code>PAYMENT: FUNDED</code>"
-    ),
-    "uid_caption_invalid": (
-        "<b>Formato de legenda inválido.</b>\n\n"
-        "Se enviar print ou documento, a legenda precisa ser:\n\n"
-        "<code>UID: 12345678</code>"
-    ),
-    "uid_already_registered": (
-        "<b>Este UID já está registrado a outro usuário.</b>\n\n"
-        "Se você acha que é erro, fale com o suporte."
-    ),
-    "uid_not_ready_new_vip": (
-        "<b>Você ainda não está pronto para enviar UID.</b>\n\n"
-        "Para acesso VIP como <b>novo usuário</b>, você precisa:\n"
-        "1. registrar sob nós\n"
-        "2. depositar\n"
-        "3. então enviar seu UID\n\n"
-        "<i>Complete os passos requeridos primeiro.</i>"
-    ),
-    "uid_not_ready_existing_vip": (
-        "<b>Você ainda não está pronto para enviar UID.</b>\n\n"
-        "Para acesso VIP como <b>usuário existente</b>, você precisa:\n"
-        "1. enviar o email de transferência\n"
-        "2. aguardar confirmação\n"
-        "3. depositar\n"
-        "4. então enviar seu UID\n\n"
-        "<i>Complete os passos requeridos primeiro.</i>"
-    ),
-    "vip_already_submitted": (
-        "<b>Seu envio VIP já foi recebido.</b>\n\n"
-        "Aguarde a revisão ou fale com o suporte se precisar."
-    ),
-    "aff_already_submitted": (
-        "<b>Seu envio de afiliado já foi recebido.</b>\n\n"
-        "Aguarde a revisão ou fale com o suporte se precisar."
-    ),
-    "submission_received_text": (
-        "<b>Envio recebido.</b>\n\n"
-        "Seus dados foram encaminhados para revisão.\n\n"
-        "<i>Aguarde confirmação ou instruções adicionais.</i>"
-    ),
-    "submission_received_media": (
-        "<b>Envio recebido.</b>\n\n"
-        "Seu arquivo foi encaminhado para revisão.\n\n"
-        "<i>Aguarde confirmação ou instruções adicionais.</i>"
-    ),
-    "vip_waiting_review_msg": (
-        "<b>Seu envio VIP já está em revisão.</b>\n\n"
-        "Não há mais nada para enviar agora.\n\n"
-        "<i>Se precisar de ajuda, toque em Falar com Suporte.</i>"
-    ),
-    "aff_waiting_review_msg": (
-        "<b>Seu envio de afiliado já está em revisão.</b>\n\n"
-        "Não há mais nada para enviar agora.\n\n"
-        "<i>Se precisar de ajuda, toque em Falar com Suporte.</i>"
-    ),
-
-    "support_body": "<b>Falar com Suporte</b>\n\nEscolha o admin mais adequado para sua dúvida:",
-
-    "approved_dm": (
-        "<b>Seu envio foi aprovado.</b>\n\n"
-        "Um admin vai te contatar em breve com o próximo passo."
-    ),
-    "rejected_dm": (
-        "<b>Seu envio não foi aprovado nesta etapa.</b>\n\n"
-        "Fale com o suporte para resolver o problema."
-    ),
-
-    "nudge_24h": (
-        "Só passando pra ver se está tudo bem.\n\n"
-        "Se travou na configuração do ImperiumFX, toque /start para retomar - "
-        "ou toque em Falar com Suporte e a gente ajuda."
-    ),
-    "nudge_72h_deposit": (
-        "Você marcou seu depósito como feito - não esqueça de enviar seu "
-        "<b>MT5 UID</b> para finalizar seu acesso VIP."
-    ),
-    "renewal_reminder": (
-        "<b>Lembrete de renovação VIP Funded</b>\n\n"
-        "Sua renovação vence em <b>{DAYS} dia(s)</b>.\n"
-        "A renovação é <b>EUR 80</b>. Toque /start -> VIP Pago -> Funded para pagar.\n\n"
-        "<b>Wallets:</b>\n"
-        "BTC: <code>{BTC}</code>\n"
-        "ETH: <code>{ETH}</code>\n"
-        "SOL: <code>{SOL}</code>"
-    ),
-
-    "fallback_msg": "Não entendi — por favor use os botões abaixo.",
-    "uid_bad_format": (
-        "<b>Formato não reconhecido.</b>\n"
-        "Envie seu UID e email da PU Prime assim:\n"
-        "<code>UID: 12345678\nEmail: voce@exemplo.com</code>"
-    ),
-    "vip_uid_received": (
-        "<b>Envio VIP recebido.</b>\n"
-        "Nossa equipe analisará em breve e enviará DM ao aprovar. ✅"
-    ),
-    "aff_uid_received": (
-        "<b>Envio de afiliado recebido.</b>\n"
-        "Nossa equipe confirmará seu status de subafiliado IB e enviará DM. ✅"
-    ),
-    "funded_submit_bad_format": (
-        "<b>Formato não reconhecido.</b>\n"
-        "Envie:\n"
-        "<code>Amount: 80 EUR\nTX/Ref: &lt;hash ou referência&gt;\nMethod: BTC|ETH|SOL</code>\n"
-        "Ou envie a imagem do comprovante com a mesma legenda."
-    ),
-    "funded_submit_received": (
-        "<b>Pagamento do VIP Funded recebido.</b>\n"
-        "Estamos verificando — você receberá DM assim que o acesso for liberado. 🔒"
-    ),
-    "nudge_incomplete": (
-        "<b>Ainda interessado em VIP?</b>\n"
-        "Você começou mas não terminou — toque /start para continuar de onde parou."
-    ),
-
-    "faq_q1": "O que é acesso VIP?",
-    "faq_a1": (
-        "<b>Acesso VIP</b> dá a você nossos sinais privados, setups e trade calls. "
-        "VIP Grátis exige estar sob nosso IB e depositar. "
-        "VIP Pago (funded) é acesso direto para traders com conta funded."
-    ),
-    "faq_q2": "O que é um IB?",
-    "faq_a2": (
-        "<b>IB (Introducing Broker)</b> significa que sua conta de trading está registrada ou "
-        "transferida sob o código do nosso parceiro. Ganhamos uma pequena comissão do spread - "
-        "<b>sem custo extra para você</b> - e em troca você ganha acesso VIP grátis."
-    ),
-    "faq_q3": "Quanto tempo leva a revisão?",
-    "faq_a3": (
-        "As revisões são <b>normalmente em 24 horas</b>. Se passou mais, toque em "
-        "<b>Falar com Suporte</b> e um admin dará sequência."
-    ),
-    "faq_q4": "Por que meu UID não foi aceito?",
-    "faq_a4": (
-        "Motivos comuns: conta não está sob nosso código IB, sem depósito ainda, "
-        "ou formato UID errado. Confira que usou o código <code>{IB_CODE}</code>, "
-        "depositou, e enviou neste formato exato: <code>UID: 12345678</code>"
-    ),
-    "faq_q5": "Quanto custa o VIP Funded?",
-    "faq_a5": (
-        "<b>EUR 50</b> no primeiro mês, depois <b>EUR 80</b>/mês. "
-        "Pagável em BTC, ETH ou SOL. Após pagar, envie o comprovante com a legenda "
-        "<code>PAYMENT: FUNDED</code>."
-    ),
-    "faq_q6": "Existe depósito mínimo?",
-    "faq_a6": (
-        "O PU Prime define o depósito mínimo. Recomendamos pelo menos <b>USD 200</b> "
-        "para um tamanho de posição significativo e qualificar ao VIP tranquilamente."
-    ),
-
-    "btn_vip_access": "💎 Acesso VIP",
-    "btn_ib_affiliate": "🤝 Ser Afiliado IB",
-    "btn_team": "👥 Conheça a Equipe",
-    "btn_socials": "🌐 Siga-nos",
-    "btn_faq": "❓ Perguntas",
-    "btn_support": "💬 Falar com Suporte",
-    "btn_back": "◀️ Voltar",
-    "btn_back_to_start": "🏠 Voltar ao Início",
-    "btn_back_to_vip": "◀️ Voltar ao Menu VIP",
-    "btn_back_to_affiliate": "◀️ Voltar ao Menu Afiliado",
-    "btn_yes_restart": "🔄 Sim, recomeçar",
-    "btn_no_keep": "✅ Não, manter progresso",
-    "btn_free_vip": "🎁 VIP Grátis",
-    "btn_paid_vip": "👑 VIP Pago",
-    "btn_new_to_pu": "🆕 Novo no PU Prime",
-    "btn_existing_pu": "📂 Já tenho PU Prime",
-    "btn_live_account": "📊 Conta Real",
-    "btn_funded_account": "🏦 Conta Funded",
-    "btn_dont_know_ib": "🤔 Não sei o que é IB",
-    "btn_already_know": "✅ Já sei, continuar",
-    "btn_continue": "➡️ Continuar",
-    "btn_step1_register": "1️⃣ Passo 1: Registrar no PU Prime",
-    "btn_step1_start_reg": "1️⃣ Passo 1: Iniciar Registro",
-    "btn_step2_completed": "2️⃣ Passo 2: Completei o Registro",
-    "btn_step3_deposited": "3️⃣ Passo 3: Já Depositei",
-    "btn_step4_submit_uid": "4️⃣ Passo 4: Enviar UID",
-    "btn_step3_submit_uid": "3️⃣ Passo 3: Enviar UID",
-    "btn_step1_view_email": "1️⃣ Passo 1: Ver Email de Transferência",
-    "btn_step2_sent_email": "2️⃣ Passo 2: Enviei o Email",
-    "btn_view_btc": "₿ Ver Endereço BTC",
-    "btn_view_eth": "Ξ Ver Endereço ETH",
-    "btn_view_sol": "◎ Ver Endereço SOL",
-    "btn_sent_payment": "💸 Paguei",
-    "btn_submit_proof": "📤 Enviar Comprovante",
-    "btn_waiting_payment_review": "⏳ Aguardando Revisão do Pagamento",
-    "btn_waiting_review": "⏳ Aguardando Revisão",
-    "btn_benefits": "🎯 Benefícios IB",
-    "btn_message": "💬 Mensagem",
-    "btn_founder": "👑 Fundador - Kratos",
-    "btn_onboarding": "🚀 Onboarding / Geral - Apollo",
-    "btn_signals": "📈 Sinais - Plato",
-    "btn_socials_admin": "📱 Socials - HD",
-    "btn_change_language": "🌐 Mudar Idioma",
-    "btn_approve": "✅ Aprovar",
-    "btn_reject": "❌ Rejeitar",
-    "btn_block_user": "🚫 Bloquear Usuário",
+    "access_disabled": "Доступ отключён. Свяжитесь с поддержкой.",
+    "slow_down": "Не так быстро",
+    "fallback_unknown": "Я не понял — вот меню.\nНажмите /start, чтобы начать.",
+    "fallback_media": "Я не понял — вот меню. Нажмите /start, чтобы начать.",
+    "team_title": "<b>Познакомьтесь с командой</b>",
+    "team_footer": "<i>Нажмите кнопку ниже, чтобы написать напрямую.</i>",
+    "socials_body": "<b>Подписывайтесь на ImperiumFX</b>\n\nБудьте в курсе нашего контента, сделок и обновлений команды.\n\nИспользуйте кнопки ниже, чтобы перейти на наши каналы.",
+    "faq_intro": "<b>Часто задаваемые вопросы</b>\n\nВыберите вопрос ниже.",
+    "vip_access_body": "<b>VIP Access</b>\n\nВыберите ваш VIP-маршрут ниже.\n\n<b>Free VIP</b> — зарегистрируйтесь под нашим IB и внесите депозит, чтобы получить доступ.\n<b>Paid VIP</b> — прямой доступ (счёт Live или Funded).",
+    "vip_free_body": "<b>Free VIP</b>\n\nЧтобы получить доступ, вам нужно сделать <b>одно</b> из следующего:\n\n1. Открыть новый счёт PU Prime под нашим IB-кодом <code>{IB_CODE}</code>.\n2. Если вы уже пользуетесь PU Prime — перевести счёт под наш IB.\n\nВыберите ваш маршрут ниже для полного процесса.",
+    "vip_paid_body": "<b>Paid VIP</b>\n\nВыберите тип счёта, который вы используете.\n\n<b>Live Account</b> — прямой доступ через депозит PU Prime.\n<b>Funded Account</b> — оплата в крипте для трейдеров funded-счетов.",
+    "vip_paid_live_body": "<b>Paid VIP - Live Account</b>\n\nДля живых счетов доступ осуществляется через депозит PU Prime.\n\n<b>Требования:</b>\n- Счёт под нашим IB-кодом <code>{IB_CODE}</code>\n- Минимальный депозит внесён\n- Отправьте ваш MT5 UID / номер счёта\n\nНажмите <b>Submit UID</b> ниже, чтобы продолжить.",
+    "vip_paid_funded_body": "<b>Paid VIP - Funded Account</b>\n\n<b>Цена:</b>\n- <b>EUR 50</b> за первый месяц\n- Затем <b>EUR 80</b>/месяц\n\n<b>Способы оплаты:</b>\nBTC / ETH / SOL — смотрите адреса ниже.\n\nПосле оплаты отправьте подтверждение транзакции.",
+    "vip_new_body": "<b>VIP Access - Новый на PU Prime</b>\n\nСледуйте этим шагам по порядку:\n\n1️⃣ Зарегистрируйтесь под нашим IB-кодом <code>{IB_CODE}</code>\n2️⃣ Подтвердите, что регистрация завершена\n3️⃣ Внесите депозит на свой счёт\n4️⃣ Отправьте ваш MT5 UID",
+    "vip_existing_body": "<b>VIP Access - Существующий пользователь PU Prime</b>\n\nСледуйте этим шагам по порядку:\n\n1️⃣ Посмотрите наш шаблон email для перевода\n2️⃣ Отправьте email в PU Prime\n3️⃣ Отправьте ваш MT5 UID",
+    "vip_registered_msg": "<b>Регистрация отмечена как завершённая.</b>\n\n<b>Следующее требование:</b> внесите депозит для Free VIP.\nНажмите <b>Step 3: I Deposited</b>, когда будете готовы.",
+    "vip_must_register_first": "<b>Сначала нужно завершить регистрацию.</b>\n\nПожалуйста, следуйте шагам по меню.",
+    "vip_deposit_done_msg": "<b>Депозит отмечен как завершённый.</b>\n\nТеперь вы можете отправить ваш MT5 UID.",
+    "vip_existing_deposit_done_msg": "<b>Депозит отмечен как завершённый.</b>\n\nТеперь вы можете отправить ваш MT5 UID.",
+    "vip_transfer_email_body": "<b>Шаблон email для VIP-перевода</b>\n\n<b>Кому:</b>\n<code>{T1}</code>\n<code>{T2}</code>\n\n<b>Тема:</b>\n<code>IB transfer request</code>\n\n<b>Текст:</b>\n<code>Hello,\nPlease transfer my PU Prime account to IB account {IB_ACCOUNT_NUMBER} (code {IB_CODE}).\nMT5 UID: &lt;your UID&gt;\nThanks.</code>\n\nНажмите <b>I Sent the Email</b> после отправки.",
+    "vip_transfer_sent_msg": "<b>Email для перевода отмечен как отправленный.</b>\n\nПодождите подтверждения от PU Prime, затем отправьте ваш UID.",
+    "vip_must_send_transfer_first": "<b>Сначала нужно отправить email для перевода.</b>\n\nПожалуйста, следуйте шагам по меню.",
+    "ib_affiliate_body": "<b>Настройка IB Affiliate</b>\n\nЭтот путь для тех, кто хочет стать нашим суб-партнёром под PU Prime.\n\nЕсли вы не понимаете, что такое IB — начните с туториала.",
+    "what_is_ib_msg": "Начните с <b>туториала в PDF</b> ниже.\n\n<b>Следующий шаг:</b> вернитесь в главное меню Affiliate, когда будете готовы.",
+    "pdf_missing": "Туториал PDF не найден.\n\nПоместите <b>{PDF}</b> в ту же папку, что и бот.",
+    "pdf_caption": "Руководство IB",
+    "affiliate_main_body": "<b>Меню IB Affiliate</b>\n\nВыберите путь, соответствующий вашей ситуации.",
+    "flow_new_body": "<b>IB Affiliate - Новый на PU Prime</b>\n\nСледуйте этим шагам по порядку:\n\n1️⃣ Зарегистрируйтесь под нашим IB-кодом <code>{IB_CODE}</code>\n2️⃣ Подтвердите, что регистрация завершена\n3️⃣ Отправьте ваш MT5 UID",
+    "flow_existing_body": "<b>IB Affiliate - Существующий пользователь PU Prime</b>\n\nСледуйте этим шагам по порядку:\n\n1️⃣ Посмотрите наш шаблон email для перевода\n2️⃣ Отправьте email в PU Prime\n3️⃣ Отправьте ваш MT5 UID",
+    "affiliate_registered_msg": "<b>Регистрация отмечена как завершённая.</b>\n\nТеперь вы можете отправить ваш MT5 UID.",
+    "affiliate_transfer_email_body": "<b>Шаблон email для IB-перевода</b>\n\n<b>Кому:</b>\n<code>{T1}</code>\n<code>{T2}</code>\n\n<b>Тема:</b>\n<code>IB transfer request</code>\n\n<b>Текст:</b>\n<code>Hello,\nPlease transfer my PU Prime account to IB account {IB_ACCOUNT_NUMBER} (code {IB_CODE}).\nMT5 UID: &lt;your UID&gt;\nThanks.</code>\n\nНажмите <b>I Sent the Email</b> после отправки.",
+    "affiliate_transfer_sent_msg": "<b>Email отмечен как отправленный.</b>\n\nПодождите подтверждения от PU Prime, затем отправьте ваш UID.",
+    "affiliate_must_register": "<b>Сначала нужно завершить регистрацию.</b>\n\nПожалуйста, следуйте шагам по меню.",
+    "affiliate_must_send_transfer": "<b>Сначала нужно отправить email для перевода.</b>\n\nПожалуйста, следуйте шагам по меню.",
+    "benefits_body": "<b>Преимущества IB</b>\n\n- Структурированный онбординг\n- Прямая поддержка администратора\n- Бесплатный доступ к VIP-сигналам\n- Структура суб-партнёрских комиссий\n- Эксклюзивные командные каналы",
+    "show_btc_body": "<b>Адрес BTC</b>\n\n<code>{ADDR}</code>\n\n<i>Нажмите на адрес для копирования. После отправки нажмите <b>I Sent Payment</b>.</i>",
+    "show_eth_body": "<b>Адрес ETH</b>\n\n<code>{ADDR}</code>\n\n<i>Нажмите на адрес для копирования. После отправки нажмите <b>I Sent Payment</b>.</i>",
+    "show_sol_body": "<b>Адрес SOL</b>\n\n<code>{ADDR}</code>\n\n<i>Нажмите на адрес для копирования. После отправки нажмите <b>I Sent Payment</b>.</i>",
+    "funded_payment_sent_msg": "<b>Оплата отмечена как отправленная.</b>\n\nТеперь отправьте подтверждение оплаты.",
+    "funded_already_submitted": "<b>Ваше подтверждение оплаты уже получено.</b>\n\nПожалуйста, подождите нашей проверки.",
+    "funded_must_send_first": "<b>Сначала отметьте оплату как отправленную.</b>\n\nПожалуйста, следуйте шагам.",
+    "funded_proof_prompt": "Отправьте ваше <b>подтверждение оплаты</b> сейчас.\n\n<b>Требуемый формат подписи:</b>\n<code>Amount: 80 EUR\nTX/Ref: &lt;hash или reference&gt;\nMethod: BTC|ETH|SOL</code>\n\nВы можете отправить скриншот с этой подписью.",
+    "funded_waiting_review_msg": "<b>Ваше подтверждение Funded VIP уже на проверке.</b>\n\nБольше ничего делать не нужно.",
+    "funded_proof_received": "<b>Подтверждение оплаты получено.</b>\n\nВаша оплата Funded VIP теперь на проверке. Вам придёт DM после одобрения.",
+    "submit_uid_prompt": "Отправьте ваш <b>MT5 UID / номер счёта</b> сейчас в точно таком формате:\n\n<code>UID: 12345678\nEmail: you@example.com</code>",
+    "uid_format_guide": "<b>Неверный формат UID.</b>\n\nОтправьте ваш UID в точно таком формате:\n<code>UID: 12345678\nEmail: you@example.com</code>",
+    "payment_format_guide": "<b>Неверный формат подтверждения оплаты.</b>\n\nЕсли вы отправляете скриншот, добавьте в подпись:\n<code>Amount: 80 EUR\nTX/Ref: &lt;hash или reference&gt;\nMethod: BTC|ETH|SOL</code>",
+    "uid_caption_invalid": "<b>Неверный формат подписи.</b>\n\nЕсли вы отправляете скриншот или файл, добавьте в подпись:\n<code>UID: 12345678\nEmail: you@example.com</code>",
+    "uid_already_registered": "<b>Этот UID уже зарегистрирован за другим пользователем.</b>\n\nЕсли это ошибка — свяжитесь с поддержкой.",
+    "uid_not_ready_new_vip": "<b>Вы ещё не готовы отправить UID.</b>\n\nДля VIP-доступа сначала зарегистрируйтесь и внесите депозит.",
+    "uid_not_ready_existing_vip": "<b>Вы ещё не готовы отправить UID.</b>\n\nДля VIP-доступа сначала отправьте email для перевода.",
+    "vip_already_submitted": "<b>Ваша VIP-заявка уже получена.</b>\n\nПожалуйста, подождите проверки.",
+    "aff_already_submitted": "<b>Ваша заявка партнёра уже получена.</b>\n\nПожалуйста, подождите проверки.",
+    "submission_received_text": "<b>Заявка получена.</b>\n\nВаши данные переданы на проверку. Вам придёт DM после одобрения.",
+    "submission_received_media": "<b>Заявка получена.</b>\n\nВаш файл передан на проверку. Вам придёт DM после одобрения.",
+    "vip_waiting_review_msg": "<b>Ваша VIP-заявка уже на проверке.</b>\n\nБольше ничего делать не нужно.",
+    "aff_waiting_review_msg": "<b>Ваша заявка партнёра уже на проверке.</b>\n\nБольше ничего делать не нужно.",
+    "support_body": "<b>Связаться с поддержкой</b>\n\nВыберите админа, наиболее подходящего для вашего вопроса.",
+    "approved_dm": "<b>Ваша заявка одобрена.</b>\n\nАдмин свяжется с вами в ближайшее время со следующими шагами. 🎉",
+    "rejected_dm": "<b>Ваша заявка не одобрена на этом этапе.</b>\n\nПожалуйста, свяжитесь с поддержкой для деталей.",
+    "nudge_24h": "Просто проверяю связь.\n\nЕсли вы застряли в настройке ImperiumFX — свяжитесь с поддержкой или нажмите /start.",
+    "nudge_72h_deposit": "Вы отметили депозит как выполненный — не забудьте отправить ваш UID.\nНажмите /start, чтобы продолжить.",
+    "renewal_reminder": "<b>Напоминание о продлении Funded VIP</b>\n\nВаше продление подходит через <b>{DAYS} дн.</b>\nПродление — <b>EUR 80</b>. Нажмите /start -> Paid VIP -> Funded для оплаты.\n\n<b>Кошельки:</b>\nBTC: <code>{BTC}</code>\nETH: <code>{ETH}</code>\nSOL: <code>{SOL}</code>",
+    "fallback_msg": "Я не понял — пожалуйста, используйте кнопки ниже.",
+    "uid_bad_format": "<b>Формат не распознан.</b>\nПожалуйста, отправьте ваш UID и email PU Prime так:\n<code>UID: 12345678\nEmail: you@example.com</code>",
+    "vip_uid_received": "<b>VIP-заявка получена.</b>\nНаша команда скоро её рассмотрит и напишет вам в DM после одобрения. ✅",
+    "aff_uid_received": "<b>Заявка партнёра получена.</b>\nНаша команда подтвердит ваш статус IB суб-партнёра и напишет вам в DM. ✅",
+    "funded_submit_bad_format": "<b>Формат не распознан.</b>\nПожалуйста, отправьте:\n<code>Amount: 80 EUR\nTX/Ref: &lt;hash или reference&gt;\nMethod: BTC|ETH|SOL</code>\nИли отправьте скриншот с такой же подписью.",
+    "funded_submit_received": "<b>Оплата Funded VIP получена.</b>\nМы её сейчас проверяем — напишем в DM, как только откроем доступ. 🔒",
+    "nudge_incomplete": "<b>Всё ещё интересует VIP?</b>\nВы начали, но не закончили — нажмите /start, чтобы продолжить с того места.",
+    "faq_q1": "Что такое VIP-доступ?",
+    "faq_a1": "<b>VIP-доступ</b> даёт вам наши приватные сигналы, сетапы и торговые идеи. Free VIP требует регистрацию под нашим IB и внесения депозита. Paid VIP (funded) — прямой доступ для трейдеров funded-счетов.",
+    "faq_q2": "Что такое IB?",
+    "faq_a2": "<b>IB (Introducing Broker)</b> означает, что ваш торговый счёт зарегистрирован или переведён под наш партнёрский код. Мы получаем небольшую комиссию из вашего спреда — <b>для вас это бесплатно</b> — а взамен вы получаете бесплатный VIP-доступ.",
+    "faq_q3": "Сколько времени занимает проверка?",
+    "faq_a3": "Проверка <b>обычно в течение 24 часов</b>. Если прошло больше — свяжитесь с поддержкой.",
+    "faq_q4": "Почему мой UID не приняли?",
+    "faq_a4": "Частые причины: счёт не под нашим IB-кодом <code>{IB_CODE}</code>, нет депозита или неверный формат. Убедитесь, что вы отправляете правильный UID и email.",
+    "faq_q5": "Сколько стоит Funded VIP?",
+    "faq_a5": "<b>EUR 50</b> за первый месяц, затем <b>EUR 80</b>/месяц. Оплата принимается в BTC, ETH или SOL.",
+    "faq_q6": "Есть ли минимальный депозит?",
+    "faq_a6": "PU Prime устанавливает минимальный депозит. Мы рекомендуем минимум <b>USD 100</b> для VIP-доступа.",
+    "btn_vip_access": "💎 Получить VIP-доступ",
+    "btn_ib_affiliate": "🤝 Стать IB-партнёром",
+    "btn_team": "👥 Команда",
+    "btn_socials": "🌐 Подписаться",
+    "btn_faq": "❓ FAQ",
+    "btn_support": "💬 Связаться с поддержкой",
+    "btn_back": "◀️ Назад",
+    "btn_back_to_start": "🏠 В начало",
+    "btn_back_to_vip": "◀️ В меню VIP",
+    "btn_back_to_affiliate": "◀️ В меню Affiliate",
+    "btn_yes_restart": "🔄 Да, начать заново",
+    "btn_no_keep": "✅ Нет, сохранить прогресс",
+    "btn_free_vip": "🎁 Free VIP",
+    "btn_paid_vip": "👑 Paid VIP",
+    "btn_new_to_pu": "🆕 Новый на PU Prime",
+    "btn_existing_pu": "📂 Уже на PU Prime",
+    "btn_live_account": "📊 Live счёт",
+    "btn_funded_account": "🏦 Funded счёт",
+    "btn_dont_know_ib": "🤔 Я не знаю, что такое IB",
+    "btn_already_know": "✅ Я знаю, продолжить",
+    "btn_continue": "➡️ Продолжить",
+    "btn_step1_register": "1️⃣ Шаг 1: Регистрация в PU Prime",
+    "btn_step1_start_reg": "1️⃣ Шаг 1: Начать регистрацию",
+    "btn_step2_completed": "2️⃣ Шаг 2: Регистрация завершена",
+    "btn_step3_deposited": "3️⃣ Шаг 3: Депозит внесён",
+    "btn_step4_submit_uid": "4️⃣ Шаг 4: Отправить UID",
+    "btn_step3_submit_uid": "3️⃣ Шаг 3: Отправить UID",
+    "btn_step1_view_email": "1️⃣ Шаг 1: Посмотреть email",
+    "btn_step2_sent_email": "2️⃣ Шаг 2: Email отправлен",
+    "btn_view_btc": "₿ Показать адрес BTC",
+    "btn_view_eth": "Ξ Показать адрес ETH",
+    "btn_view_sol": "◎ Показать адрес SOL",
+    "btn_sent_payment": "💸 Я отправил оплату",
+    "btn_submit_proof": "📤 Отправить подтверждение",
+    "btn_waiting_payment_review": "⏳ Ожидание проверки оплаты",
+    "btn_waiting_review": "⏳ Ожидание проверки",
+    "btn_benefits": "🎯 Преимущества IB",
+    "btn_message": "💬 Сообщение",
+    "btn_founder": "👑 Основатель - Kratos",
+    "btn_onboarding": "🚀 Онбординг / Общее - Apollo",
+    "btn_signals": "📈 Сигналы - Plato",
+    "btn_socials_admin": "📱 Соцсети - HD",
+    "btn_change_language": "🌐 Сменить язык",
+    "btn_approve": "✅ Одобрить",
+    "btn_reject": "❌ Отклонить",
+    "btn_block_user": "🚫 Заблокировать",
 }
 
 
