@@ -13,6 +13,7 @@ asyncio.set_event_loop(asyncio.new_event_loop())
 
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
+    Application,
     ApplicationBuilder,
     CommandHandler,
     CallbackQueryHandler,
@@ -4152,7 +4153,7 @@ async def media_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         try:
             await update.message.forward(chat_id=ADMIN_CHAT_ID)
         except Exception:
-            logger.exception("Failed to forward funded payment proof")
+            log.exception("Failed to forward funded payment proof")
         await notify_admin(
             context,
             (
@@ -4203,7 +4204,7 @@ async def media_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         try:
             await update.message.forward(chat_id=ADMIN_CHAT_ID)
         except Exception:
-            logger.exception("Failed to forward UID media")
+            log.exception("Failed to forward UID media")
         await notify_admin(
             context,
             (
@@ -4256,7 +4257,7 @@ async def admin_action(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 parse_mode="HTML",
             )
         except Exception:
-            logger.exception("Failed to DM approved user")
+            log.exception("Failed to DM approved user")
         log_event(target_id, "admin_approved", f"by={actor}")
         await query.message.reply_text(
             f"Approved <code>{target_id}</code> ({target_lang}).",
@@ -4270,7 +4271,7 @@ async def admin_action(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 parse_mode="HTML",
             )
         except Exception:
-            logger.exception("Failed to DM rejected user")
+            log.exception("Failed to DM rejected user")
         log_event(target_id, "admin_rejected", f"by={actor}")
         await query.message.reply_text(
             f"Rejected <code>{target_id}</code> ({target_lang}).",
@@ -4599,7 +4600,7 @@ async def job_nudges(context: ContextTypes.DEFAULT_TYPE):
             )
             log_event(uid, "nudge_incomplete_sent")
         except Exception:
-            logger.exception("Failed to send nudge to %s", uid)
+            log.exception("Failed to send nudge to %s", uid)
         await asyncio.sleep(0.05)
 
 
@@ -4632,7 +4633,7 @@ async def job_renewals(context: ContextTypes.DEFAULT_TYPE):
             )
             log_event(uid, "renewal_reminder_sent")
         except Exception:
-            logger.exception("Failed to send renewal reminder to %s", uid)
+            log.exception("Failed to send renewal reminder to %s", uid)
         await asyncio.sleep(0.05)
 
 
@@ -4640,7 +4641,7 @@ async def job_renewals(context: ContextTypes.DEFAULT_TYPE):
 # Global error handler
 # ---------------------------------------------------------------------------
 async def on_error(update: object, context: ContextTypes.DEFAULT_TYPE):
-    logger.exception("Unhandled error: %s", context.error)
+    log.exception("Unhandled error: %s", context.error)
     try:
         if isinstance(update, Update) and update.effective_user:
             lang = get_lang(update.effective_user.id)
@@ -4711,7 +4712,7 @@ def main():
         jq.run_repeating(job_nudges, interval=6 * 60 * 60, first=30)
         jq.run_repeating(job_renewals, interval=12 * 60 * 60, first=60)
 
-    logger.info("ImperiumFX bot starting…")
+    log.info("ImperiumFX bot starting…")
     app.run_polling(allowed_updates=Update.ALL_TYPES)
 
 
