@@ -25,6 +25,10 @@ TUTORIAL_PDF = "IB_E_BOOK.pdf"
 TRANSFER_EMAIL_1 = "aleksandra.stojkovic@puprime.com"
 TRANSFER_EMAIL_2 = "info@puprime.com"
 
+SOLANA_ADDRESS = "GrSbxLK1Z6ZgEhEtViY4ibLEq7xYuXiuGCxVFYjzwazt"
+ETHEREUM_ADDRESS = "0x2474F60027Fda971aaA773031f07Fd58F3e14627"
+BTC_ADDRESS = "bc1pzzz24czpr9yem4st5p727gcm30fw6c6yfnt07pypr6esxu56092smassch"
+
 
 def start_menu():
     return InlineKeyboardMarkup([
@@ -33,12 +37,30 @@ def start_menu():
     ])
 
 
-def vip_menu():
+def vip_entry_menu():
+    return InlineKeyboardMarkup([
+        [InlineKeyboardButton("🆓 Free VIP", callback_data="vip_free")],
+        [InlineKeyboardButton("💳 Paid VIP", callback_data="vip_paid")],
+        [InlineKeyboardButton("🛠 Contact Support", callback_data="support")],
+        [InlineKeyboardButton("⬅ Back", callback_data="back_start")],
+    ])
+
+
+def vip_free_menu():
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("🆕 New to PU Prime", callback_data="vip_new")],
         [InlineKeyboardButton("🔁 Already with PU Prime", callback_data="vip_existing")],
         [InlineKeyboardButton("🛠 Contact Support", callback_data="support")],
-        [InlineKeyboardButton("⬅ Back", callback_data="back_start")],
+        [InlineKeyboardButton("⬅ Back", callback_data="vip_access")],
+    ])
+
+
+def vip_paid_menu():
+    return InlineKeyboardMarkup([
+        [InlineKeyboardButton("📈 Live Account", callback_data="vip_paid_live")],
+        [InlineKeyboardButton("🏦 Funded Account", callback_data="vip_paid_funded")],
+        [InlineKeyboardButton("🛠 Contact Support", callback_data="support")],
+        [InlineKeyboardButton("⬅ Back", callback_data="vip_access")],
     ])
 
 
@@ -76,7 +98,7 @@ def vip_new_menu():
         [InlineKeyboardButton("💰 Step 3: I Deposited", callback_data="vip_deposit_done")],
         [InlineKeyboardButton("📩 Step 4: Submit UID", callback_data="submit_uid_vip")],
         [InlineKeyboardButton("🛠 Contact Support", callback_data="support")],
-        [InlineKeyboardButton("⬅ Back", callback_data="vip_access")],
+        [InlineKeyboardButton("⬅ Back", callback_data="vip_free")],
     ])
 
 
@@ -87,7 +109,27 @@ def vip_existing_menu():
         [InlineKeyboardButton("💰 Step 3: I Deposited", callback_data="vip_existing_deposit_done")],
         [InlineKeyboardButton("📩 Step 4: Submit UID", callback_data="submit_uid_vip")],
         [InlineKeyboardButton("🛠 Contact Support", callback_data="support")],
-        [InlineKeyboardButton("⬅ Back", callback_data="vip_access")],
+        [InlineKeyboardButton("⬅ Back", callback_data="vip_free")],
+    ])
+
+
+def funded_payment_menu():
+    return InlineKeyboardMarkup([
+        [InlineKeyboardButton("₿ View BTC Address", callback_data="show_btc")],
+        [InlineKeyboardButton("Ξ View ETH Address", callback_data="show_eth")],
+        [InlineKeyboardButton("◎ View SOL Address", callback_data="show_sol")],
+        [InlineKeyboardButton("📤 I Sent Payment", callback_data="funded_payment_sent")],
+        [InlineKeyboardButton("📎 Submit Payment Proof", callback_data="submit_payment_proof")],
+        [InlineKeyboardButton("🛠 Contact Support", callback_data="support")],
+        [InlineKeyboardButton("⬅ Back", callback_data="vip_paid")],
+    ])
+
+
+def funded_review_menu():
+    return InlineKeyboardMarkup([
+        [InlineKeyboardButton("⏳ Waiting for Payment Review", callback_data="funded_waiting_review")],
+        [InlineKeyboardButton("🛠 Contact Support", callback_data="support")],
+        [InlineKeyboardButton("⬅ Back to Start", callback_data="back_start")],
     ])
 
 
@@ -156,18 +198,23 @@ async def notify_admin(context: ContextTypes.DEFAULT_TYPE, text: str):
 
 
 def parse_uid_submission(text: str):
-    """
-    Enforced format:
-    UID: 12345678
-    """
     if not text:
         return None
-
     text = text.strip()
     match = re.fullmatch(r"UID:\s*(\d{5,20})", text, flags=re.IGNORECASE)
     if not match:
         return None
     return match.group(1)
+
+
+def parse_payment_submission(text: str):
+    if not text:
+        return None
+    text = text.strip()
+    match = re.fullmatch(r"PAYMENT:\s*FUNDED", text, flags=re.IGNORECASE)
+    if not match:
+        return None
+    return "FUNDED"
 
 
 def uid_format_guide():
@@ -184,14 +231,22 @@ def uid_format_guide():
     )
 
 
+def payment_format_guide():
+    return (
+        "<b>Invalid payment proof format.</b>\n\n"
+        "If you send payment proof, the caption must be exactly:\n\n"
+        "<code>PAYMENT: FUNDED</code>"
+    )
+
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data.clear()
 
     text = (
         "<b>Welcome to ImperiumFX Setup</b>\n\n"
         "Choose your path below.\n\n"
-        "• <b>VIP Access</b> — join our free VIP signal access by coming under us\n"
-        "• <b>IB Affiliate</b> — become an affiliate and follow the full IB onboarding process\n\n"
+        "• <b>VIP Access</b> — join our VIP signal access\n"
+        "• <b>IB Affiliate</b> — become an affiliate and follow the IB onboarding process\n\n"
         "<i>Please choose the option that matches what you want.</i>"
     )
 
@@ -214,8 +269,8 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await query.message.reply_text(
             "<b>Welcome to ImperiumFX Setup</b>\n\n"
             "Choose your path below.\n\n"
-            "• <b>VIP Access</b> — join our free VIP signal access by coming under us\n"
-            "• <b>IB Affiliate</b> — become an affiliate and follow the full IB onboarding process\n\n"
+            "• <b>VIP Access</b> — join our VIP signal access\n"
+            "• <b>IB Affiliate</b> — become an affiliate and follow the IB onboarding process\n\n"
             "<i>Please choose the option that matches what you want.</i>",
             reply_markup=start_menu(),
             parse_mode="HTML"
@@ -225,16 +280,169 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         context.user_data["main_path"] = "vip"
         await query.message.reply_text(
             "<b>VIP Access</b>\n\n"
-            "VIP access is <b>free</b>.\n\n"
+            "Choose your VIP route below.\n\n"
+            "<b>Free VIP</b>\n"
+            "• for users who come under our IB\n"
+            "• requires registration/transfer under us and deposit\n\n"
+            "<b>Paid VIP</b>\n"
+            "• for users who want direct access\n"
+            "• funded accounts pay monthly\n\n"
+            "<i>Select the option that matches your situation.</i>",
+            reply_markup=vip_entry_menu(),
+            parse_mode="HTML"
+        )
+
+    elif query.data == "vip_free":
+        context.user_data["vip_mode"] = "free"
+        await query.message.reply_text(
+            "<b>Free VIP</b>\n\n"
             "To qualify, you must do <b>one</b> of the following:\n\n"
             "1. <b>Register with PU Prime under us</b>\n"
             "2. <b>Transfer your existing PU Prime account under us</b>\n\n"
             "<b>Important rules:</b>\n"
             "• You must come under our IB\n"
             "• You must <b>deposit</b>\n"
-            "• Without this, <b>VIP access will not be granted</b>\n\n"
+            "• Without this, <b>free VIP access will not be granted</b>\n\n"
             "<i>Select the option that matches your situation below.</i>",
-            reply_markup=vip_menu(),
+            reply_markup=vip_free_menu(),
+            parse_mode="HTML"
+        )
+
+    elif query.data == "vip_paid":
+        context.user_data["vip_mode"] = "paid"
+        await query.message.reply_text(
+            "<b>Paid VIP</b>\n\n"
+            "Choose the type of account you use.\n\n"
+            "<b>Live Account</b>\n"
+            "• same structure as free VIP\n"
+            "• you must come under our IB and deposit\n\n"
+            "<b>Funded Account</b>\n"
+            "• <b>€50</b> first month\n"
+            "• <b>€80</b> from the next month onward\n\n"
+            "<i>Select your account type below.</i>",
+            reply_markup=vip_paid_menu(),
+            parse_mode="HTML"
+        )
+
+    elif query.data == "vip_paid_live":
+        context.user_data["vip_mode"] = "paid_live"
+        await query.message.reply_text(
+            "<b>Paid VIP — Live Account</b>\n\n"
+            "For live accounts, your access is handled through our IB structure.\n\n"
+            "That means you must:\n"
+            "1. register under us or transfer under us\n"
+            "2. deposit\n"
+            "3. submit your UID\n\n"
+            "<i>Select your route below.</i>",
+            reply_markup=vip_free_menu(),
+            parse_mode="HTML"
+        )
+
+    elif query.data == "vip_paid_funded":
+        context.user_data["vip_mode"] = "paid_funded"
+        context.user_data["flow"] = "vip_paid_funded"
+        await query.message.reply_text(
+            "<b>Paid VIP — Funded Account</b>\n\n"
+            "<b>Pricing:</b>\n"
+            "• <b>€50</b> first month\n"
+            "• <b>€80</b> from the next month onward\n\n"
+            "<b>Payment methods:</b>\n"
+            "• BTC\n"
+            "• ETH\n"
+            "• SOL\n\n"
+            "<b>Next step:</b>\n"
+            "1. view the wallet address\n"
+            "2. send the payment\n"
+            "3. submit payment proof\n\n"
+            "<i>Use the buttons below.</i>",
+            reply_markup=funded_payment_menu(),
+            parse_mode="HTML"
+        )
+
+    elif query.data == "show_btc":
+        await query.message.reply_text(
+            "<b>BTC Address</b>\n\n"
+            f"<code>{BTC_ADDRESS}</code>\n\n"
+            "<i>After sending payment, press I Sent Payment and then submit your proof.</i>",
+            reply_markup=funded_payment_menu(),
+            parse_mode="HTML"
+        )
+
+    elif query.data == "show_eth":
+        await query.message.reply_text(
+            "<b>ETH Address</b>\n\n"
+            f"<code>{ETHEREUM_ADDRESS}</code>\n\n"
+            "<i>After sending payment, press I Sent Payment and then submit your proof.</i>",
+            reply_markup=funded_payment_menu(),
+            parse_mode="HTML"
+        )
+
+    elif query.data == "show_sol":
+        await query.message.reply_text(
+            "<b>SOL Address</b>\n\n"
+            f"<code>{SOLANA_ADDRESS}</code>\n\n"
+            "<i>After sending payment, press I Sent Payment and then submit your proof.</i>",
+            reply_markup=funded_payment_menu(),
+            parse_mode="HTML"
+        )
+
+    elif query.data == "funded_payment_sent":
+        context.user_data["funded_payment_sent"] = True
+        await query.message.reply_text(
+            "<b>Payment marked as sent.</b>\n\n"
+            "Now submit your payment proof.\n\n"
+            "<b>Important:</b> if you send a screenshot or document, the caption must be:\n\n"
+            "<code>PAYMENT: FUNDED</code>",
+            reply_markup=funded_payment_menu(),
+            parse_mode="HTML"
+        )
+
+        await notify_admin(
+            context,
+            (
+                "<b>Funded VIP user says they sent payment</b>\n"
+                f"Name: {user.full_name}\n"
+                f"Username: {username}\n"
+                f"User ID: <code>{user.id}</code>\n"
+                "Flow: <b>VIP Paid Funded</b>"
+            )
+        )
+
+    elif query.data == "submit_payment_proof":
+        if context.user_data.get("funded_submitted"):
+            await query.message.reply_text(
+                "<b>Your payment proof has already been received.</b>\n\n"
+                "Please wait for review or contact support if needed.",
+                reply_markup=funded_review_menu(),
+                parse_mode="HTML"
+            )
+            return
+
+        if not context.user_data.get("funded_payment_sent"):
+            await query.message.reply_text(
+                "<b>You must mark payment as sent first.</b>\n\n"
+                "Please follow the funded VIP steps in order.",
+                reply_markup=funded_payment_menu(),
+                parse_mode="HTML"
+            )
+            return
+
+        context.user_data["awaiting_payment_proof"] = True
+        await query.message.reply_text(
+            "Send your <b>payment proof</b> now.\n\n"
+            "<b>Required caption format:</b>\n"
+            "<code>PAYMENT: FUNDED</code>\n\n"
+            "<i>Screenshot or document only.</i>",
+            reply_markup=funded_payment_menu(),
+            parse_mode="HTML"
+        )
+
+    elif query.data == "funded_waiting_review":
+        await query.message.reply_text(
+            "<b>Your funded VIP payment proof is already under review.</b>\n\n"
+            "There is nothing else you need to submit right now.\n\n"
+            "<i>If you need help, press Contact Support.</i>",
+            reply_markup=funded_review_menu(),
             parse_mode="HTML"
         )
 
@@ -332,6 +540,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 f"Name: {user.full_name}\n"
                 f"Username: {username}\n"
                 f"User ID: <code>{user.id}</code>\n"
+                f"VIP Mode: <b>{context.user_data.get('vip_mode', 'unknown')}</b>\n"
                 "Flow: <b>VIP New User</b>"
             )
         )
@@ -362,6 +571,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 f"Name: {user.full_name}\n"
                 f"Username: {username}\n"
                 f"User ID: <code>{user.id}</code>\n"
+                f"VIP Mode: <b>{context.user_data.get('vip_mode', 'unknown')}</b>\n"
                 "Flow: <b>VIP New User</b>"
             )
         )
@@ -403,6 +613,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 f"Name: {user.full_name}\n"
                 f"Username: {username}\n"
                 f"User ID: <code>{user.id}</code>\n"
+                f"VIP Mode: <b>{context.user_data.get('vip_mode', 'unknown')}</b>\n"
                 "Flow: <b>VIP Existing User</b>"
             )
         )
@@ -432,6 +643,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 f"Name: {user.full_name}\n"
                 f"Username: {username}\n"
                 f"User ID: <code>{user.id}</code>\n"
+                f"VIP Mode: <b>{context.user_data.get('vip_mode', 'unknown')}</b>\n"
                 "Flow: <b>VIP Existing User</b>"
             )
         )
@@ -660,7 +872,9 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif query.data == "support":
         reply_markup = back_to_start()
 
-        if context.user_data.get("main_path") == "vip":
+        if context.user_data.get("flow") == "vip_paid_funded":
+            reply_markup = funded_payment_menu()
+        elif context.user_data.get("main_path") == "vip":
             reply_markup = back_to_vip_menu()
         elif context.user_data.get("main_path") == "affiliate":
             reply_markup = back_to_affiliate_main()
@@ -681,6 +895,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 f"Username: {username}\n"
                 f"User ID: <code>{user.id}</code>\n"
                 f"Main Path: <b>{context.user_data.get('main_path', 'unknown')}</b>\n"
+                f"VIP Mode: <b>{context.user_data.get('vip_mode', 'unknown')}</b>\n"
                 f"Flow: <b>{context.user_data.get('flow', 'unknown')}</b>"
             )
         )
@@ -734,6 +949,7 @@ async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 "<b>New UID submission received</b>\n"
                 f"Type: <b>{uid_type.upper()}</b>\n"
                 f"Flow: <b>{flow}</b>\n"
+                f"VIP Mode: <b>{context.user_data.get('vip_mode', 'unknown')}</b>\n"
                 f"Name: {user.full_name}\n"
                 f"Username: {username}\n"
                 f"User ID: <code>{user.id}</code>\n"
@@ -742,6 +958,7 @@ async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 
         context.user_data["awaiting_uid"] = False
+
     else:
         await update.message.reply_text(
             "To begin the setup, press <b>/start</b>.",
@@ -752,6 +969,50 @@ async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def media_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.message.from_user
     username = f"@{user.username}" if user.username else "No username"
+
+    if context.user_data.get("awaiting_payment_proof"):
+        caption = update.message.caption.strip() if update.message.caption else ""
+        payment_type = parse_payment_submission(caption)
+
+        if not payment_type:
+            await update.message.reply_text(
+                payment_format_guide(),
+                parse_mode="HTML"
+            )
+            return
+
+        context.user_data["funded_submitted"] = True
+        context.user_data["awaiting_payment_proof"] = False
+
+        await update.message.reply_text(
+            "<b>Payment proof received.</b>\n\n"
+            "Your funded VIP payment is now under review.\n\n"
+            "<i>Please wait for confirmation or further instructions.</i>",
+            reply_markup=funded_review_menu(),
+            parse_mode="HTML"
+        )
+
+        try:
+            await context.bot.forward_message(
+                chat_id=ADMIN_CHAT_ID,
+                from_chat_id=update.message.chat_id,
+                message_id=update.message.message_id
+            )
+        except Exception:
+            pass
+
+        await notify_admin(
+            context,
+            (
+                "<b>Funded VIP payment proof received</b>\n"
+                f"Name: {user.full_name}\n"
+                f"Username: {username}\n"
+                f"User ID: <code>{user.id}</code>\n"
+                "Flow: <b>VIP Paid Funded</b>\n"
+                "Payment Type: <b>FUNDED</b>"
+            )
+        )
+        return
 
     if context.user_data.get("awaiting_uid"):
         uid_type = context.user_data.get("uid_type", "unknown")
@@ -799,6 +1060,7 @@ async def media_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 "<b>New media submission received</b>\n"
                 f"Type: <b>{uid_type.upper()}</b>\n"
                 f"Flow: <b>{flow}</b>\n"
+                f"VIP Mode: <b>{context.user_data.get('vip_mode', 'unknown')}</b>\n"
                 f"Name: {user.full_name}\n"
                 f"Username: {username}\n"
                 f"User ID: <code>{user.id}</code>\n"
@@ -807,6 +1069,7 @@ async def media_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 
         context.user_data["awaiting_uid"] = False
+
     else:
         await update.message.reply_text(
             "To begin the setup, press <b>/start</b>.",
