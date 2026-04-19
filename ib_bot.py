@@ -15,6 +15,13 @@ from telegram.ext import (
 )
 BOT_TOKEN = "8085633137:AAEM6MOSPirix26Bs4Ye9wqryX063L-FO60"
 ADMIN_CHAT_ID = -1003919089074
+
+def is_admin_chat(update: Update) -> bool:
+    chat = update.effective_chat
+    if chat is None:
+        return False
+    return chat.id == ADMIN_CHAT_ID
+
 IB_LINK = "https://www.puprime.partners/forex-trading-account/?affid=MjMyMTMwODY="
 IB_CODE = "pOenf2oC"
 IB_ACCOUNT_NUMBER = "23213086"
@@ -188,6 +195,8 @@ def payment_format_guide():
         "<code>PAYMENT: FUNDED</code>"
     )
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if is_admin_chat(update):
+        return
     context.user_data.clear()
     text = (
         "<b>Welcome to ImperiumFX Setup</b>\n\n"
@@ -202,6 +211,12 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         parse_mode="HTML"
     )
 async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if is_admin_chat(update):
+        try:
+            await update.callback_query.answer()
+        except Exception:
+            pass
+        return
     query = update.callback_query
     await query.answer()
     user = query.from_user
@@ -785,6 +800,8 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
         )
 async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if is_admin_chat(update):
+        return
     user = update.message.from_user
     username = f"@{user.username}" if user.username else "No username"
     if context.user_data.get("awaiting_uid"):
@@ -839,6 +856,8 @@ async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             parse_mode="HTML"
         )
 async def media_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if is_admin_chat(update):
+        return
     user = update.message.from_user
     username = f"@{user.username}" if user.username else "No username"
     if context.user_data.get("awaiting_payment_proof"):
