@@ -26,6 +26,8 @@ from telegram.ext import (
 # ===================================================================
 BOT_TOKEN = "8085633137:AAEM6MOSPirix26Bs4Ye9wqryX063L-FO60"
 ADMIN_CHAT_ID = -1003919089074  # supergroup format with -100 prefix
+MAIN_GROUP_CHAT_ID = -1003752395437  # main ImperiumFX signal group
+BOT_USERNAME = "imperiumfx_onboarding_bot"  # for t.me deep links
 
 IB_LINK = "https://www.puprime.partners/forex-trading-account/?affid=MjMyMTMwODY="
 IB_CODE = "pOenf2oC"
@@ -1866,6 +1868,179 @@ async def cmd_broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
+JOIN_FREE_POST = (
+    "🔥 <b>JOIN IMPERIUMFX VIP — FREE ACCESS</b> 🔥\n\n"
+    "Get access to the same signals, setups and trade calls our team uses every day — "
+    "at <b>zero cost</b>.\n\n"
+    "✅ Premium VIP signals, daily\n"
+    "✅ Entry / SL / TP given clearly\n"
+    "✅ Live setups & market breakdowns\n"
+    "✅ Direct support from our admin team\n"
+    "✅ Trusted PU Prime partnership for your security\n\n"
+    "<b>And the best part:</b>\n"
+    "❌ No setup costs\n"
+    "❌ No monthly fees\n"
+    "❌ No contracts ever\n\n"
+    "<b>Here's how to get started:</b>\n\n"
+    "1️⃣ Tap the <b>JOIN FREE</b> button under this message\n"
+    "2️⃣ Our bot will guide you step-by-step\n"
+    "3️⃣ Once verified, our team adds you to the VIP group\n\n"
+    "<i>(This is NOT financial advice. Past results do not guarantee future performance.)</i>\n\n"
+    "👇 <b>Tap below to start now</b> 👇"
+)
+
+
+def join_free_button(payload="mainpost"):
+    return InlineKeyboardMarkup([
+        [InlineKeyboardButton(
+            "🔥 JOIN FREE 🔥",
+            url=f"https://t.me/{BOT_USERNAME}?start={payload}",
+        )]
+    ])
+
+
+@admin_only
+async def cmd_post(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Post the default JOIN FREE announcement into the main signal group.
+
+    Usage:
+      /post              -> posts the built-in JOIN FREE template with payload 'mainpost'
+      /post <payload>    -> same, but with a custom referral payload (e.g. /post ig, /post tt)
+    """
+    payload = (context.args[0] if context.args else "mainpost").strip()
+    if not re.match(r"^[A-Za-z0-9_\-]{1,32}$", payload):
+        await update.message.reply_text(
+            "Invalid payload. Use letters, digits, underscore or hyphen (max 32 chars).",
+        )
+        return
+    try:
+        sent = await context.bot.send_message(
+            chat_id=MAIN_GROUP_CHAT_ID,
+            text=JOIN_FREE_POST,
+            parse_mode="HTML",
+            reply_markup=join_free_button(payload),
+            disable_web_page_preview=True,
+        )
+        await update.message.reply_text(
+            f"✅ Posted to main group.\n"
+            f"Message ID: <code>{sent.message_id}</code>\n"
+            f"Referral payload: <code>{payload}</code>\n\n"
+            f"<i>To pin it: open the post in the main group, long-press → Pin.</i>",
+            parse_mode="HTML",
+        )
+    except Exception as e:
+        await update.message.reply_text(f"❌ Post failed: <code>{html.escape(str(e))}</code>", parse_mode="HTML")
+
+
+def _extract_custom_message(update):
+    """Pull the free-text body out of a command or a replied-to message.
+
+    Priority:
+      1. If the admin REPLIED to a message with the command, use that replied text/caption.
+      2. Otherwise use everything after the first space in the command.
+    """
+    msg = update.message
+    # Reply-to takes priority
+    if msg.reply_to_message:
+        reply = msg.reply_to_message
+        return (reply.text or reply.caption or "").strip()
+    # Fallback: text after the command
+    raw = (msg.text or "").partition(" ")[2]
+    return raw.strip()
+
+
+@admin_only
+async def cmd_send(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Send a CUSTOM message (no button) to the main signal group.
+
+    Usage:
+      /send <your message>            -> posts the text
+      Reply to any message with /send -> posts the replied text/caption
+
+    HTML formatting allowed: <b>bold</b>, <i>italic</i>, <code>code</code>, <a href="...">link</a>.
+    """
+    body = _extract_custom_message(update)
+    if not body:
+        await update.message.reply_text(
+            "Usage:\n"
+            "<code>/send your message here</code>\n\n"
+            "Or reply to any message with <code>/send</code> and the bot will post that message.\n\n"
+            "HTML allowed: <code>&lt;b&gt;bold&lt;/b&gt;</code>, <code>&lt;i&gt;italic&lt;/i&gt;</code>, <code>&lt;code&gt;code&lt;/code&gt;</code>.",
+            parse_mode="HTML",
+        )
+        return
+    try:
+        sent = await context.bot.send_message(
+            chat_id=MAIN_GROUP_CHAT_ID,
+            text=body,
+            parse_mode="HTML",
+            disable_web_page_preview=False,
+        )
+        await update.message.reply_text(
+            f"✅ Sent to main group.\nMessage ID: <code>{sent.message_id}</code>",
+            parse_mode="HTML",
+        )
+    except Exception as e:
+        await update.message.reply_text(
+            f"❌ Send failed: <code>{html.escape(str(e))}</code>\n\n"
+            f"<i>Check your HTML tags — Telegram rejects unclosed or invalid tags.</i>",
+            parse_mode="HTML",
+        )
+
+
+@admin_only
+async def cmd_sendbtn(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Send a CUSTOM message WITH the JOIN FREE button attached.
+
+    Usage:
+      /sendbtn <your message>                  -> posts text + JOIN FREE button
+      Reply to any message with /sendbtn       -> same, using the replied text
+      /sendbtn payload=<tag> <your message>    -> custom referral payload
+
+    Example:
+      /sendbtn payload=promo1 🔥 Flash promo! Join today for free access.
+    """
+    body = _extract_custom_message(update)
+    payload = "custom"
+
+    # Optional payload=<tag> prefix
+    m = re.match(r"^payload=([A-Za-z0-9_\-]{1,32})\s+(.+)$", body, flags=re.DOTALL)
+    if m:
+        payload = m.group(1)
+        body = m.group(2).strip()
+
+    if not body:
+        await update.message.reply_text(
+            "Usage:\n"
+            "<code>/sendbtn your message here</code>\n"
+            "<code>/sendbtn payload=promo1 your message here</code>\n\n"
+            "Or reply to any message with <code>/sendbtn</code>.\n\n"
+            "A <b>🔥 JOIN FREE 🔥</b> button will be added under your message.",
+            parse_mode="HTML",
+        )
+        return
+    try:
+        sent = await context.bot.send_message(
+            chat_id=MAIN_GROUP_CHAT_ID,
+            text=body,
+            parse_mode="HTML",
+            reply_markup=join_free_button(payload),
+            disable_web_page_preview=True,
+        )
+        await update.message.reply_text(
+            f"✅ Sent to main group with JOIN FREE button.\n"
+            f"Message ID: <code>{sent.message_id}</code>\n"
+            f"Referral payload: <code>{payload}</code>",
+            parse_mode="HTML",
+        )
+    except Exception as e:
+        await update.message.reply_text(
+            f"❌ Send failed: <code>{html.escape(str(e))}</code>\n\n"
+            f"<i>Check your HTML tags — Telegram rejects unclosed or invalid tags.</i>",
+            parse_mode="HTML",
+        )
+
+
 @admin_only
 async def cmd_adminhelp(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
@@ -1877,6 +2052,11 @@ async def cmd_adminhelp(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "/block &lt;id&gt; — block a user\n"
         "/unblock &lt;id&gt; — unblock a user\n"
         "/broadcast &lt;text&gt; — message all users (HTML allowed)\n"
+        "/post [payload] — post the built-in JOIN FREE announcement to main group\n"
+        "/send &lt;message&gt; — post your CUSTOM message to main group (no button)\n"
+        "/sendbtn &lt;message&gt; — post your CUSTOM message + JOIN FREE button\n"
+        "  ↳ also works as a REPLY to any message you typed in this chat\n"
+        "  ↳ optional <code>payload=tag</code> prefix for referral tracking\n"
         "/adminhelp — show this list\n\n"
         "<i>Inline buttons on each new submission also work for Approve / Reject / Block.</i>",
         parse_mode="HTML",
@@ -2004,6 +2184,9 @@ def main():
     app.add_handler(CommandHandler("block", cmd_block))
     app.add_handler(CommandHandler("unblock", cmd_unblock))
     app.add_handler(CommandHandler("broadcast", cmd_broadcast))
+    app.add_handler(CommandHandler("post", cmd_post))
+    app.add_handler(CommandHandler("send", cmd_send))
+    app.add_handler(CommandHandler("sendbtn", cmd_sendbtn))
     app.add_handler(CommandHandler("adminhelp", cmd_adminhelp))
 
     # Callbacks + messages
