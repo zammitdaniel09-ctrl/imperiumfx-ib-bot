@@ -116,34 +116,19 @@ TEXTS = {}
 
 TEXTS["en"] = {
     # ---------- language picker ----------
-    "lang_picker_title": "<b>Please choose your language</b>\n\nYou can change it later with /language.",
-    "lang_set_ok": "<b>Language set.</b> Loading the main menu...",
+    "lang_picker_title": "✨ <b>Welcome to ImperiumFX</b> ✨\n\nYour gateway to premium trading — curated VIP signals, IB partnerships, and a team that actually trades.\n\n🌐 <b>Please choose your language to continue.</b>\n<i>You can change it later anytime with /language.</i>",
+    "lang_set_ok": "✅ <b>Language set.</b> Loading your main menu…",
 
     # ---------- welcome / start ----------
-    "welcome_title": "<b>Welcome to ImperiumFX Setup</b>",
-    "welcome_body": (
-        "<b>Welcome to ImperiumFX Setup</b>\n\n"
-        "Choose your path below.\n\n"
-        "- <b>VIP Access</b> - join our VIP signal access\n"
-        "- <b>IB Affiliate</b> - become an affiliate and follow the IB onboarding process\n"
-        "- <b>Meet the Team</b> - see who runs ImperiumFX\n"
-        "- <b>Follow Us</b> - Instagram & TikTok\n"
-        "- <b>FAQ</b> - quick answers to common questions\n\n"
-        "<i>Please choose the option that matches what you want.</i>"
-    ),
+    "welcome_title": "💎 <b>Welcome to ImperiumFX</b> 💎",
+    "welcome_body": "💎 <b>Welcome to ImperiumFX</b> 💎\n\nThe home of premium VIP signals and IB partnerships for PU Prime traders.\n\n<b>What brings you here today?</b>\n\n💎 <b>VIP Access</b> — private signals, setups and live calls\n🤝 <b>IB Affiliate</b> — become a partner and earn commissions\n👥 <b>Meet the Team</b> — see who runs ImperiumFX\n🌐 <b>Follow Us</b> — Instagram and TikTok\n❓ <b>FAQ</b> — quick answers to common questions\n\n<i>Tap an option below to continue.</i>",
     "resume_prompt": (
         "<b>You already have progress in the bot.</b>\n\n"
         "Do you want to <b>restart</b> from the beginning, or keep your current progress?"
     ),
-    "restart_yes_msg": "<b>Welcome to ImperiumFX Setup</b>\n\nChoose your path below.",
+    "restart_yes_msg": "💎 <b>Welcome to ImperiumFX</b> 💎\n\nChoose your path below.",
     "restart_no_msg": "Progress kept. Press a button below to continue.",
-    "back_short_welcome": (
-        "<b>Welcome to ImperiumFX Setup</b>\n\n"
-        "Choose your path below.\n\n"
-        "- <b>VIP Access</b> - join our VIP signal access\n"
-        "- <b>IB Affiliate</b> - become an affiliate and follow the IB onboarding process\n\n"
-        "<i>Please choose the option that matches what you want.</i>"
-    ),
+    "back_short_welcome": "💎 <b>Welcome to ImperiumFX</b> 💎\n\nChoose your path below.\n\n💎 <b>VIP Access</b> — join our VIP signal access\n🤝 <b>IB Affiliate</b> — become an affiliate and follow the IB onboarding process\n\n<i>Please choose the option that matches what you want.</i>",
 
     # ---------- help / status ----------
     "help_text": (
@@ -615,82 +600,67 @@ TEXTS["en"] = {
     ),
 
     # ---------- buttons ----------
-    "btn_vip_access": "Join VIP Access",
-    "btn_ib_affiliate": "Become an IB Affiliate",
-    "btn_team": "Meet the Team",
-    "btn_socials": "Follow Us",
-    "btn_faq": "FAQ",
-    "btn_support": "Contact Support",
-    "btn_back": "Back",
-    "btn_back_to_start": "Back to Start",
-    "btn_back_to_vip": "Back to VIP Menu",
-    "btn_back_to_affiliate": "Back to Affiliate Menu",
-    "btn_yes_restart": "Yes, restart",
-    "btn_no_keep": "No, keep progress",
-    "btn_free_vip": "Free VIP",
-    "btn_paid_vip": "Paid VIP",
-    "btn_new_to_pu": "New to PU Prime",
-    "btn_existing_pu": "Already with PU Prime",
-    "btn_live_account": "Live Account",
-    "btn_funded_account": "Funded Account",
-    "btn_dont_know_ib": "I don't know what IB is",
-    "btn_already_know": "I already know, continue",
-    "btn_continue": "Continue",
-    "btn_step1_register": "Step 1: Register with PU Prime",
-    "btn_step1_start_reg": "Step 1: Start Registration",
-    "btn_step2_completed": "Step 2: I Completed Registration",
-    "btn_step3_deposited": "Step 3: I Deposited",
-    "btn_step4_submit_uid": "Step 4: Submit UID",
-    "btn_step3_submit_uid": "Step 3: Submit UID",
-    "btn_step1_view_email": "Step 1: View Transfer Email",
-    "btn_step2_sent_email": "Step 2: I Sent the Email",
-    "btn_view_btc": "View BTC Address",
-    "btn_view_eth": "View ETH Address",
-    "btn_view_sol": "View SOL Address",
-    "btn_sent_payment": "I Sent Payment",
-    "btn_submit_proof": "Submit Payment Proof",
-    "btn_waiting_payment_review": "Waiting for Payment Review",
-    "btn_waiting_review": "Waiting for Review",
-    "btn_benefits": "IB Benefits",
-    "btn_message": "Message",
-    "btn_founder": "Founder - Kratos",
-    "btn_onboarding": "Onboarding / General - Apollo",
-    "btn_signals": "Signals - Plato",
-    "btn_socials_admin": "Socials - HD",
-    "btn_change_language": "Change Language",
-    "btn_approve": "Approve",
-    "btn_reject": "Reject",
-    "btn_block_user": "Block User",
+    "btn_vip_access": "💎 Join VIP Access",
+    "btn_ib_affiliate": "🤝 Become an IB Affiliate",
+    "btn_team": "👥 Meet the Team",
+    "btn_socials": "🌐 Follow Us",
+    "btn_faq": "❓ FAQ",
+    "btn_support": "💬 Contact Support",
+    "btn_back": "◀️ Back",
+    "btn_back_to_start": "🏠 Back to Start",
+    "btn_back_to_vip": "◀️ Back to VIP Menu",
+    "btn_back_to_affiliate": "◀️ Back to Affiliate Menu",
+    "btn_yes_restart": "🔄 Yes, restart",
+    "btn_no_keep": "✅ No, keep progress",
+    "btn_free_vip": "🎁 Free VIP",
+    "btn_paid_vip": "👑 Paid VIP",
+    "btn_new_to_pu": "🆕 New to PU Prime",
+    "btn_existing_pu": "📂 Already with PU Prime",
+    "btn_live_account": "📊 Live Account",
+    "btn_funded_account": "🏦 Funded Account",
+    "btn_dont_know_ib": "🤔 I don't know what IB is",
+    "btn_already_know": "✅ I already know, continue",
+    "btn_continue": "➡️ Continue",
+    "btn_step1_register": "1️⃣ Step 1: Register with PU Prime",
+    "btn_step1_start_reg": "1️⃣ Step 1: Start Registration",
+    "btn_step2_completed": "2️⃣ Step 2: I Completed Registration",
+    "btn_step3_deposited": "3️⃣ Step 3: I Deposited",
+    "btn_step4_submit_uid": "4️⃣ Step 4: Submit UID",
+    "btn_step3_submit_uid": "3️⃣ Step 3: Submit UID",
+    "btn_step1_view_email": "1️⃣ Step 1: View Transfer Email",
+    "btn_step2_sent_email": "2️⃣ Step 2: I Sent the Email",
+    "btn_view_btc": "₿ View BTC Address",
+    "btn_view_eth": "Ξ View ETH Address",
+    "btn_view_sol": "◎ View SOL Address",
+    "btn_sent_payment": "💸 I Sent Payment",
+    "btn_submit_proof": "📤 Submit Payment Proof",
+    "btn_waiting_payment_review": "⏳ Waiting for Payment Review",
+    "btn_waiting_review": "⏳ Waiting for Review",
+    "btn_benefits": "🎯 IB Benefits",
+    "btn_message": "💬 Message",
+    "btn_founder": "👑 Founder - Kratos",
+    "btn_onboarding": "🚀 Onboarding / General - Apollo",
+    "btn_signals": "📈 Signals - Plato",
+    "btn_socials_admin": "📱 Socials - HD",
+    "btn_change_language": "🌐 Change Language",
+    "btn_approve": "✅ Approve",
+    "btn_reject": "❌ Reject",
+    "btn_block_user": "🚫 Block User",
 }
 
 TEXTS["zh"] = {
-    "lang_picker_title": "<b>请选择您的语言</b>\n\n稍后可以通过 /language 更改。",
-    "lang_set_ok": "<b>语言已设置。</b> 正在加载主菜单...",
+    "lang_picker_title": "✨ <b>欢迎来到 ImperiumFX</b> ✨\n\n您的高端交易入口 — 精选 VIP 信号、IB 合作伙伴计划,以及一支真正在交易的团队。\n\n🌐 <b>请选择您的语言以继续。</b>\n<i>您可以随时通过 /language 更改。</i>",
+    "lang_set_ok": "✅ <b>语言已设置。</b> 正在加载主菜单…",
 
-    "welcome_title": "<b>欢迎来到 ImperiumFX</b>",
-    "welcome_body": (
-        "<b>欢迎来到 ImperiumFX</b>\n\n"
-        "请在下方选择您的路径。\n\n"
-        "- <b>VIP 通道</b> - 加入我们的 VIP 信号通道\n"
-        "- <b>IB 代理</b> - 成为代理并完成 IB 注册流程\n"
-        "- <b>团队介绍</b> - 了解 ImperiumFX 的团队\n"
-        "- <b>关注我们</b> - Instagram 与 TikTok\n"
-        "- <b>常见问题</b> - 常见疑问的快速解答\n\n"
-        "<i>请选择最符合您需求的选项。</i>"
-    ),
+    "welcome_title": "💎 <b>欢迎来到 ImperiumFX</b> 💎",
+    "welcome_body": "💎 <b>欢迎来到 ImperiumFX</b> 💎\n\n为 PU Prime 交易者打造的高端 VIP 信号与 IB 合作伙伴之家。\n\n<b>您今天想要做什么?</b>\n\n💎 <b>VIP 通道</b> — 私有信号、设置与实时交易呼叫\n🤝 <b>IB 代理</b> — 成为合作伙伴并赚取佣金\n👥 <b>团队介绍</b> — 了解 ImperiumFX 的团队\n🌐 <b>关注我们</b> — Instagram 与 TikTok\n❓ <b>常见问题</b> — 常见疑问的快速解答\n\n<i>请点击下方选项继续。</i>",
     "resume_prompt": (
         "<b>您在机器人中已有进度。</b>\n\n"
         "是否要<b>重新开始</b>,还是保留当前进度?"
     ),
-    "restart_yes_msg": "<b>欢迎来到 ImperiumFX</b>\n\n请在下方选择您的路径。",
+    "restart_yes_msg": "💎 <b>欢迎来到 ImperiumFX</b> 💎\n\n请在下方选择您的路径。",
     "restart_no_msg": "进度已保留。请点击下方按钮继续。",
-    "back_short_welcome": (
-        "<b>欢迎来到 ImperiumFX</b>\n\n"
-        "请在下方选择您的路径。\n\n"
-        "- <b>VIP 通道</b> - 加入我们的 VIP 信号通道\n"
-        "- <b>IB 代理</b> - 成为代理并完成 IB 注册流程\n\n"
-        "<i>请选择最符合您需求的选项。</i>"
-    ),
+    "back_short_welcome": "💎 <b>欢迎来到 ImperiumFX</b> 💎\n\n请在下方选择您的路径。\n\n💎 <b>VIP 通道</b> — 加入我们的 VIP 信号通道\n🤝 <b>IB 代理</b> — 成为代理并完成 IB 注册流程\n\n<i>请选择最符合您需求的选项。</i>",
 
     "help_text": (
         "<b>ImperiumFX 机器人 - 帮助</b>\n\n"
@@ -1150,82 +1120,67 @@ TEXTS["zh"] = {
         "以获得有意义的头寸规模,并顺利获得 VIP 资格。"
     ),
 
-    "btn_vip_access": "加入 VIP 通道",
-    "btn_ib_affiliate": "成为 IB 代理",
-    "btn_team": "团队介绍",
-    "btn_socials": "关注我们",
-    "btn_faq": "常见问题",
-    "btn_support": "联系客服",
-    "btn_back": "返回",
-    "btn_back_to_start": "返回主页",
-    "btn_back_to_vip": "返回 VIP 菜单",
-    "btn_back_to_affiliate": "返回代理菜单",
-    "btn_yes_restart": "是,重新开始",
-    "btn_no_keep": "否,保留进度",
-    "btn_free_vip": "免费 VIP",
-    "btn_paid_vip": "付费 VIP",
-    "btn_new_to_pu": "PU Prime 新用户",
-    "btn_existing_pu": "已有 PU Prime 账户",
-    "btn_live_account": "真实账户",
-    "btn_funded_account": "资金账户",
-    "btn_dont_know_ib": "我不知道什么是 IB",
-    "btn_already_know": "我已了解,继续",
-    "btn_continue": "继续",
-    "btn_step1_register": "第 1 步:在 PU Prime 注册",
-    "btn_step1_start_reg": "第 1 步:开始注册",
-    "btn_step2_completed": "第 2 步:我已完成注册",
-    "btn_step3_deposited": "第 3 步:我已入金",
-    "btn_step4_submit_uid": "第 4 步:提交 UID",
-    "btn_step3_submit_uid": "第 3 步:提交 UID",
-    "btn_step1_view_email": "第 1 步:查看转移邮件",
-    "btn_step2_sent_email": "第 2 步:我已发送邮件",
-    "btn_view_btc": "查看 BTC 地址",
-    "btn_view_eth": "查看 ETH 地址",
-    "btn_view_sol": "查看 SOL 地址",
-    "btn_sent_payment": "我已付款",
-    "btn_submit_proof": "提交付款证明",
-    "btn_waiting_payment_review": "等待付款审核",
-    "btn_waiting_review": "等待审核",
-    "btn_benefits": "IB 福利",
-    "btn_message": "联系",
-    "btn_founder": "创始人 - Kratos",
-    "btn_onboarding": "入门 / 综合 - Apollo",
-    "btn_signals": "信号 - Plato",
-    "btn_socials_admin": "社交 - HD",
-    "btn_change_language": "更改语言",
-    "btn_approve": "批准",
-    "btn_reject": "拒绝",
-    "btn_block_user": "封禁用户",
+    "btn_vip_access": "💎 加入 VIP 通道",
+    "btn_ib_affiliate": "🤝 成为 IB 代理",
+    "btn_team": "👥 团队介绍",
+    "btn_socials": "🌐 关注我们",
+    "btn_faq": "❓ 常见问题",
+    "btn_support": "💬 联系客服",
+    "btn_back": "◀️ 返回",
+    "btn_back_to_start": "🏠 返回主页",
+    "btn_back_to_vip": "◀️ 返回 VIP 菜单",
+    "btn_back_to_affiliate": "◀️ 返回代理菜单",
+    "btn_yes_restart": "🔄 是,重新开始",
+    "btn_no_keep": "✅ 否,保留进度",
+    "btn_free_vip": "🎁 免费 VIP",
+    "btn_paid_vip": "👑 付费 VIP",
+    "btn_new_to_pu": "🆕 PU Prime 新用户",
+    "btn_existing_pu": "📂 已有 PU Prime 账户",
+    "btn_live_account": "📊 真实账户",
+    "btn_funded_account": "🏦 资金账户",
+    "btn_dont_know_ib": "🤔 我不知道什么是 IB",
+    "btn_already_know": "✅ 我已了解,继续",
+    "btn_continue": "➡️ 继续",
+    "btn_step1_register": "1️⃣ 第 1 步:在 PU Prime 注册",
+    "btn_step1_start_reg": "1️⃣ 第 1 步:开始注册",
+    "btn_step2_completed": "2️⃣ 第 2 步:我已完成注册",
+    "btn_step3_deposited": "3️⃣ 第 3 步:我已入金",
+    "btn_step4_submit_uid": "4️⃣ 第 4 步:提交 UID",
+    "btn_step3_submit_uid": "3️⃣ 第 3 步:提交 UID",
+    "btn_step1_view_email": "1️⃣ 第 1 步:查看转移邮件",
+    "btn_step2_sent_email": "2️⃣ 第 2 步:我已发送邮件",
+    "btn_view_btc": "₿ 查看 BTC 地址",
+    "btn_view_eth": "Ξ 查看 ETH 地址",
+    "btn_view_sol": "◎ 查看 SOL 地址",
+    "btn_sent_payment": "💸 我已付款",
+    "btn_submit_proof": "📤 提交付款证明",
+    "btn_waiting_payment_review": "⏳ 等待付款审核",
+    "btn_waiting_review": "⏳ 等待审核",
+    "btn_benefits": "🎯 IB 福利",
+    "btn_message": "💬 联系",
+    "btn_founder": "👑 创始人 - Kratos",
+    "btn_onboarding": "🚀 入门 / 综合 - Apollo",
+    "btn_signals": "📈 信号 - Plato",
+    "btn_socials_admin": "📱 社交 - HD",
+    "btn_change_language": "🌐 更改语言",
+    "btn_approve": "✅ 批准",
+    "btn_reject": "❌ 拒绝",
+    "btn_block_user": "🚫 封禁用户",
 }
 
 TEXTS["ar"] = {
-    "lang_picker_title": "<b>الرجاء اختيار لغتك</b>\n\nيمكنك تغييرها لاحقًا باستخدام /language.",
-    "lang_set_ok": "<b>تم تعيين اللغة.</b> جاري تحميل القائمة الرئيسية...",
+    "lang_picker_title": "✨ <b>أهلاً بك في ImperiumFX</b> ✨\n\nبوابتك للتداول المميّز — إشارات VIP مختارة، شراكات IB، وفريق يتداول فعلاً.\n\n🌐 <b>يرجى اختيار لغتك للمتابعة.</b>\n<i>يمكنك تغييرها لاحقاً عبر /language.</i>",
+    "lang_set_ok": "✅ <b>تم ضبط اللغة.</b> جارٍ تحميل القائمة الرئيسية…",
 
-    "welcome_title": "<b>مرحبًا بك في ImperiumFX</b>",
-    "welcome_body": (
-        "<b>مرحبًا بك في ImperiumFX</b>\n\n"
-        "اختر مسارك من الأسفل.\n\n"
-        "- <b>وصول VIP</b> - انضم إلى قناة إشاراتنا الحصرية\n"
-        "- <b>شراكة IB</b> - كن شريكًا واتبع خطوات تسجيل IB\n"
-        "- <b>تعرف على الفريق</b> - تعرف على فريق ImperiumFX\n"
-        "- <b>تابعنا</b> - Instagram و TikTok\n"
-        "- <b>الأسئلة الشائعة</b> - إجابات سريعة للأسئلة المتكررة\n\n"
-        "<i>الرجاء اختيار الخيار الذي يناسب احتياجك.</i>"
-    ),
+    "welcome_title": "💎 <b>أهلاً بك في ImperiumFX</b> 💎",
+    "welcome_body": "💎 <b>أهلاً بك في ImperiumFX</b> 💎\n\nموطن إشارات VIP المميّزة وشراكات IB لمتداولي PU Prime.\n\n<b>ما الذي جاء بك اليوم؟</b>\n\n💎 <b>وصول VIP</b> — إشارات خاصة وإعدادات ومكالمات مباشرة\n🤝 <b>شراكة IB</b> — كن شريكًا واكسب العمولات\n👥 <b>تعرّف على الفريق</b> — تعرّف على من يدير ImperiumFX\n🌐 <b>تابعنا</b> — إنستغرام وتيك توك\n❓ <b>الأسئلة الشائعة</b> — إجابات سريعة لأكثر الأسئلة شيوعًا\n\n<i>اضغط على أحد الخيارات أدناه للمتابعة.</i>",
     "resume_prompt": (
         "<b>لديك تقدم حالي في البوت.</b>\n\n"
         "هل تريد <b>إعادة البدء</b> من البداية، أم الاحتفاظ بتقدمك الحالي؟"
     ),
-    "restart_yes_msg": "<b>مرحبًا بك في ImperiumFX</b>\n\nاختر مسارك من الأسفل.",
+    "restart_yes_msg": "💎 <b>أهلاً بك في ImperiumFX</b> 💎\n\nاختر مسارك من الأسفل.",
     "restart_no_msg": "تم الاحتفاظ بالتقدم. اضغط على زر من الأسفل للمتابعة.",
-    "back_short_welcome": (
-        "<b>مرحبًا بك في ImperiumFX</b>\n\n"
-        "اختر مسارك من الأسفل.\n\n"
-        "- <b>وصول VIP</b> - انضم إلى قناة إشاراتنا الحصرية\n"
-        "- <b>شراكة IB</b> - كن شريكًا واتبع خطوات تسجيل IB\n\n"
-        "<i>الرجاء اختيار الخيار الذي يناسب احتياجك.</i>"
-    ),
+    "back_short_welcome": "💎 <b>أهلاً بك في ImperiumFX</b> 💎\n\nاختر مسارك من الأسفل.\n\n💎 <b>وصول VIP</b> — انضم إلى قناة إشاراتنا الحصرية\n🤝 <b>شراكة IB</b> — كن شريكًا واتبع خطوات تسجيل IB\n\n<i>يرجى اختيار الخيار الذي يناسبك.</i>",
 
     "help_text": (
         "<b>بوت ImperiumFX - المساعدة</b>\n\n"
@@ -1684,82 +1639,67 @@ TEXTS["ar"] = {
         "لحجم مركز ذي معنى والتأهل بسلاسة لـ VIP."
     ),
 
-    "btn_vip_access": "الانضمام إلى VIP",
-    "btn_ib_affiliate": "كن شريك IB",
-    "btn_team": "تعرف على الفريق",
-    "btn_socials": "تابعنا",
-    "btn_faq": "الأسئلة الشائعة",
-    "btn_support": "تواصل مع الدعم",
-    "btn_back": "رجوع",
-    "btn_back_to_start": "العودة للبداية",
-    "btn_back_to_vip": "العودة لقائمة VIP",
-    "btn_back_to_affiliate": "العودة لقائمة الشراكة",
-    "btn_yes_restart": "نعم، إعادة البدء",
-    "btn_no_keep": "لا، احتفظ بالتقدم",
-    "btn_free_vip": "VIP مجاني",
-    "btn_paid_vip": "VIP مدفوع",
-    "btn_new_to_pu": "جديد في PU Prime",
-    "btn_existing_pu": "لدي حساب PU Prime",
-    "btn_live_account": "حساب حقيقي",
-    "btn_funded_account": "حساب ممول",
-    "btn_dont_know_ib": "لا أعرف ما هو IB",
-    "btn_already_know": "أعرف بالفعل، متابعة",
-    "btn_continue": "متابعة",
-    "btn_step1_register": "الخطوة 1: التسجيل في PU Prime",
-    "btn_step1_start_reg": "الخطوة 1: بدء التسجيل",
-    "btn_step2_completed": "الخطوة 2: أكملت التسجيل",
-    "btn_step3_deposited": "الخطوة 3: لقد أودعت",
-    "btn_step4_submit_uid": "الخطوة 4: تقديم UID",
-    "btn_step3_submit_uid": "الخطوة 3: تقديم UID",
-    "btn_step1_view_email": "الخطوة 1: عرض بريد النقل",
-    "btn_step2_sent_email": "الخطوة 2: لقد أرسلت البريد",
-    "btn_view_btc": "عرض عنوان BTC",
-    "btn_view_eth": "عرض عنوان ETH",
-    "btn_view_sol": "عرض عنوان SOL",
-    "btn_sent_payment": "لقد دفعت",
-    "btn_submit_proof": "تقديم إثبات الدفع",
-    "btn_waiting_payment_review": "بانتظار مراجعة الدفع",
-    "btn_waiting_review": "بانتظار المراجعة",
-    "btn_benefits": "فوائد IB",
-    "btn_message": "مراسلة",
-    "btn_founder": "المؤسس - Kratos",
-    "btn_onboarding": "الاستقبال / عام - Apollo",
-    "btn_signals": "الإشارات - Plato",
-    "btn_socials_admin": "السوشيال - HD",
-    "btn_change_language": "تغيير اللغة",
-    "btn_approve": "موافقة",
-    "btn_reject": "رفض",
-    "btn_block_user": "حظر المستخدم",
+    "btn_vip_access": "💎 الانضمام إلى VIP",
+    "btn_ib_affiliate": "🤝 كن شريك IB",
+    "btn_team": "👥 تعرف على الفريق",
+    "btn_socials": "🌐 تابعنا",
+    "btn_faq": "❓ الأسئلة الشائعة",
+    "btn_support": "💬 تواصل مع الدعم",
+    "btn_back": "◀️ رجوع",
+    "btn_back_to_start": "🏠 العودة للبداية",
+    "btn_back_to_vip": "◀️ العودة لقائمة VIP",
+    "btn_back_to_affiliate": "◀️ العودة لقائمة الشراكة",
+    "btn_yes_restart": "🔄 نعم، إعادة البدء",
+    "btn_no_keep": "✅ لا، احتفظ بالتقدم",
+    "btn_free_vip": "🎁 VIP مجاني",
+    "btn_paid_vip": "👑 VIP مدفوع",
+    "btn_new_to_pu": "🆕 جديد في PU Prime",
+    "btn_existing_pu": "📂 لدي حساب PU Prime",
+    "btn_live_account": "📊 حساب حقيقي",
+    "btn_funded_account": "🏦 حساب ممول",
+    "btn_dont_know_ib": "🤔 لا أعرف ما هو IB",
+    "btn_already_know": "✅ أعرف بالفعل، متابعة",
+    "btn_continue": "➡️ متابعة",
+    "btn_step1_register": "1️⃣ الخطوة 1: التسجيل في PU Prime",
+    "btn_step1_start_reg": "1️⃣ الخطوة 1: بدء التسجيل",
+    "btn_step2_completed": "2️⃣ الخطوة 2: أكملت التسجيل",
+    "btn_step3_deposited": "3️⃣ الخطوة 3: لقد أودعت",
+    "btn_step4_submit_uid": "4️⃣ الخطوة 4: تقديم UID",
+    "btn_step3_submit_uid": "3️⃣ الخطوة 3: تقديم UID",
+    "btn_step1_view_email": "1️⃣ الخطوة 1: عرض بريد النقل",
+    "btn_step2_sent_email": "2️⃣ الخطوة 2: لقد أرسلت البريد",
+    "btn_view_btc": "₿ عرض عنوان BTC",
+    "btn_view_eth": "Ξ عرض عنوان ETH",
+    "btn_view_sol": "◎ عرض عنوان SOL",
+    "btn_sent_payment": "💸 لقد دفعت",
+    "btn_submit_proof": "📤 تقديم إثبات الدفع",
+    "btn_waiting_payment_review": "⏳ بانتظار مراجعة الدفع",
+    "btn_waiting_review": "⏳ بانتظار المراجعة",
+    "btn_benefits": "🎯 فوائد IB",
+    "btn_message": "💬 مراسلة",
+    "btn_founder": "👑 المؤسس - Kratos",
+    "btn_onboarding": "🚀 الاستقبال / عام - Apollo",
+    "btn_signals": "📈 الإشارات - Plato",
+    "btn_socials_admin": "📱 السوشيال - HD",
+    "btn_change_language": "🌐 تغيير اللغة",
+    "btn_approve": "✅ موافقة",
+    "btn_reject": "❌ رفض",
+    "btn_block_user": "🚫 حظر المستخدم",
 }
 
 TEXTS["es"] = {
-    "lang_picker_title": "<b>Elige tu idioma</b>\n\nPuedes cambiarlo luego con /language.",
-    "lang_set_ok": "<b>Idioma configurado.</b> Cargando el menú principal...",
+    "lang_picker_title": "✨ <b>Bienvenido a ImperiumFX</b> ✨\n\nTu puerta al trading premium — señales VIP seleccionadas, alianzas IB y un equipo que realmente opera.\n\n🌐 <b>Por favor elige tu idioma para continuar.</b>\n<i>Puedes cambiarlo en cualquier momento con /language.</i>",
+    "lang_set_ok": "✅ <b>Idioma configurado.</b> Cargando el menú principal…",
 
-    "welcome_title": "<b>Bienvenido a ImperiumFX</b>",
-    "welcome_body": (
-        "<b>Bienvenido a ImperiumFX</b>\n\n"
-        "Elige tu ruta a continuación.\n\n"
-        "- <b>Acceso VIP</b> - únete a nuestro canal de señales VIP\n"
-        "- <b>Afiliado IB</b> - conviértete en afiliado y completa el proceso IB\n"
-        "- <b>Conoce al Equipo</b> - descubre quién está detrás de ImperiumFX\n"
-        "- <b>Síguenos</b> - Instagram y TikTok\n"
-        "- <b>Preguntas Frecuentes</b> - respuestas rápidas a dudas comunes\n\n"
-        "<i>Selecciona la opción que mejor se adapte a tu necesidad.</i>"
-    ),
+    "welcome_title": "💎 <b>Bienvenido a ImperiumFX</b> 💎",
+    "welcome_body": "💎 <b>Bienvenido a ImperiumFX</b> 💎\n\nEl hogar de las señales VIP premium y alianzas IB para traders de PU Prime.\n\n<b>¿Qué te trae por aquí hoy?</b>\n\n💎 <b>Acceso VIP</b> — señales privadas, setups y llamadas en vivo\n🤝 <b>Afiliado IB</b> — conviértete en socio y gana comisiones\n👥 <b>Conoce al Equipo</b> — descubre quién está detrás de ImperiumFX\n🌐 <b>Síguenos</b> — Instagram y TikTok\n❓ <b>FAQ</b> — respuestas rápidas a preguntas comunes\n\n<i>Pulsa una opción abajo para continuar.</i>",
     "resume_prompt": (
         "<b>Ya tienes progreso en el bot.</b>\n\n"
         "¿Quieres <b>reiniciar</b> desde el principio o mantener tu progreso actual?"
     ),
-    "restart_yes_msg": "<b>Bienvenido a ImperiumFX</b>\n\nElige tu ruta a continuación.",
+    "restart_yes_msg": "💎 <b>Bienvenido a ImperiumFX</b> 💎\n\nElige tu ruta a continuación.",
     "restart_no_msg": "Progreso conservado. Pulsa un botón para continuar.",
-    "back_short_welcome": (
-        "<b>Bienvenido a ImperiumFX</b>\n\n"
-        "Elige tu ruta a continuación.\n\n"
-        "- <b>Acceso VIP</b> - únete a nuestro canal de señales VIP\n"
-        "- <b>Afiliado IB</b> - conviértete en afiliado y completa el proceso IB\n\n"
-        "<i>Selecciona la opción que mejor se adapte a tu necesidad.</i>"
-    ),
+    "back_short_welcome": "💎 <b>Bienvenido a ImperiumFX</b> 💎\n\nElige tu ruta a continuación.\n\n💎 <b>Acceso VIP</b> — únete a nuestro canal de señales VIP\n🤝 <b>Afiliado IB</b> — conviértete en afiliado y sigue el proceso IB\n\n<i>Por favor elige la opción que mejor se adapte a ti.</i>",
 
     "help_text": (
         "<b>Bot ImperiumFX - Ayuda</b>\n\n"
@@ -2219,82 +2159,67 @@ TEXTS["es"] = {
         "para un tamaño de posición significativo y calificar a VIP con fluidez."
     ),
 
-    "btn_vip_access": "Acceso VIP",
-    "btn_ib_affiliate": "Ser Afiliado IB",
-    "btn_team": "Conoce al Equipo",
-    "btn_socials": "Síguenos",
-    "btn_faq": "Preguntas",
-    "btn_support": "Contactar Soporte",
-    "btn_back": "Atrás",
-    "btn_back_to_start": "Volver al Inicio",
-    "btn_back_to_vip": "Volver al Menú VIP",
-    "btn_back_to_affiliate": "Volver al Menú Afiliado",
-    "btn_yes_restart": "Sí, reiniciar",
-    "btn_no_keep": "No, mantener progreso",
-    "btn_free_vip": "VIP Gratis",
-    "btn_paid_vip": "VIP De Pago",
-    "btn_new_to_pu": "Nuevo en PU Prime",
-    "btn_existing_pu": "Ya tengo PU Prime",
-    "btn_live_account": "Cuenta Real",
-    "btn_funded_account": "Cuenta Funded",
-    "btn_dont_know_ib": "No sé qué es IB",
-    "btn_already_know": "Ya sé, continuar",
-    "btn_continue": "Continuar",
-    "btn_step1_register": "Paso 1: Registrarte con PU Prime",
-    "btn_step1_start_reg": "Paso 1: Comenzar Registro",
-    "btn_step2_completed": "Paso 2: Completé el Registro",
-    "btn_step3_deposited": "Paso 3: Ya Deposité",
-    "btn_step4_submit_uid": "Paso 4: Enviar UID",
-    "btn_step3_submit_uid": "Paso 3: Enviar UID",
-    "btn_step1_view_email": "Paso 1: Ver Correo de Traslado",
-    "btn_step2_sent_email": "Paso 2: Envié el Correo",
-    "btn_view_btc": "Ver Dirección BTC",
-    "btn_view_eth": "Ver Dirección ETH",
-    "btn_view_sol": "Ver Dirección SOL",
-    "btn_sent_payment": "Ya Pagué",
-    "btn_submit_proof": "Enviar Comprobante",
-    "btn_waiting_payment_review": "Esperando Revisión del Pago",
-    "btn_waiting_review": "Esperando Revisión",
-    "btn_benefits": "Beneficios IB",
-    "btn_message": "Mensaje",
-    "btn_founder": "Fundador - Kratos",
-    "btn_onboarding": "Onboarding / General - Apollo",
-    "btn_signals": "Señales - Plato",
-    "btn_socials_admin": "Socials - HD",
-    "btn_change_language": "Cambiar Idioma",
-    "btn_approve": "Aprobar",
-    "btn_reject": "Rechazar",
-    "btn_block_user": "Bloquear Usuario",
+    "btn_vip_access": "💎 Acceso VIP",
+    "btn_ib_affiliate": "🤝 Ser Afiliado IB",
+    "btn_team": "👥 Conoce al Equipo",
+    "btn_socials": "🌐 Síguenos",
+    "btn_faq": "❓ Preguntas",
+    "btn_support": "💬 Contactar Soporte",
+    "btn_back": "◀️ Atrás",
+    "btn_back_to_start": "🏠 Volver al Inicio",
+    "btn_back_to_vip": "◀️ Volver al Menú VIP",
+    "btn_back_to_affiliate": "◀️ Volver al Menú Afiliado",
+    "btn_yes_restart": "🔄 Sí, reiniciar",
+    "btn_no_keep": "✅ No, mantener progreso",
+    "btn_free_vip": "🎁 VIP Gratis",
+    "btn_paid_vip": "👑 VIP De Pago",
+    "btn_new_to_pu": "🆕 Nuevo en PU Prime",
+    "btn_existing_pu": "📂 Ya tengo PU Prime",
+    "btn_live_account": "📊 Cuenta Real",
+    "btn_funded_account": "🏦 Cuenta Funded",
+    "btn_dont_know_ib": "🤔 No sé qué es IB",
+    "btn_already_know": "✅ Ya sé, continuar",
+    "btn_continue": "➡️ Continuar",
+    "btn_step1_register": "1️⃣ Paso 1: Registrarte con PU Prime",
+    "btn_step1_start_reg": "1️⃣ Paso 1: Comenzar Registro",
+    "btn_step2_completed": "2️⃣ Paso 2: Completé el Registro",
+    "btn_step3_deposited": "3️⃣ Paso 3: Ya Deposité",
+    "btn_step4_submit_uid": "4️⃣ Paso 4: Enviar UID",
+    "btn_step3_submit_uid": "3️⃣ Paso 3: Enviar UID",
+    "btn_step1_view_email": "1️⃣ Paso 1: Ver Correo de Traslado",
+    "btn_step2_sent_email": "2️⃣ Paso 2: Envié el Correo",
+    "btn_view_btc": "₿ Ver Dirección BTC",
+    "btn_view_eth": "Ξ Ver Dirección ETH",
+    "btn_view_sol": "◎ Ver Dirección SOL",
+    "btn_sent_payment": "💸 Ya Pagué",
+    "btn_submit_proof": "📤 Enviar Comprobante",
+    "btn_waiting_payment_review": "⏳ Esperando Revisión del Pago",
+    "btn_waiting_review": "⏳ Esperando Revisión",
+    "btn_benefits": "🎯 Beneficios IB",
+    "btn_message": "💬 Mensaje",
+    "btn_founder": "👑 Fundador - Kratos",
+    "btn_onboarding": "🚀 Onboarding / General - Apollo",
+    "btn_signals": "📈 Señales - Plato",
+    "btn_socials_admin": "📱 Socials - HD",
+    "btn_change_language": "🌐 Cambiar Idioma",
+    "btn_approve": "✅ Aprobar",
+    "btn_reject": "❌ Rechazar",
+    "btn_block_user": "🚫 Bloquear Usuario",
 }
 
 TEXTS["pt"] = {
-    "lang_picker_title": "<b>Escolha seu idioma</b>\n\nVocê pode mudar depois com /language.",
-    "lang_set_ok": "<b>Idioma definido.</b> Carregando o menu principal...",
+    "lang_picker_title": "✨ <b>Bem-vindo ao ImperiumFX</b> ✨\n\nSua porta de entrada para o trading premium — sinais VIP selecionados, parcerias IB e um time que realmente opera.\n\n🌐 <b>Por favor escolha seu idioma para continuar.</b>\n<i>Você pode alterar a qualquer momento com /language.</i>",
+    "lang_set_ok": "✅ <b>Idioma definido.</b> Carregando o menu principal…",
 
-    "welcome_title": "<b>Bem-vindo ao ImperiumFX</b>",
-    "welcome_body": (
-        "<b>Bem-vindo ao ImperiumFX</b>\n\n"
-        "Escolha seu caminho abaixo.\n\n"
-        "- <b>Acesso VIP</b> - entre no nosso canal de sinais VIP\n"
-        "- <b>Afiliado IB</b> - torne-se afiliado e siga o processo IB\n"
-        "- <b>Conheça a Equipe</b> - saiba quem está por trás do ImperiumFX\n"
-        "- <b>Siga-nos</b> - Instagram e TikTok\n"
-        "- <b>Perguntas Frequentes</b> - respostas rápidas para dúvidas comuns\n\n"
-        "<i>Selecione a opção que melhor atende ao seu objetivo.</i>"
-    ),
+    "welcome_title": "💎 <b>Bem-vindo ao ImperiumFX</b> 💎",
+    "welcome_body": "💎 <b>Bem-vindo ao ImperiumFX</b> 💎\n\nA casa dos sinais VIP premium e parcerias IB para traders da PU Prime.\n\n<b>O que te traz aqui hoje?</b>\n\n💎 <b>Acesso VIP</b> — sinais privados, setups e chamadas ao vivo\n🤝 <b>Afiliado IB</b> — torne-se parceiro e ganhe comissões\n👥 <b>Conheça a Equipe</b> — saiba quem está por trás do ImperiumFX\n🌐 <b>Siga-nos</b> — Instagram e TikTok\n❓ <b>FAQ</b> — respostas rápidas para perguntas comuns\n\n<i>Toque em uma opção abaixo para continuar.</i>",
     "resume_prompt": (
         "<b>Você já tem progresso no bot.</b>\n\n"
         "Quer <b>recomeçar</b> do início, ou manter seu progresso atual?"
     ),
-    "restart_yes_msg": "<b>Bem-vindo ao ImperiumFX</b>\n\nEscolha seu caminho abaixo.",
+    "restart_yes_msg": "💎 <b>Bem-vindo ao ImperiumFX</b> 💎\n\nEscolha seu caminho abaixo.",
     "restart_no_msg": "Progresso mantido. Toque em um botão para continuar.",
-    "back_short_welcome": (
-        "<b>Bem-vindo ao ImperiumFX</b>\n\n"
-        "Escolha seu caminho abaixo.\n\n"
-        "- <b>Acesso VIP</b> - entre no nosso canal de sinais VIP\n"
-        "- <b>Afiliado IB</b> - torne-se afiliado e siga o processo IB\n\n"
-        "<i>Selecione a opção que melhor atende ao seu objetivo.</i>"
-    ),
+    "back_short_welcome": "💎 <b>Bem-vindo ao ImperiumFX</b> 💎\n\nEscolha seu caminho abaixo.\n\n💎 <b>Acesso VIP</b> — entre no nosso canal de sinais VIP\n🤝 <b>Afiliado IB</b> — torne-se afiliado e siga o processo IB\n\n<i>Escolha a opção que melhor se adapta a você.</i>",
 
     "help_text": (
         "<b>Bot ImperiumFX - Ajuda</b>\n\n"
@@ -2754,52 +2679,52 @@ TEXTS["pt"] = {
         "para um tamanho de posição significativo e qualificar ao VIP tranquilamente."
     ),
 
-    "btn_vip_access": "Acesso VIP",
-    "btn_ib_affiliate": "Ser Afiliado IB",
-    "btn_team": "Conheça a Equipe",
-    "btn_socials": "Siga-nos",
-    "btn_faq": "Perguntas",
-    "btn_support": "Falar com Suporte",
-    "btn_back": "Voltar",
-    "btn_back_to_start": "Voltar ao Início",
-    "btn_back_to_vip": "Voltar ao Menu VIP",
-    "btn_back_to_affiliate": "Voltar ao Menu Afiliado",
-    "btn_yes_restart": "Sim, recomeçar",
-    "btn_no_keep": "Não, manter progresso",
-    "btn_free_vip": "VIP Grátis",
-    "btn_paid_vip": "VIP Pago",
-    "btn_new_to_pu": "Novo no PU Prime",
-    "btn_existing_pu": "Já tenho PU Prime",
-    "btn_live_account": "Conta Real",
-    "btn_funded_account": "Conta Funded",
-    "btn_dont_know_ib": "Não sei o que é IB",
-    "btn_already_know": "Já sei, continuar",
-    "btn_continue": "Continuar",
-    "btn_step1_register": "Passo 1: Registrar no PU Prime",
-    "btn_step1_start_reg": "Passo 1: Iniciar Registro",
-    "btn_step2_completed": "Passo 2: Completei o Registro",
-    "btn_step3_deposited": "Passo 3: Já Depositei",
-    "btn_step4_submit_uid": "Passo 4: Enviar UID",
-    "btn_step3_submit_uid": "Passo 3: Enviar UID",
-    "btn_step1_view_email": "Passo 1: Ver Email de Transferência",
-    "btn_step2_sent_email": "Passo 2: Enviei o Email",
-    "btn_view_btc": "Ver Endereço BTC",
-    "btn_view_eth": "Ver Endereço ETH",
-    "btn_view_sol": "Ver Endereço SOL",
-    "btn_sent_payment": "Paguei",
-    "btn_submit_proof": "Enviar Comprovante",
-    "btn_waiting_payment_review": "Aguardando Revisão do Pagamento",
-    "btn_waiting_review": "Aguardando Revisão",
-    "btn_benefits": "Benefícios IB",
-    "btn_message": "Mensagem",
-    "btn_founder": "Fundador - Kratos",
-    "btn_onboarding": "Onboarding / Geral - Apollo",
-    "btn_signals": "Sinais - Plato",
-    "btn_socials_admin": "Socials - HD",
-    "btn_change_language": "Mudar Idioma",
-    "btn_approve": "Aprovar",
-    "btn_reject": "Rejeitar",
-    "btn_block_user": "Bloquear Usuário",
+    "btn_vip_access": "💎 Acesso VIP",
+    "btn_ib_affiliate": "🤝 Ser Afiliado IB",
+    "btn_team": "👥 Conheça a Equipe",
+    "btn_socials": "🌐 Siga-nos",
+    "btn_faq": "❓ Perguntas",
+    "btn_support": "💬 Falar com Suporte",
+    "btn_back": "◀️ Voltar",
+    "btn_back_to_start": "🏠 Voltar ao Início",
+    "btn_back_to_vip": "◀️ Voltar ao Menu VIP",
+    "btn_back_to_affiliate": "◀️ Voltar ao Menu Afiliado",
+    "btn_yes_restart": "🔄 Sim, recomeçar",
+    "btn_no_keep": "✅ Não, manter progresso",
+    "btn_free_vip": "🎁 VIP Grátis",
+    "btn_paid_vip": "👑 VIP Pago",
+    "btn_new_to_pu": "🆕 Novo no PU Prime",
+    "btn_existing_pu": "📂 Já tenho PU Prime",
+    "btn_live_account": "📊 Conta Real",
+    "btn_funded_account": "🏦 Conta Funded",
+    "btn_dont_know_ib": "🤔 Não sei o que é IB",
+    "btn_already_know": "✅ Já sei, continuar",
+    "btn_continue": "➡️ Continuar",
+    "btn_step1_register": "1️⃣ Passo 1: Registrar no PU Prime",
+    "btn_step1_start_reg": "1️⃣ Passo 1: Iniciar Registro",
+    "btn_step2_completed": "2️⃣ Passo 2: Completei o Registro",
+    "btn_step3_deposited": "3️⃣ Passo 3: Já Depositei",
+    "btn_step4_submit_uid": "4️⃣ Passo 4: Enviar UID",
+    "btn_step3_submit_uid": "3️⃣ Passo 3: Enviar UID",
+    "btn_step1_view_email": "1️⃣ Passo 1: Ver Email de Transferência",
+    "btn_step2_sent_email": "2️⃣ Passo 2: Enviei o Email",
+    "btn_view_btc": "₿ Ver Endereço BTC",
+    "btn_view_eth": "Ξ Ver Endereço ETH",
+    "btn_view_sol": "◎ Ver Endereço SOL",
+    "btn_sent_payment": "💸 Paguei",
+    "btn_submit_proof": "📤 Enviar Comprovante",
+    "btn_waiting_payment_review": "⏳ Aguardando Revisão do Pagamento",
+    "btn_waiting_review": "⏳ Aguardando Revisão",
+    "btn_benefits": "🎯 Benefícios IB",
+    "btn_message": "💬 Mensagem",
+    "btn_founder": "👑 Fundador - Kratos",
+    "btn_onboarding": "🚀 Onboarding / Geral - Apollo",
+    "btn_signals": "📈 Sinais - Plato",
+    "btn_socials_admin": "📱 Socials - HD",
+    "btn_change_language": "🌐 Mudar Idioma",
+    "btn_approve": "✅ Aprovar",
+    "btn_reject": "❌ Rejeitar",
+    "btn_block_user": "🚫 Bloquear Usuário",
 }
 
 
