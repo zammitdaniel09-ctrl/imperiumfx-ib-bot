@@ -41,6 +41,12 @@ DB_PATH = "bot.db"
 
 # Admin team roster
 ADMINS = {
+    "kratos": {
+        "username": "ImperiumXAUUSD",
+        "user_id": 7121821750,
+        "label": "Kratos (Founder & Head Admin)",
+        "role": "owner",
+    },
     "apollo": {
         "username": "ApolloFX9",
         "label": "Apollo (Right-Hand Admin)",
@@ -576,6 +582,8 @@ def faq_menu():
 
 def support_admin_menu():
     return InlineKeyboardMarkup([
+        [InlineKeyboardButton("👑 Founder — Kratos",
+                              url=f"https://t.me/{ADMINS['kratos']['username']}")],
         [InlineKeyboardButton("💬 Onboarding / General — Apollo",
                               url=f"https://t.me/{ADMINS['apollo']['username']}")],
         [InlineKeyboardButton("📊 Signals — Plato",
