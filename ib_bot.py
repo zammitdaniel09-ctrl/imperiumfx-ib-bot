@@ -2520,7 +2520,36 @@ def admin_review_menu(user_id, kind):
 # ===================================================================
 # ADMIN NOTIFY
 # ===================================================================
-async def notify_admin(context: ContextTypes.DEFAULT_TYPE, text: str, reply_markup=None):
+def _admin_action_keyboard(user_id: int, action_type: str):
+    """Build approve/reject/block inline buttons for admin notifications."""
+    if not user_id:
+        return None
+    # Only build review buttons for actionable events
+    actionable = {"vip", "affiliate", "funded_payment"}
+    if action_type not in actionable:
+        return None
+    rows = [
+        [
+            InlineKeyboardButton("✅ Approve", callback_data=f"adm:approve:{user_id}"),
+            InlineKeyboardButton("❌ Reject", callback_data=f"adm:reject:{user_id}"),
+        ],
+        [
+            InlineKeyboardButton("🚫 Block user", callback_data=f"adm:block:{user_id}"),
+        ],
+    ]
+    return InlineKeyboardMarkup(rows)
+
+
+async def notify_admin(
+    context: ContextTypes.DEFAULT_TYPE,
+    text: str,
+    reply_markup=None,
+    user_id: int = None,
+    action_type: str = None,
+):
+    # If caller passed user_id/action_type but no explicit keyboard, auto-build one.
+    if reply_markup is None and user_id and action_type:
+        reply_markup = _admin_action_keyboard(user_id, action_type)
     try:
         await context.bot.send_message(
             chat_id=ADMIN_CHAT_ID,
@@ -3195,225 +3224,273 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # Text & media handlers (UID submissions, payment proofs)
 # ---------------------------------------------------------------------------
 async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if not update.effective_user or not update.message:
-        return
-    if is_admin_chat(update):
-        return
-    user = update.effective_user
-    if is_blocked(user.id):
-        return
-    if not rate_limited(user.id):
-        return
-    lang = get_lang(user.id)
-    text = (update.message.text or "").strip()
-    if not text:
-        return
+    try:
+        if not update.effective_user or not update.message:
+            return
+        if is_admin_chat(update):
+            return
+        user = update.effective_user
+        if is_blocked(user.id):
+            return
+        # NOTE: rate_limited returns True when the user is over the limit;
+        # we return ONLY in that case. (Previous code had this inverted,
+        # which caused every first message to silently drop.)
+        if rate_limited(user.id):
+            log.info("text_handler: rate limited user=%s", user.id)
+            return
+        upsert_user(user)
+        lang = get_lang(user.id)
+        text = (update.message.text or "").strip()
+        log.info("text_handler: user=%s lang=%s awaiting_uid=%s awaiting_funded=%s text=%r",
+                 user.id, lang,
+                 context.user_data.get("awaiting_uid"),
+                 context.user_data.get("awaiting_funded_proof"),
+                 text[:80])
+        if not text:
+            return
 
-    # Funded payment proof awaiting
-    if context.user_data.get("awaiting_funded_proof"):
-        parsed = parse_payment_submission(text)
-        if not parsed:
+        # Funded payment proof awaiting
+        if context.user_data.get("awaiting_funded_proof"):
+            parsed = parse_payment_submission(text)
+            if not parsed:
+                await update.message.reply_text(
+                    L(lang, "funded_submit_bad_format"),
+                    reply_markup=funded_review_menu(lang),
+                    parse_mode="HTML",
+                )
+                return
+            method = parsed  # parse_payment_submission returns "FUNDED"
+            context.user_data["awaiting_funded_proof"] = False
+            context.user_data["funded_submitted"] = True
+            log_event(user.id, "funded_payment_submitted", f"method={method}")
+            await try_react(update, context, "💎")
             await update.message.reply_text(
-                L(lang, "funded_submit_bad_format"),
-                reply_markup=funded_review_menu(lang),
+                L(lang, "funded_submit_received"),
+                reply_markup=start_menu(lang),
                 parse_mode="HTML",
             )
+            await notify_admin(
+                context,
+                (
+                    "<b>💎 Funded VIP payment submitted</b>\n"
+                    f"User: {html.escape(user.full_name)} "
+                    f"(@{html.escape(user.username) if user.username else '—'})\n"
+                    f"User ID: <code>{user.id}</code>\n"
+                    f"Language: <b>{lang}</b>\n"
+                    f"Method: <b>{method}</b>\n"
+                    f"Raw: <code>{html.escape(text[:200])}</code>"
+                ),
+                user_id=user.id,
+                action_type="funded_payment",
+            )
             return
-        amount, tx, method = parsed
-        context.user_data["awaiting_funded_proof"] = False
-        context.user_data["funded_submitted"] = True
-        log_event(user.id, "funded_payment_submitted",
-                  f"method={method} amount={amount} tx={tx}")
+
+        # UID submission awaiting
+        if context.user_data.get("awaiting_uid"):
+            uid_type = context.user_data.get("uid_type", "vip")
+            parsed = parse_uid_submission(text)
+            if not parsed:
+                log.info("text_handler: UID format bad user=%s raw=%r", user.id, text[:80])
+                await update.message.reply_text(
+                    L(lang, "uid_bad_format"),
+                    reply_markup=back_to_start(lang) if uid_type == "vip" else back_to_affiliate_main(lang),
+                    parse_mode="HTML",
+                )
+                return
+            uid = parsed  # parse_uid_submission returns just the digits string
+            context.user_data["awaiting_uid"] = False
+            ok, existing = register_uid(uid, user.id, uid_type)
+            await try_react(update, context, "✅" if ok else "👀")
+            if uid_type == "vip":
+                context.user_data["vip_submitted"] = True
+                log_event(user.id, "vip_uid_submitted",
+                          f"uid={uid} duplicate={'yes' if not ok else 'no'}")
+                await update.message.reply_text(
+                    L(lang, "vip_uid_received"),
+                    reply_markup=vip_submitted_menu(lang),
+                    parse_mode="HTML",
+                )
+            else:
+                context.user_data["affiliate_submitted"] = True
+                log_event(user.id, "affiliate_uid_submitted",
+                          f"uid={uid} duplicate={'yes' if not ok else 'no'}")
+                await update.message.reply_text(
+                    L(lang, "aff_uid_received"),
+                    reply_markup=affiliate_submitted_menu(lang),
+                    parse_mode="HTML",
+                )
+            dup_line = ""
+            if not ok and existing and existing != user.id:
+                dup_line = f"\n⚠️ Duplicate — previously registered to user <code>{existing}</code>"
+            await notify_admin(
+                context,
+                (
+                    f"<b>{'🏆 VIP' if uid_type == 'vip' else '🤝 Affiliate'} UID submission</b>\n"
+                    f"User: {html.escape(user.full_name)} "
+                    f"(@{html.escape(user.username) if user.username else '—'})\n"
+                    f"User ID: <code>{user.id}</code>\n"
+                    f"Language: <b>{lang}</b>\n"
+                    f"UID: <code>{html.escape(uid)}</code>"
+                    f"{dup_line}"
+                ),
+                user_id=user.id,
+                action_type=uid_type,
+            )
+            return
+
+        # Any other free-text goes nowhere useful; gently guide back to the menu.
         await update.message.reply_text(
-            L(lang, "funded_submit_received"),
+            L(lang, "fallback_msg"),
             reply_markup=start_menu(lang),
             parse_mode="HTML",
         )
-        await notify_admin(
-            context,
-            (
-                "<b>Funded VIP payment submitted</b>\n"
-                f"User: {html.escape(user.full_name)} "
-                f"(@{html.escape(user.username) if user.username else '—'})\n"
-                f"User ID: <code>{user.id}</code>\n"
-                f"Language: <b>{lang}</b>\n"
-                f"Method: <b>{method}</b>\n"
-                f"Amount: <code>{html.escape(amount)}</code>\n"
-                f"TX/Ref: <code>{html.escape(tx)}</code>"
-            ),
-            user_id=user.id,
-            action_type="funded_payment",
-        )
-        return
-
-    # UID submission awaiting
-    if context.user_data.get("awaiting_uid"):
-        uid_type = context.user_data.get("uid_type", "vip")
-        parsed = parse_uid_submission(text)
-        if not parsed:
-            menu = (
-                vip_submitted_menu(lang) if uid_type == "vip"
-                else affiliate_submitted_menu(lang)
-            )
+    except Exception:
+        log.exception("text_handler crashed")
+        try:
+            lang = get_lang(update.effective_user.id) if update.effective_user else "en"
             await update.message.reply_text(
-                L(lang, "uid_bad_format"),
-                reply_markup=back_to_start(lang) if uid_type == "vip" else back_to_affiliate_main(lang),
+                L(lang, "fallback_msg"),
+                reply_markup=start_menu(lang),
                 parse_mode="HTML",
             )
-            return
-        uid, email = parsed
-        context.user_data["awaiting_uid"] = False
-        register_uid(uid, user.id, uid_type)
-        if uid_type == "vip":
-            context.user_data["vip_submitted"] = True
-            log_event(user.id, "vip_uid_submitted", f"uid={uid} email={email}")
-            await update.message.reply_text(
-                L(lang, "vip_uid_received"),
-                reply_markup=vip_submitted_menu(lang),
-                parse_mode="HTML",
-            )
-        else:
-            context.user_data["affiliate_submitted"] = True
-            log_event(user.id, "affiliate_uid_submitted", f"uid={uid} email={email}")
-            await update.message.reply_text(
-                L(lang, "aff_uid_received"),
-                reply_markup=affiliate_submitted_menu(lang),
-                parse_mode="HTML",
-            )
-        await notify_admin(
-            context,
-            (
-                f"<b>{'VIP' if uid_type == 'vip' else 'Affiliate'} UID submission</b>\n"
-                f"User: {html.escape(user.full_name)} "
-                f"(@{html.escape(user.username) if user.username else '—'})\n"
-                f"User ID: <code>{user.id}</code>\n"
-                f"Language: <b>{lang}</b>\n"
-                f"UID: <code>{html.escape(uid)}</code>\n"
-                f"Email: <code>{html.escape(email)}</code>"
-            ),
-            user_id=user.id,
-            action_type=uid_type,
-        )
-        return
-
-    # Any other free-text goes nowhere useful; gently guide back to the menu.
-    await update.message.reply_text(
-        L(lang, "fallback_msg"),
-        reply_markup=start_menu(lang),
-        parse_mode="HTML",
-    )
+        except Exception:
+            log.exception("text_handler fallback reply also failed")
 
 
 async def media_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if not update.effective_user or not update.message:
-        return
-    if is_admin_chat(update):
-        return
-    user = update.effective_user
-    if is_blocked(user.id):
-        return
-    if not rate_limited(user.id):
-        return
-    lang = get_lang(user.id)
-    caption = (update.message.caption or "").strip()
+    try:
+        if not update.effective_user or not update.message:
+            return
+        if is_admin_chat(update):
+            return
+        user = update.effective_user
+        if is_blocked(user.id):
+            return
+        if rate_limited(user.id):
+            log.info("media_handler: rate limited user=%s", user.id)
+            return
+        upsert_user(user)
+        lang = get_lang(user.id)
+        caption = (update.message.caption or "").strip()
+        log.info("media_handler: user=%s lang=%s awaiting_uid=%s awaiting_funded=%s caption=%r",
+                 user.id, lang,
+                 context.user_data.get("awaiting_uid"),
+                 context.user_data.get("awaiting_funded_proof"),
+                 caption[:80])
 
-    # Funded payment proof with photo/doc caption
-    if context.user_data.get("awaiting_funded_proof"):
-        parsed = parse_payment_submission(caption) if caption else None
-        if not parsed:
+        # Funded payment proof with photo/doc caption
+        if context.user_data.get("awaiting_funded_proof"):
+            parsed = parse_payment_submission(caption) if caption else None
+            if not parsed:
+                await update.message.reply_text(
+                    L(lang, "funded_submit_bad_format"),
+                    reply_markup=funded_review_menu(lang),
+                    parse_mode="HTML",
+                )
+                return
+            method = parsed
+            context.user_data["awaiting_funded_proof"] = False
+            context.user_data["funded_submitted"] = True
+            log_event(user.id, "funded_payment_submitted_media", f"method={method}")
+            await try_react(update, context, "💎")
             await update.message.reply_text(
-                L(lang, "funded_submit_bad_format"),
-                reply_markup=funded_review_menu(lang),
+                L(lang, "funded_submit_received"),
+                reply_markup=start_menu(lang),
                 parse_mode="HTML",
             )
+            try:
+                await update.message.forward(chat_id=ADMIN_CHAT_ID)
+            except Exception:
+                log.exception("Failed to forward funded payment proof")
+            await notify_admin(
+                context,
+                (
+                    "<b>💎 Funded VIP payment submitted (with media)</b>\n"
+                    f"User: {html.escape(user.full_name)} "
+                    f"(@{html.escape(user.username) if user.username else '—'})\n"
+                    f"User ID: <code>{user.id}</code>\n"
+                    f"Language: <b>{lang}</b>\n"
+                    f"Method: <b>{method}</b>"
+                ),
+                user_id=user.id,
+                action_type="funded_payment",
+            )
             return
-        amount, tx, method = parsed
-        context.user_data["awaiting_funded_proof"] = False
-        context.user_data["funded_submitted"] = True
-        log_event(user.id, "funded_payment_submitted_media",
-                  f"method={method} amount={amount} tx={tx}")
+
+        # UID submission via caption
+        if context.user_data.get("awaiting_uid"):
+            uid_type = context.user_data.get("uid_type", "vip")
+            parsed = parse_uid_submission(caption) if caption else None
+            if not parsed:
+                log.info("media_handler: UID format bad user=%s caption=%r", user.id, caption[:80])
+                await update.message.reply_text(
+                    L(lang, "uid_bad_format"),
+                    reply_markup=back_to_start(lang) if uid_type == "vip" else back_to_affiliate_main(lang),
+                    parse_mode="HTML",
+                )
+                return
+            uid = parsed
+            context.user_data["awaiting_uid"] = False
+            ok, existing = register_uid(uid, user.id, uid_type)
+            await try_react(update, context, "✅" if ok else "👀")
+            if uid_type == "vip":
+                context.user_data["vip_submitted"] = True
+                log_event(user.id, "vip_uid_submitted_media",
+                          f"uid={uid} duplicate={'yes' if not ok else 'no'}")
+                await update.message.reply_text(
+                    L(lang, "vip_uid_received"),
+                    reply_markup=vip_submitted_menu(lang),
+                    parse_mode="HTML",
+                )
+            else:
+                context.user_data["affiliate_submitted"] = True
+                log_event(user.id, "affiliate_uid_submitted_media",
+                          f"uid={uid} duplicate={'yes' if not ok else 'no'}")
+                await update.message.reply_text(
+                    L(lang, "aff_uid_received"),
+                    reply_markup=affiliate_submitted_menu(lang),
+                    parse_mode="HTML",
+                )
+            try:
+                await update.message.forward(chat_id=ADMIN_CHAT_ID)
+            except Exception:
+                log.exception("Failed to forward UID media")
+            dup_line = ""
+            if not ok and existing and existing != user.id:
+                dup_line = f"\n⚠️ Duplicate — previously registered to user <code>{existing}</code>"
+            await notify_admin(
+                context,
+                (
+                    f"<b>{'🏆 VIP' if uid_type == 'vip' else '🤝 Affiliate'} UID submission (with media)</b>\n"
+                    f"User: {html.escape(user.full_name)} "
+                    f"(@{html.escape(user.username) if user.username else '—'})\n"
+                    f"User ID: <code>{user.id}</code>\n"
+                    f"Language: <b>{lang}</b>\n"
+                    f"UID: <code>{html.escape(uid)}</code>"
+                    f"{dup_line}"
+                ),
+                user_id=user.id,
+                action_type=uid_type,
+            )
+            return
+
+        # Unrelated media — acknowledge gently
         await update.message.reply_text(
-            L(lang, "funded_submit_received"),
+            L(lang, "fallback_msg"),
             reply_markup=start_menu(lang),
             parse_mode="HTML",
         )
+    except Exception:
+        log.exception("media_handler crashed")
         try:
-            await update.message.forward(chat_id=ADMIN_CHAT_ID)
+            lang = get_lang(update.effective_user.id) if update.effective_user else "en"
+            await update.message.reply_text(
+                L(lang, "fallback_msg"),
+                reply_markup=start_menu(lang),
+                parse_mode="HTML",
+            )
         except Exception:
-            log.exception("Failed to forward funded payment proof")
-        await notify_admin(
-            context,
-            (
-                "<b>Funded VIP payment submitted (with media)</b>\n"
-                f"User: {html.escape(user.full_name)} "
-                f"(@{html.escape(user.username) if user.username else '—'})\n"
-                f"User ID: <code>{user.id}</code>\n"
-                f"Language: <b>{lang}</b>\n"
-                f"Method: <b>{method}</b>\n"
-                f"Amount: <code>{html.escape(amount)}</code>\n"
-                f"TX/Ref: <code>{html.escape(tx)}</code>"
-            ),
-            user_id=user.id,
-            action_type="funded_payment",
-        )
-        return
-
-    # UID submission via caption
-    if context.user_data.get("awaiting_uid"):
-        uid_type = context.user_data.get("uid_type", "vip")
-        parsed = parse_uid_submission(caption) if caption else None
-        if not parsed:
-            await update.message.reply_text(
-                L(lang, "uid_bad_format"),
-                reply_markup=back_to_start(lang) if uid_type == "vip" else back_to_affiliate_main(lang),
-                parse_mode="HTML",
-            )
-            return
-        uid, email = parsed
-        context.user_data["awaiting_uid"] = False
-        register_uid(uid, user.id, uid_type)
-        if uid_type == "vip":
-            context.user_data["vip_submitted"] = True
-            log_event(user.id, "vip_uid_submitted_media", f"uid={uid} email={email}")
-            await update.message.reply_text(
-                L(lang, "vip_uid_received"),
-                reply_markup=vip_submitted_menu(lang),
-                parse_mode="HTML",
-            )
-        else:
-            context.user_data["affiliate_submitted"] = True
-            log_event(user.id, "affiliate_uid_submitted_media", f"uid={uid} email={email}")
-            await update.message.reply_text(
-                L(lang, "aff_uid_received"),
-                reply_markup=affiliate_submitted_menu(lang),
-                parse_mode="HTML",
-            )
-        try:
-            await update.message.forward(chat_id=ADMIN_CHAT_ID)
-        except Exception:
-            log.exception("Failed to forward UID media")
-        await notify_admin(
-            context,
-            (
-                f"<b>{'VIP' if uid_type == 'vip' else 'Affiliate'} UID submission (with media)</b>\n"
-                f"User: {html.escape(user.full_name)} "
-                f"(@{html.escape(user.username) if user.username else '—'})\n"
-                f"User ID: <code>{user.id}</code>\n"
-                f"Language: <b>{lang}</b>\n"
-                f"UID: <code>{html.escape(uid)}</code>\n"
-                f"Email: <code>{html.escape(email)}</code>"
-            ),
-            user_id=user.id,
-            action_type=uid_type,
-        )
-        return
-
-    # Unrelated media — acknowledge gently
-    await update.message.reply_text(
-        L(lang, "fallback_msg"),
-        reply_markup=start_menu(lang),
-        parse_mode="HTML",
-    )
+            log.exception("media_handler fallback reply also failed")
 
 
 # ---------------------------------------------------------------------------
@@ -3907,7 +3984,12 @@ def main():
         jq.run_repeating(job_renewals, interval=12 * 60 * 60, first=60)
 
     log.info("ImperiumFX bot starting…")
-    app.run_polling(allowed_updates=Update.ALL_TYPES)
+    # drop_pending_updates + delete_webhook avoids "Conflict: terminated by other getUpdates"
+    # errors when Railway redeploys before the old instance has fully released the long poll.
+    app.run_polling(
+        allowed_updates=Update.ALL_TYPES,
+        drop_pending_updates=True,
+    )
 
 
 if __name__ == "__main__":
