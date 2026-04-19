@@ -26,7 +26,7 @@ from telegram.ext import (
 # CONFIG
 # ===================================================================
 BOT_TOKEN = "8085633137:AAEM6MOSPirix26Bs4Ye9wqryX063L-FO60"
-ADMIN_CHAT_ID = -1005102939745
+ADMIN_CHAT_ID = -5102939745
 MAIN_GROUP_CHAT_ID = -1003752395437
 BOT_USERNAME = "imperiumfx_onboarding_bot"
 
@@ -3263,7 +3263,7 @@ async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return
         uid, email = parsed
         context.user_data["awaiting_uid"] = False
-        register_uid(user.id, uid, email, uid_type)
+        register_uid(uid, user.id, uid_type)
         if uid_type == "vip":
             context.user_data["vip_submitted"] = True
             log_event(user.id, "vip_uid_submitted", f"uid={uid} email={email}")
@@ -3371,7 +3371,7 @@ async def media_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return
         uid, email = parsed
         context.user_data["awaiting_uid"] = False
-        register_uid(user.id, uid, email, uid_type)
+        register_uid(uid, user.id, uid_type)
         if uid_type == "vip":
             context.user_data["vip_submitted"] = True
             log_event(user.id, "vip_uid_submitted_media", f"uid={uid} email={email}")
@@ -3507,10 +3507,17 @@ def _extract_custom_message(args: list[str]) -> str:
 async def cmd_stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
     snap = stats_snapshot()
     lines = ["<b>ImperiumFX Bot — Stats</b>"]
-    lines.append(f"Total users: <b>{snap['total_users']}</b>")
+    lines.append(f"Total users: <b>{snap['total']}</b>")
+    lines.append(f"New (24h): <b>{snap['new_24h']}</b>")
+    lines.append(f"Started flow: <b>{snap['started']}</b>")
     lines.append(f"Blocked: <b>{snap['blocked']}</b>")
-    lines.append(f"Events (24h): <b>{snap['events_24h']}</b>")
-    lines.append(f"UID submissions: <b>{snap['uid_total']}</b>")
+    lines.append("")
+    lines.append(f"VIP pending: <b>{snap['vip_pending']}</b>")
+    lines.append(f"VIP approved: <b>{snap['vip_approved']}</b>")
+    lines.append(f"VIP rejected: <b>{snap['vip_rejected']}</b>")
+    lines.append(f"Affiliate pending: <b>{snap['aff_pending']}</b>")
+    lines.append(f"Affiliate approved: <b>{snap['aff_approved']}</b>")
+    lines.append(f"Funded active: <b>{snap['funded_active']}</b>")
     lines.append("")
     lines.append("<b>By language:</b>")
     for code in LANGS:
@@ -3540,7 +3547,7 @@ async def cmd_user(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"Username: @{html.escape(row['username']) if row['username'] else '—'}\n"
         f"Language: <b>{lang}</b> {LANG_FLAG.get(lang, '')}\n"
         f"Blocked: <b>{bool(row['blocked'])}</b>\n"
-        f"First seen: {row['created_at']}\n"
+        f"First seen: {row['first_seen']}\n"
         f"Last seen: {row['last_seen']}"
     )
     await update.message.reply_text(text, parse_mode="HTML")
@@ -3769,7 +3776,7 @@ async def job_nudges(context: ContextTypes.DEFAULT_TYPE):
             SELECT u.user_id
             FROM users u
             WHERE u.blocked = 0
-              AND datetime(u.created_at) <= datetime('now', '-48 hours')
+              AND datetime(u.first_seen) <= datetime('now', '-48 hours')
               AND u.user_id NOT IN (SELECT user_id FROM uid_registry)
             """
         ).fetchall()
@@ -3799,11 +3806,11 @@ async def job_renewals(context: ContextTypes.DEFAULT_TYPE):
             """
             SELECT DISTINCT e.user_id
             FROM events e
-            WHERE (e.event_type = 'funded_payment_submitted'
-                   OR e.event_type = 'admin_approved'
-                   OR e.event_type = 'admin_approved_cmd')
-              AND datetime(e.created_at) BETWEEN datetime('now', '-26 days')
-                                           AND datetime('now', '-25 days')
+            WHERE (e.event = 'funded_payment_submitted'
+                   OR e.event = 'admin_approved'
+                   OR e.event = 'admin_approved_cmd')
+              AND datetime(e.ts) BETWEEN datetime('now', '-26 days')
+                                   AND datetime('now', '-25 days')
             """
         ).fetchall()
     finally:
