@@ -14,7 +14,7 @@ from telegram.ext import (
     filters,
 )
 BOT_TOKEN = "8085633137:AAEM6MOSPirix26Bs4Ye9wqryX063L-FO60"
-ADMIN_CHAT_ID = -5242674226
+ADMIN_CHAT_ID = -1003919089074
 IB_LINK = "https://www.puprime.partners/forex-trading-account/?affid=MjMyMTMwODY="
 IB_CODE = "pOenf2oC"
 IB_ACCOUNT_NUMBER = "23213086"
