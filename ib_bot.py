@@ -1,5 +1,4 @@
 
-fix this bot so that in the admin chat it only sends logs but in other chats it works normally 
 
 import asyncio
 import re
