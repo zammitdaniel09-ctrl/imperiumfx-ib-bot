@@ -25,7 +25,7 @@ from telegram.ext import (
 # ===================================================================
 # CONFIG
 # ===================================================================
-BOT_TOKEN = "8085633137:AAEM6MOSPirix26Bs4Ye9wqryX063L-FO60"
+BOT_TOKEN = "8085633137:AAFmd8l4i1JHj_5SccWUqdIft7SgGDcwzpE"
 ADMIN_CHAT_ID = -5102939745
 MAIN_GROUP_CHAT_ID = -1003752395437
 BOT_USERNAME = "imperiumfx_onboarding_bot"
