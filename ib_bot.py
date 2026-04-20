@@ -25,7 +25,7 @@ from telegram.ext import (
 # ===================================================================
 # CONFIG
 # ===================================================================
-BOT_TOKEN = "8085633137:AAFmd8l4i1JHj_5SccWUqdIft7SgGDcwzpE"
+BOT_TOKEN = "8085633137:AAEM6MOSPirix26Bs4Ye9wqryX063L-FO60"
 ADMIN_CHAT_ID = -5102939745
 MAIN_GROUP_CHAT_ID = -1003752395437
 BOT_USERNAME = "imperiumfx_onboarding_bot"
@@ -34,7 +34,7 @@ IB_LINK = "https://www.puprime.partners/forex-trading-account/?affid=MjMyMTMwODY
 IB_CODE = "pOenf2oC"
 IB_ACCOUNT_NUMBER = "23213086"
 TUTORIAL_PDF = "IB_E_BOOK.pdf"
-TRANSFER_EMAIL_1 = "aleksandra.stojkovic@puprime.com"
+TRANSFER_EMAIL_1 = "tommaso.ticconi@puprime.com"
 TRANSFER_EMAIL_2 = "info@puprime.com"
 SOLANA_ADDRESS = "GrSbxLK1Z6ZgEhEtViY4ibLEq7xYuXiuGCxVFYjzwazt"
 ETHEREUM_ADDRESS = "0x2474F60027Fda971aaA773031f07Fd58F3e14627"
@@ -421,25 +421,15 @@ TEXTS["en"] = {
 
     # ---------- uid submission ----------
     "submit_uid_prompt": (
-        "Send your <b>MT5 UID / account number</b> now in this exact format:\n\n"
-        "<code>UID: 12345678</code>\n\n"
-        "<b>Important:</b>\n"
-        "- write <code>UID:</code> first\n"
-        "- then your number\n"
-        "- digits only\n"
-        "- no extra text\n\n"
-        "If you send a screenshot or document, the <b>caption</b> must use the same format."
+        "Send your <b>MT5 UID / account number</b> now.\n\n"
+        "Just type the number — for example:\n\n"
+        "<code>12345678</code>\n\n"
+        "<i>If you send a screenshot or document, include your UID in the caption.</i>"
     ),
     "uid_format_guide": (
-        "<b>Invalid UID format.</b>\n\n"
-        "Send your UID in this exact format:\n\n"
-        "<code>UID: 12345678</code>\n\n"
-        "<b>Rules:</b>\n"
-        "- must start with <code>UID:</code>\n"
-        "- numbers only after that\n"
-        "- no extra words\n"
-        "- no spaces before UID\n\n"
-        "<i>Example:</i> <code>UID: 123517235</code>"
+        "<b>UID not recognized.</b>\n\n"
+        "Please send just your MT5 UID — for example:\n\n"
+        "<code>12345678</code>"
     ),
     "payment_format_guide": (
         "<b>Invalid payment proof format.</b>\n\n"
@@ -447,9 +437,9 @@ TEXTS["en"] = {
         "<code>PAYMENT: FUNDED</code>"
     ),
     "uid_caption_invalid": (
-        "<b>Invalid caption format.</b>\n\n"
-        "If you send a screenshot or document, the caption must be:\n\n"
-        "<code>UID: 12345678</code>"
+        "<b>Caption missing UID.</b>\n\n"
+        "If you send a screenshot or document, the caption must contain your UID — for example:\n\n"
+        "<code>12345678</code>"
     ),
     "uid_already_registered": (
         "<b>This UID is already registered to another user.</b>\n\n"
@@ -536,9 +526,9 @@ TEXTS["en"] = {
 
     "fallback_msg": "I didn't catch that — please use the buttons below.",
     "uid_bad_format": (
-        "<b>Format not recognized.</b>\n"
-        "Please send your UID and PU Prime email like this:\n"
-        "<code>UID: 12345678\nEmail: you@example.com</code>"
+        "<b>UID not recognized.</b>\n"
+        "Please send just your MT5 UID — for example:\n"
+        "<code>12345678</code>"
     ),
     "vip_uid_received": (
         "<b>VIP submission received.</b>\n"
@@ -584,8 +574,8 @@ TEXTS["en"] = {
     "faq_q4": "Why didn't my UID get accepted?",
     "faq_a4": (
         "Common reasons: account is not under our IB code, no deposit yet, "
-        "or wrong UID format. Make sure you used code <code>{IB_CODE}</code>, "
-        "deposited, and submitted in this exact format: <code>UID: 12345678</code>"
+        "or we couldn't read your UID. Make sure you used code <code>{IB_CODE}</code>, "
+        "deposited, and sent just the digits, e.g. <code>12345678</code>"
     ),
     "faq_q5": "How much does Funded VIP cost?",
     "faq_a5": (
@@ -713,10 +703,10 @@ TEXTS["hi"] = {
     "funded_proof_prompt": "अपना <b>भुगतान प्रमाण</b> अभी भेजें।\n\n<b>आवश्यक कैप्शन प्रारूप:</b>\n<code>Amount: 80 EUR\nTX/Ref: &lt;hash या reference&gt;\nMethod: BTC|ETH|SOL</code>\n\nआप स्क्रीनशॉट के साथ कैप्शन भी भेज सकते हैं।",
     "funded_waiting_review_msg": "<b>आपका Funded VIP भुगतान प्रमाण पहले से समीक्षाधीन है।</b>\n\nकुछ और करने की ज़रूरत नहीं है।",
     "funded_proof_received": "<b>भुगतान प्रमाण प्राप्त हुआ।</b>\n\nआपका Funded VIP भुगतान अब समीक्षा के अधीन है। स्वीकृत होने पर आपको DM मिलेगी।",
-    "submit_uid_prompt": "अभी इस सटीक प्रारूप में अपना <b>MT5 UID / खाता नंबर</b> भेजें:\n\n<code>UID: 12345678\nEmail: you@example.com</code>",
-    "uid_format_guide": "<b>अमान्य UID प्रारूप।</b>\n\nअपना UID इस सटीक प्रारूप में भेजें:\n<code>UID: 12345678\nEmail: you@example.com</code>",
+    "submit_uid_prompt": "अभी अपना <b>MT5 UID / खाता नंबर</b> भेजें।\n\nबस नंबर टाइप करें — उदाहरण:\n\n<code>12345678</code>\n\n<i>अगर स्क्रीनशॉट या डॉक्युमेंट भेज रहे हैं, तो कैप्शन में अपना UID शामिल करें।</i>",
+    "uid_format_guide": "<b>UID पहचाना नहीं गया।</b>\n\nकृपया बस अपना MT5 UID भेजें — उदाहरण:\n\n<code>12345678</code>",
     "payment_format_guide": "<b>अमान्य भुगतान प्रमाण प्रारूप।</b>\n\nयदि आप स्क्रीनशॉट के साथ भुगतान भेज रहे हैं, तो कैप्शन में शामिल करें:\n<code>Amount: 80 EUR\nTX/Ref: &lt;hash या reference&gt;\nMethod: BTC|ETH|SOL</code>",
-    "uid_caption_invalid": "<b>अमान्य कैप्शन प्रारूप।</b>\n\nयदि आप स्क्रीनशॉट या फ़ाइल भेज रहे हैं, तो कैप्शन में शामिल करें:\n<code>UID: 12345678\nEmail: you@example.com</code>",
+    "uid_caption_invalid": "<b>कैप्शन में UID नहीं मिला।</b>\n\nअगर स्क्रीनशॉट या फ़ाइल भेज रहे हैं, तो कैप्शन में अपना UID शामिल करें — उदाहरण:\n\n<code>12345678</code>",
     "uid_already_registered": "<b>यह UID पहले से किसी अन्य उपयोगकर्ता के लिए पंजीकृत है।</b>\n\nयदि यह एक त्रुटि है, तो सपोर्ट से संपर्क करें।",
     "uid_not_ready_new_vip": "<b>आप अभी UID जमा करने के लिए तैयार नहीं हैं।</b>\n\nVIP एक्सेस के लिए पहले रजिस्टर और डिपॉज़िट करें।",
     "uid_not_ready_existing_vip": "<b>आप अभी UID जमा करने के लिए तैयार नहीं हैं।</b>\n\nVIP एक्सेस के लिए पहले ट्रांसफर ईमेल भेजें।",
@@ -733,7 +723,7 @@ TEXTS["hi"] = {
     "nudge_72h_deposit": "आपने अपना डिपॉज़िट पूरा बताया था — अपना UID जमा करना न भूलें।\nजारी रखने के लिए /start दबाएं।",
     "renewal_reminder": "<b>Funded VIP नवीकरण अनुस्मारक</b>\n\nआपका नवीकरण <b>{DAYS} दिन</b> में देय है।\nनवीकरण <b>EUR 80</b> है। भुगतान के लिए /start -> Paid VIP -> Funded दबाएं।\n\n<b>वॉलेट:</b>\nBTC: <code>{BTC}</code>\nETH: <code>{ETH}</code>\nSOL: <code>{SOL}</code>",
     "fallback_msg": "मुझे समझ नहीं आया — कृपया नीचे दिए बटनों का उपयोग करें।",
-    "uid_bad_format": "<b>प्रारूप समझ नहीं आया।</b>\nकृपया अपना UID और PU Prime ईमेल इस तरह भेजें:\n<code>UID: 12345678\nEmail: you@example.com</code>",
+    "uid_bad_format": "<b>UID पहचाना नहीं गया।</b>\nकृपया बस अपना MT5 UID भेजें — उदाहरण:\n<code>12345678</code>",
     "vip_uid_received": "<b>VIP सबमिशन प्राप्त हुआ।</b>\nहमारी टीम जल्द ही इसकी समीक्षा करेगी और स्वीकृत होने पर आपको DM करेगी। ✅",
     "aff_uid_received": "<b>एफिलिएट सबमिशन प्राप्त हुआ।</b>\nहमारी टीम आपकी IB उप-सहयोगी स्थिति की पुष्टि करेगी और आपको DM करेगी। ✅",
     "funded_submit_bad_format": "<b>प्रारूप समझ नहीं आया।</b>\nकृपया भेजें:\n<code>Amount: 80 EUR\nTX/Ref: &lt;hash या reference&gt;\nMethod: BTC|ETH|SOL</code>\nया उसी कैप्शन के साथ प्रमाण की छवि भेजें।",
@@ -1097,25 +1087,15 @@ TEXTS["ar"] = {
     ),
 
     "submit_uid_prompt": (
-        "أرسل <b>MT5 UID / رقم الحساب</b> الآن بهذا التنسيق الدقيق:\n\n"
-        "<code>UID: 12345678</code>\n\n"
-        "<b>مهم:</b>\n"
-        "- اكتب <code>UID:</code> أولاً\n"
-        "- ثم رقمك\n"
-        "- أرقام فقط\n"
-        "- بدون نص إضافي\n\n"
-        "إذا أرسلت لقطة شاشة أو مستندًا، يجب أن يستخدم <b>التعليق</b> نفس التنسيق."
+        "أرسل <b>MT5 UID / رقم الحساب</b> الآن.\n\n"
+        "فقط اكتب الرقم — مثال:\n\n"
+        "<code>12345678</code>\n\n"
+        "<i>إذا أرسلت لقطة شاشة أو مستندًا، ضمّن الـ UID في التعليق.</i>"
     ),
     "uid_format_guide": (
-        "<b>تنسيق UID غير صالح.</b>\n\n"
-        "أرسل UID بهذا التنسيق الدقيق:\n\n"
-        "<code>UID: 12345678</code>\n\n"
-        "<b>القواعد:</b>\n"
-        "- يجب أن يبدأ بـ <code>UID:</code>\n"
-        "- أرقام فقط بعد ذلك\n"
-        "- بدون كلمات إضافية\n"
-        "- بدون مسافات قبل UID\n\n"
-        "<i>مثال:</i> <code>UID: 123517235</code>"
+        "<b>لم يتم التعرف على UID.</b>\n\n"
+        "فضلاً أرسل فقط رقم MT5 UID الخاص بك — مثال:\n\n"
+        "<code>12345678</code>"
     ),
     "payment_format_guide": (
         "<b>تنسيق إثبات الدفع غير صالح.</b>\n\n"
@@ -1123,9 +1103,9 @@ TEXTS["ar"] = {
         "<code>PAYMENT: FUNDED</code>"
     ),
     "uid_caption_invalid": (
-        "<b>تنسيق التعليق غير صالح.</b>\n\n"
-        "إذا أرسلت لقطة شاشة أو مستندًا، يجب أن يكون التعليق:\n\n"
-        "<code>UID: 12345678</code>"
+        "<b>التعليق لا يحتوي على UID.</b>\n\n"
+        "إذا أرسلت لقطة شاشة أو مستندًا، يجب أن يحتوي التعليق على UID — مثال:\n\n"
+        "<code>12345678</code>"
     ),
     "uid_already_registered": (
         "<b>هذا UID مسجل بالفعل لمستخدم آخر.</b>\n\n"
@@ -1209,9 +1189,9 @@ TEXTS["ar"] = {
 
     "fallback_msg": "لم أفهم ذلك — يرجى استخدام الأزرار أدناه.",
     "uid_bad_format": (
-        "<b>الصيغة غير معروفة.</b>\n"
-        "يرجى إرسال UID وبريدك في PU Prime بهذا الشكل:\n"
-        "<code>UID: 12345678\nEmail: you@example.com</code>"
+        "<b>لم يتم التعرف على UID.</b>\n"
+        "فضلاً أرسل فقط رقم MT5 UID — مثال:\n"
+        "<code>12345678</code>"
     ),
     "vip_uid_received": (
         "<b>تم استلام طلب VIP.</b>\n"
@@ -1255,8 +1235,8 @@ TEXTS["ar"] = {
     ),
     "faq_q4": "لماذا لم يُقبل UID الخاص بي؟",
     "faq_a4": (
-        "أسباب شائعة: الحساب ليس تحت رمز IB الخاص بنا، لم يتم الإيداع بعد، أو تنسيق UID خاطئ. "
-        "تأكد من استخدام الرمز <code>{IB_CODE}</code>، الإيداع، والتقديم بهذا التنسيق: <code>UID: 12345678</code>"
+        "أسباب شائعة: الحساب ليس تحت رمز IB الخاص بنا، لم يتم الإيداع بعد، أو لم نستطع قراءة الـ UID. "
+        "تأكد من استخدام الرمز <code>{IB_CODE}</code>، الإيداع، وأرسلت الأرقام فقط، مثل: <code>12345678</code>"
     ),
     "faq_q5": "كم يكلف VIP الممول؟",
     "faq_a5": (
@@ -1616,25 +1596,15 @@ TEXTS["es"] = {
     ),
 
     "submit_uid_prompt": (
-        "Envía tu <b>MT5 UID / número de cuenta</b> ahora con este formato exacto:\n\n"
-        "<code>UID: 12345678</code>\n\n"
-        "<b>Importante:</b>\n"
-        "- escribe <code>UID:</code> primero\n"
-        "- luego tu número\n"
-        "- solo dígitos\n"
-        "- sin texto extra\n\n"
-        "Si envías una captura o documento, el <b>caption</b> debe usar el mismo formato."
+        "Envía tu <b>MT5 UID / número de cuenta</b> ahora.\n\n"
+        "Solo escribe el número — por ejemplo:\n\n"
+        "<code>12345678</code>\n\n"
+        "<i>Si envías una captura o documento, incluye tu UID en el caption.</i>"
     ),
     "uid_format_guide": (
-        "<b>Formato UID inválido.</b>\n\n"
-        "Envía tu UID con este formato exacto:\n\n"
-        "<code>UID: 12345678</code>\n\n"
-        "<b>Reglas:</b>\n"
-        "- debe comenzar con <code>UID:</code>\n"
-        "- solo números después\n"
-        "- sin palabras extra\n"
-        "- sin espacios antes de UID\n\n"
-        "<i>Ejemplo:</i> <code>UID: 123517235</code>"
+        "<b>UID no reconocido.</b>\n\n"
+        "Por favor envía solo tu MT5 UID — por ejemplo:\n\n"
+        "<code>12345678</code>"
     ),
     "payment_format_guide": (
         "<b>Formato de comprobante inválido.</b>\n\n"
@@ -1642,9 +1612,9 @@ TEXTS["es"] = {
         "<code>PAYMENT: FUNDED</code>"
     ),
     "uid_caption_invalid": (
-        "<b>Formato de caption inválido.</b>\n\n"
-        "Si envías captura o documento, el caption debe ser:\n\n"
-        "<code>UID: 12345678</code>"
+        "<b>Caption sin UID.</b>\n\n"
+        "Si envías captura o documento, el caption debe contener tu UID — por ejemplo:\n\n"
+        "<code>12345678</code>"
     ),
     "uid_already_registered": (
         "<b>Este UID ya está registrado a otro usuario.</b>\n\n"
@@ -1728,9 +1698,9 @@ TEXTS["es"] = {
 
     "fallback_msg": "No entendí eso — por favor usa los botones de abajo.",
     "uid_bad_format": (
-        "<b>Formato no reconocido.</b>\n"
-        "Por favor envía tu UID y correo de PU Prime así:\n"
-        "<code>UID: 12345678\nEmail: tu@ejemplo.com</code>"
+        "<b>UID no reconocido.</b>\n"
+        "Por favor envía solo tu MT5 UID — por ejemplo:\n"
+        "<code>12345678</code>"
     ),
     "vip_uid_received": (
         "<b>Solicitud VIP recibida.</b>\n"
@@ -1775,8 +1745,8 @@ TEXTS["es"] = {
     "faq_q4": "¿Por qué no aceptaron mi UID?",
     "faq_a4": (
         "Razones comunes: cuenta no bajo nuestro código IB, sin depósito aún, "
-        "o formato UID incorrecto. Verifica que usaste el código <code>{IB_CODE}</code>, "
-        "depositaste, y enviaste con este formato exacto: <code>UID: 12345678</code>"
+        "o no pudimos leer tu UID. Verifica que usaste el código <code>{IB_CODE}</code>, "
+        "depositaste, y enviaste solo los dígitos, ej: <code>12345678</code>"
     ),
     "faq_q5": "¿Cuánto cuesta VIP Funded?",
     "faq_a5": (
@@ -1903,10 +1873,10 @@ TEXTS["ru"] = {
     "funded_proof_prompt": "Отправьте ваше <b>подтверждение оплаты</b> сейчас.\n\n<b>Требуемый формат подписи:</b>\n<code>Amount: 80 EUR\nTX/Ref: &lt;hash или reference&gt;\nMethod: BTC|ETH|SOL</code>\n\nВы можете отправить скриншот с этой подписью.",
     "funded_waiting_review_msg": "<b>Ваше подтверждение Funded VIP уже на проверке.</b>\n\nБольше ничего делать не нужно.",
     "funded_proof_received": "<b>Подтверждение оплаты получено.</b>\n\nВаша оплата Funded VIP теперь на проверке. Вам придёт DM после одобрения.",
-    "submit_uid_prompt": "Отправьте ваш <b>MT5 UID / номер счёта</b> сейчас в точно таком формате:\n\n<code>UID: 12345678\nEmail: you@example.com</code>",
-    "uid_format_guide": "<b>Неверный формат UID.</b>\n\nОтправьте ваш UID в точно таком формате:\n<code>UID: 12345678\nEmail: you@example.com</code>",
+    "submit_uid_prompt": "Отправьте ваш <b>MT5 UID / номер счёта</b>.\n\nПросто напишите число — например:\n\n<code>12345678</code>\n\n<i>Если вы отправляете скриншот или документ, укажите ваш UID в подписи.</i>",
+    "uid_format_guide": "<b>UID не распознан.</b>\n\nПожалуйста, отправьте просто ваш MT5 UID — например:\n\n<code>12345678</code>",
     "payment_format_guide": "<b>Неверный формат подтверждения оплаты.</b>\n\nЕсли вы отправляете скриншот, добавьте в подпись:\n<code>Amount: 80 EUR\nTX/Ref: &lt;hash или reference&gt;\nMethod: BTC|ETH|SOL</code>",
-    "uid_caption_invalid": "<b>Неверный формат подписи.</b>\n\nЕсли вы отправляете скриншот или файл, добавьте в подпись:\n<code>UID: 12345678\nEmail: you@example.com</code>",
+    "uid_caption_invalid": "<b>В подписи нет UID.</b>\n\nЕсли вы отправляете скриншот или файл, укажите ваш UID в подписи — например:\n\n<code>12345678</code>",
     "uid_already_registered": "<b>Этот UID уже зарегистрирован за другим пользователем.</b>\n\nЕсли это ошибка — свяжитесь с поддержкой.",
     "uid_not_ready_new_vip": "<b>Вы ещё не готовы отправить UID.</b>\n\nДля VIP-доступа сначала зарегистрируйтесь и внесите депозит.",
     "uid_not_ready_existing_vip": "<b>Вы ещё не готовы отправить UID.</b>\n\nДля VIP-доступа сначала отправьте email для перевода.",
@@ -1923,7 +1893,7 @@ TEXTS["ru"] = {
     "nudge_72h_deposit": "Вы отметили депозит как выполненный — не забудьте отправить ваш UID.\nНажмите /start, чтобы продолжить.",
     "renewal_reminder": "<b>Напоминание о продлении Funded VIP</b>\n\nВаше продление подходит через <b>{DAYS} дн.</b>\nПродление — <b>EUR 80</b>. Нажмите /start -> Paid VIP -> Funded для оплаты.\n\n<b>Кошельки:</b>\nBTC: <code>{BTC}</code>\nETH: <code>{ETH}</code>\nSOL: <code>{SOL}</code>",
     "fallback_msg": "Я не понял — пожалуйста, используйте кнопки ниже.",
-    "uid_bad_format": "<b>Формат не распознан.</b>\nПожалуйста, отправьте ваш UID и email PU Prime так:\n<code>UID: 12345678\nEmail: you@example.com</code>",
+    "uid_bad_format": "<b>UID не распознан.</b>\nПожалуйста, отправьте просто ваш MT5 UID — например:\n<code>12345678</code>",
     "vip_uid_received": "<b>VIP-заявка получена.</b>\nНаша команда скоро её рассмотрит и напишет вам в DM после одобрения. ✅",
     "aff_uid_received": "<b>Заявка партнёра получена.</b>\nНаша команда подтвердит ваш статус IB суб-партнёра и напишет вам в DM. ✅",
     "funded_submit_bad_format": "<b>Формат не распознан.</b>\nПожалуйста, отправьте:\n<code>Amount: 80 EUR\nTX/Ref: &lt;hash или reference&gt;\nMethod: BTC|ETH|SOL</code>\nИли отправьте скриншот с такой же подписью.",
@@ -2254,25 +2224,49 @@ def rate_limited(user_id) -> bool:
     return (now - last) < RATE_LIMIT_SECONDS
 
 
+# Telegram restricts regular bots to a specific set of reaction emoji.
+# Anything outside this set raises BadRequest: REACTION_INVALID.
+ALLOWED_REACTIONS = {
+    "👍", "👎", "❤", "❤️", "🔥", "🥰", "👏", "😁", "🤔", "🤯", "😱", "🤬",
+    "😢", "🎉", "🤩", "🤮", "💩", "🙏", "👌", "🕊", "🤡", "🥱", "🥴", "😍",
+    "🐳", "🌚", "🌭", "💯", "🤣", "⚡", "⚡️", "🍌", "🏆", "💔", "🤨", "😐",
+    "🍓", "🍾", "💋", "🖕", "😈", "😴", "😭", "🤓", "👻", "👨‍💻", "👀",
+    "🎃", "🙈", "😇", "😨", "🤝", "✍", "✍️", "🤗", "🫡", "🎅", "🎄", "☃",
+    "☃️", "💅", "🤪", "🗿", "🆒", "💘", "🙉", "🦄", "😘", "💊", "🙊", "😎",
+    "👾", "🤷‍♂", "🤷‍♂️", "🤷", "🤷‍♀", "🤷‍♀️", "😡",
+}
+
+
 async def try_react(update, context, emoji="👍"):
     try:
         msg = update.effective_message
         if msg is None:
+            return
+        if emoji not in ALLOWED_REACTIONS:
+            log.warning("try_react: emoji %r not in Telegram allowed set, skipping", emoji)
             return
         await context.bot.set_message_reaction(
             chat_id=msg.chat_id,
             message_id=msg.message_id,
             reaction=emoji,
         )
-    except Exception:
-        pass
+    except Exception as e:
+        log.warning("try_react failed (%s): %s", emoji, e)
 
 
 def parse_uid_submission(text: str):
+    """
+    Accept the user's UID with or without a 'UID:' prefix. Also tolerates an
+    optional email on a separate line. Returns just the digit string, or None.
+    """
     if not text:
         return None
-    text = text.strip()
-    m = re.fullmatch(r"UID:\s*(\d{5,20})", text, flags=re.IGNORECASE)
+    # Pick the first 5-20 digit run anywhere in the message. This matches:
+    #   12345678
+    #   UID: 12345678
+    #   12345678\nuser@example.com
+    #   uid 12345678  email: user@example.com
+    m = re.search(r"(?<!\d)(\d{5,20})(?!\d)", text)
     return m.group(1) if m else None
 
 
@@ -3263,7 +3257,7 @@ async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             context.user_data["awaiting_funded_proof"] = False
             context.user_data["funded_submitted"] = True
             log_event(user.id, "funded_payment_submitted", f"method={method}")
-            await try_react(update, context, "💎")
+            await try_react(update, context, "🔥")
             await update.message.reply_text(
                 L(lang, "funded_submit_received"),
                 reply_markup=start_menu(lang),
@@ -3300,7 +3294,7 @@ async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             uid = parsed  # parse_uid_submission returns just the digits string
             context.user_data["awaiting_uid"] = False
             ok, existing = register_uid(uid, user.id, uid_type)
-            await try_react(update, context, "✅" if ok else "👀")
+            await try_react(update, context, "👍" if ok else "👀")
             if uid_type == "vip":
                 context.user_data["vip_submitted"] = True
                 log_event(user.id, "vip_uid_submitted",
@@ -3392,7 +3386,7 @@ async def media_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             context.user_data["awaiting_funded_proof"] = False
             context.user_data["funded_submitted"] = True
             log_event(user.id, "funded_payment_submitted_media", f"method={method}")
-            await try_react(update, context, "💎")
+            await try_react(update, context, "🔥")
             await update.message.reply_text(
                 L(lang, "funded_submit_received"),
                 reply_markup=start_menu(lang),
@@ -3432,7 +3426,7 @@ async def media_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             uid = parsed
             context.user_data["awaiting_uid"] = False
             ok, existing = register_uid(uid, user.id, uid_type)
-            await try_react(update, context, "✅" if ok else "👀")
+            await try_react(update, context, "👍" if ok else "👀")
             if uid_type == "vip":
                 context.user_data["vip_submitted"] = True
                 log_event(user.id, "vip_uid_submitted_media",
