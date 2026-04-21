@@ -34,6 +34,7 @@ IB_LINK = "https://www.puprime.partners/forex-trading-account/?affid=MjMyMTMwODY
 IB_CODE = "pOenf2oC"
 IB_ACCOUNT_NUMBER = "23213086"
 TUTORIAL_PDF = "IB_E_BOOK.pdf"
+TUTORIAL_PDF_2 = "IB_E_BOOK_1.pdf"
 TRANSFER_EMAIL_1 = "tommaso.ticconi@puprime.com"
 TRANSFER_EMAIL_2 = "info@puprime.com"
 SOLANA_ADDRESS = "GrSbxLK1Z6ZgEhEtViY4ibLEq7xYuXiuGCxVFYjzwazt"
@@ -2909,22 +2910,33 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             parse_mode="HTML",
         )
     elif data == "what_is_ib":
+    await query.message.reply_text(
+        L(lang, "what_is_ib_msg"),
+        reply_markup=ib_pdf_menu(lang),
+        parse_mode="HTML",
+    )
+    try:
+        with open(TUTORIAL_PDF, "rb") as pdf:
+            await query.message.reply_document(
+                document=pdf, caption=L(lang, "pdf_caption")
+            )
+    except FileNotFoundError:
         await query.message.reply_text(
-            L(lang, "what_is_ib_msg"),
+            L(lang, "pdf_missing", PDF=TUTORIAL_PDF),
             reply_markup=ib_pdf_menu(lang),
             parse_mode="HTML",
         )
-        try:
-            with open(TUTORIAL_PDF, "rb") as pdf:
-                await query.message.reply_document(
-                    document=pdf, caption=L(lang, "pdf_caption")
-                )
-        except FileNotFoundError:
-            await query.message.reply_text(
-                L(lang, "pdf_missing", PDF=TUTORIAL_PDF),
-                reply_markup=ib_pdf_menu(lang),
-                parse_mode="HTML",
+    try:
+        with open(TUTORIAL_PDF_2, "rb") as pdf:
+            await query.message.reply_document(
+                document=pdf, caption=L(lang, "pdf_caption")
             )
+    except FileNotFoundError:
+        await query.message.reply_text(
+            L(lang, "pdf_missing", PDF=TUTORIAL_PDF_2),
+            reply_markup=ib_pdf_menu(lang),
+            parse_mode="HTML",
+        )
     elif data == "affiliate_main":
         await query.message.reply_text(
             L(lang, "affiliate_main_body"),
