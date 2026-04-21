@@ -2668,7 +2668,6 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if query is None:
         return
     data = query.data or ""
-
     # ---------- Admin chat: only admin review actions allowed ----------
     if is_admin_chat(update):
         if data.startswith("adm:"):
@@ -2679,7 +2678,6 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         except Exception:
             pass
         return
-
     # ---------- User flow ----------
     user = query.from_user
     if is_blocked(user.id):
@@ -2688,7 +2686,6 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         except Exception:
             pass
         return
-
     # Language picker callback - handle BEFORE rate limiting so first-time users can always pick
     if data.startswith("setlang:"):
         new_lang = data.split(":", 1)[1]
@@ -2710,19 +2707,16 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             parse_mode="HTML",
         )
         return
-
     if rate_limited(user.id):
         try:
             await query.answer(L(get_lang(user.id), "slow_down"))
         except Exception:
             pass
         return
-
     await query.answer()
     upsert_user(user)
     lang = get_lang(user.id)
     username = f"@{user.username}" if user.username else "No username"
-
     # ---------- Open language picker ----------
     if data == "change_lang":
         await query.message.reply_text(
@@ -2731,7 +2725,6 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             parse_mode="HTML",
         )
         return
-
     # ---------- Restart confirmation ----------
     if data == "restart_yes":
         context.user_data.clear()
@@ -2748,7 +2741,6 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             parse_mode="HTML",
         )
         return
-
     if data == "back_start":
         context.user_data.clear()
         await query.message.reply_text(
@@ -2757,7 +2749,6 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             parse_mode="HTML",
         )
         return
-
     # ---------- Team / Socials / FAQ ----------
     if data == "team":
         text = L(lang, "team_title") + "\n\n"
@@ -2766,7 +2757,6 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         text += "\n" + L(lang, "team_footer")
         await query.message.reply_text(text, reply_markup=team_menu(lang), parse_mode="HTML")
         return
-
     if data == "socials":
         await query.message.reply_text(
             L(lang, "socials_body"),
@@ -2774,7 +2764,6 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             parse_mode="HTML",
         )
         return
-
     if data == "faq":
         await query.message.reply_text(
             L(lang, "faq_intro"),
@@ -2782,7 +2771,6 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             parse_mode="HTML",
         )
         return
-
     for fid, q_key, a_key in FAQ_KEYS:
         if data == fid:
             q = L(lang, q_key)
@@ -2793,7 +2781,6 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 parse_mode="HTML",
             )
             return
-
     # ---------- VIP entry paths ----------
     if data == "vip_access":
         context.user_data["main_path"] = "vip"
@@ -2899,7 +2886,6 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=funded_review_menu(lang),
             parse_mode="HTML",
         )
-
     # ---------- Affiliate path ----------
     elif data == "ib_affiliate":
         context.user_data["main_path"] = "affiliate"
@@ -2910,33 +2896,33 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             parse_mode="HTML",
         )
     elif data == "what_is_ib":
-    await query.message.reply_text(
-        L(lang, "what_is_ib_msg"),
-        reply_markup=ib_pdf_menu(lang),
-        parse_mode="HTML",
-    )
-    try:
-        with open(TUTORIAL_PDF, "rb") as pdf:
-            await query.message.reply_document(
-                document=pdf, caption=L(lang, "pdf_caption")
-            )
-    except FileNotFoundError:
         await query.message.reply_text(
-            L(lang, "pdf_missing", PDF=TUTORIAL_PDF),
+            L(lang, "what_is_ib_msg"),
             reply_markup=ib_pdf_menu(lang),
             parse_mode="HTML",
         )
-    try:
-        with open(TUTORIAL_PDF_2, "rb") as pdf:
-            await query.message.reply_document(
-                document=pdf, caption=L(lang, "pdf_caption")
+        try:
+            with open(TUTORIAL_PDF, "rb") as pdf:
+                await query.message.reply_document(
+                    document=pdf, caption=L(lang, "pdf_caption")
+                )
+        except FileNotFoundError:
+            await query.message.reply_text(
+                L(lang, "pdf_missing", PDF=TUTORIAL_PDF),
+                reply_markup=ib_pdf_menu(lang),
+                parse_mode="HTML",
             )
-    except FileNotFoundError:
-        await query.message.reply_text(
-            L(lang, "pdf_missing", PDF=TUTORIAL_PDF_2),
-            reply_markup=ib_pdf_menu(lang),
-            parse_mode="HTML",
-        )
+        try:
+            with open(TUTORIAL_PDF_2, "rb") as pdf:
+                await query.message.reply_document(
+                    document=pdf, caption=L(lang, "pdf_caption")
+                )
+        except FileNotFoundError:
+            await query.message.reply_text(
+                L(lang, "pdf_missing", PDF=TUTORIAL_PDF_2),
+                reply_markup=ib_pdf_menu(lang),
+                parse_mode="HTML",
+            )
     elif data == "affiliate_main":
         await query.message.reply_text(
             L(lang, "affiliate_main_body"),
@@ -3125,7 +3111,6 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=back_to_affiliate_main(lang),
             parse_mode="HTML",
         )
-
     # ---------- UID submission gates ----------
     elif data == "submit_uid_vip":
         flow = context.user_data.get("flow")
@@ -3224,7 +3209,6 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=start_menu(lang),
             parse_mode="HTML",
         )
-
 
 # ---------------------------------------------------------------------------
 # Text & media handlers (UID submissions, payment proofs)
